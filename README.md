@@ -1,11 +1,10 @@
 # Urban Economics (EC330) F22
 
-### Instructor: Andrew Dickinson (adickin3@uoregon.edu) 
-#### TA: Jose Rojas (jrojas2@uoregon.edu)
+### Instructor: Chen Xu (cxustedwards.edu) 
 
 ## Schedule
 
-__Lectures:__ 16:00 to 17:20 MW
+__Lectures:__ TBD
 
 __Office hours:__ TBD (thursday and friday)
   
