@@ -1,0 +1,165 @@
+---
+title: 'Econ 330: Urban Economics'
+author: "Andrew Dickinson"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+subtitle: Lecture 01
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+pacman::p_load(
+  broom, here, tidyverse, latex2exp, ggplot2, ggthemes, viridis, extrafont,
+  gridExtra, kableExtra, dplyr, magrittr, knitr, parallel, tufte, emo, ggrepel,
+  sf, hrbrthemes, lwgeom, maps, mapdata, spData, leaflet, huxtable, janitor,
+  tidycensus
+)
+
+source("~/Documents/scripts/colors/colors.R")
+
+opts_chunk$set(
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 10.5,
+  warning = F,
+  message = F
+)
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+
+# A blank theme for ggplot
+theme_empty <- theme_bw() + theme(
+  line = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  axis.text = element_blank(),
+  plot.title = element_blank(),
+  axis.title = element_blank(),
+  plot.margin = structure(c(0, 0, -0.5, -1), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_simple <- theme_bw() + theme(
+  line = element_blank(),
+  panel.grid = element_blank(),
+  rect = element_blank(),
+  strip.text = element_blank(),
+  axis.text.x = element_text(size = 18, family = "STIXGeneral"),
+  axis.text.y = element_blank(),
+  axis.ticks = element_blank(),
+  plot.title = element_blank(),
+  axis.title = element_blank(),
+  # plot.margin = structure(c(0, 0, -1, -1), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes_math <- theme_void() + theme(
+  text = element_text(family = "MathJax_Math"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+    )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes_serif <- theme_void() + theme(
+  text = element_text(family = "MathJax_Main"),
+  axis.title = element_text(size = 22),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = "grey70",
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+    )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+theme_axes <- theme_void() + theme(
+  text = element_text(family = "Fira Sans Book"),
+  axis.title = element_text(size = 18),
+  axis.title.x = element_text(hjust = .95, margin = margin(0.15, 0, 0, 0, unit = "lines")),
+  axis.title.y = element_text(vjust = .95, margin = margin(0, 0.15, 0, 0, unit = "lines")),
+  axis.line = element_line(
+    color = grey_light,
+    size = 0.25,
+    arrow = arrow(angle = 30, length = unit(0.15, "inches")
+    )),
+  plot.margin = structure(c(1, 0, 1, 0), unit = "lines", valid.unit = 3L, class = "unit"),
+  legend.position = "none"
+)
+
+```
+
+```{r, echo=FALSE, include=FALSE, cache=TRUE}
+
+#get data---------------------------------------------------------------------
+rent<-  tidycensus::get_acs(
+  geography = "county", variables = "DP04_0134",
+  state = c("WA", "OR", "CA"), geometry = TRUE
+)
+
+
+
+pop<-tidycensus::get_acs(
+  geography = "county", variables = "B01003_001",
+  state = c("WA", "OR", "CA"), geometry = TRUE
+)
+
+```
+
+```{r rent0, include=F, cache=TRUE}
+rent_nyc = 
+  get_acs(
+    geography = "tract", variables = "DP04_0134",
+    state = 36, county = c(061, 047, 005, 085, 081), geometry = TRUE
+    )
+```
+
+```{r rent1, include=F, cache=TRUE}
+rent_us = 
+  get_acs(
+    geography = "county", variables = "DP04_0134",
+    state = c(1,4:6,8:13, 16:42, 44:51, 53:56), geometry = TRUE
+    )
+```
+
+```{r rent2, include=F, cache=TRUE}
+rent_pop_orwa = 
+  get_acs(
+    geography = "tract", variables = c("B01003_001","DP04_0134"),
+    state = c("WA", "OR"), geometry = TRUE
+    ) 
+
+rent_pop_orwa$area <- st_area(rent_pop_orwa) |> as.numeric()
+```
+
+
+```{r, cache=TRUE, echo=FALSE, include=TRUE}
+col_pal = colorQuantile(palette = "viridis", domain = rent_pop_orwa$estimate, n = 10)
+
+rent_pop_orwa %>%
+  mutate(county = gsub(",.*", "", NAME)) %>% ## Get rid of everything after the first comma
+  st_transform(crs = 4326) %>%
+  leaflet(width = "100%") %>%
+  addProviderTiles(provider = "CartoDB.Positron") %>%
+  addPolygons(
+    popup = ~paste0(county, "<br>", "Median rent: ", prettyNum(estimate, big.mark=",")),
+    stroke = FALSE,
+    smoothFactor = 0,
+    fillOpacity = 0.7,
+    color = ~col_pal(estimate)
+    ) %>%
+  addLegend(
+    "bottomright",
+    pal = col_pal,
+    values = ~estimate,
+    title = "Population percentiles",
+    opacity = 1
+    )
+```
+

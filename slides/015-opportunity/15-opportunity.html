@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The Geography of Income Inequality</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andrew Dickinson" />
+    <script src="15-opportunity_files/header-attrs/header-attrs.js"></script>
+    <link href="15-opportunity_files/remark-css/default.css" rel="stylesheet" />
+    <link href="15-opportunity_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="15-opportunity_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="15-opportunity_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="15-opportunity_files/tile-view/tile-view.js"></script>
+    <script src="15-opportunity_files/fabric/fabric.min.js"></script>
+    <link href="15-opportunity_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="15-opportunity_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link rel="stylesheet" href="nord.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# The Geography of Income Inequality
+]
+.subtitle[
+## Set 12
+]
+.author[
+### Andrew Dickinson
+]
+.date[
+### Fall 2022
+]
+
+---
+
+
+
+
+class: inverse, middle
+# Content
+
+.hi-white[(i) The rise of "big data"]
+
+.hi-white[(ii) "Big data" and the American Dream]
+
+.hi-white[(iii) Causal Effect of Neighborhoods]
+
+---
+# Housekeeping
+
+.pull-left[
+.hi[PS03] _(due Friday, Nov. 25)_
+- Posted now
+]
+
+.pull-right[
+.hi[PS04] _(due Sun, Dec. 4)_
+]
+
+--
+
+.hi[TotC book report] _(due Thu, Dec. 8)_
+- Short (1000 words) assignment 
+- rubric posted on canvas and on the course repo
+- will be checking for plagiarism 
+
+--
+
+.hi-red[Final] _(14:45 Wed, Dec. 7)_
+- [final schedule](https://registrar.uoregon.edu/calendars/examinations)
+- Comprehensive exam with an emphasis on the newer material
+
+---
+class: inverse, middle
+# The rise of "big data"
+
+---
+# Theoretical social science
+
+Until very recently, social scientist were very limited by data to study these types of .hi[policy questions]
+
+Social science has been mostly a .hii[theoretical field] to make policy recommendations
+
+--
+
+- Develop mathematical models (economics)
+- Qualitative theories (sociology)
+
+--
+
+.hi[Problem:] We were never able to test most of these theories
+- Led to politicization of scientific questions such as
+
+&gt; Is Obamacare reducing job growth in America?
+
+
+---
+# Big data and empirics
+
+Social sciences are more empirical thanks to growing availability of data
+- Test and improve theories using real world data
+
+
+--
+
+.center[
+![:scale 75%](./figures/paper-count.png)
+]
+
+---
+# Big data and empirics
+
+.pull-left[
+What is .hi[_"Big data"_]?
+
+&gt; Large datasets
+
+]
+
+--
+
+.pull-right[
+Where did .hi[_"Big data"_] come from?
+
+Product of the .hii[internet age]
+- Information costs `\(\rightarrow 0\)`
+]
+
+--
+
+Product of post-internet private sector: ["Data is the new oil"](https://www.economist.com/leaders/2017/05/06/the-worlds-most-valuable-resource-is-no-longer-oil-but-data)&lt;sup&gt;.smallest[.hii[†]]&lt;/sup&gt;
+
+.footnote[.hii[†] Whatsapp, Robinhood]
+
+.center[
+![:scale 55%](./figures/data-new-oil.png)
+]
+
+---
+# Big data and empirics
+
+.hii[Examples:]
+
+--
+
+.pull-left[
+- Government data: Tax records
+- Corporate data: Google etc.
+- Text data: Twitter, newspapers
+]
+.pull-right[
+- Satellite imagery
+- Cellphone location data
+- GitHub data
+]
+
+--
+
+.hi[Benefits:]
+.pull-left[
+- More reliable than surveys
+- New variables (eg emotions, locations)]
+.pull-right[
+- Rich coverage `\(\Rightarrow\)` study subgroups
+- Large samples]
+
+---
+class: inverse, middle
+# The American Dream &lt;sup&gt;.smallest[.hii[†]]&lt;/sup&gt;
+
+.footnote[.hii[†] This lecture uses content from Raj Chetty's course: https://opportunityinsights.org/course/
+]
+
+
+
+---
+# The American Dream
+
+ The .hi[American Dream] is an multi-faceted, abstract concept that may be interpreted in many ways
+ 
+--
+
+_Is the American Dream alive and well today?_
+--
+ _How should we .hii[judge] that?_
+
+--
+
+How can we distill the concept of an the American Dream into a .hi[statistic] that we can .hii[systematically measure] using big data?
+
+ 
+--
+
+Obama (2014): 
+    
+&gt; People's frustrations are partly rooted "in the fear that their kids won't be better off than they were."
+
+--
+
+One .hii[systematic measure] the American Dream: _What fraction of children earn more income than their parents?_
+--
+ _Is this a .hi[fair] measure?_
+
+--
+
+We'd like to know: _How has this statistic changed over time?_
+--
+ _Up or down?_
+ 
+---
+class: clear
+
+.center[
+![](./figures/cohort.png)
+]
+
+---
+class: clear
+
+.center[
+![](./figures/inc_1.png)
+]
+
+---
+class: clear
+count: false
+
+.center[
+![](./figures/inc_2.png)
+]
+
+
+
+---
+class: clear
+count: false
+
+.center[
+![](./figures/inc_3.png)
+]
+
+
+---
+class: clear
+count: false
+
+.center[
+![](./figures/inc_4.png)
+]
+
+---
+class: clear
+count: false
+
+.center[
+![](./figures/inc_5.png)
+]
+
+---
+class: clear
+
+.center[
+![:scale 95%](./figures/density-plot.png)
+]
+
+---
+class: clear
+count: false
+
+.center[
+![:scale 95%](./figures/density-plot-1980.png)
+]
+
+---
+# The fading American Dream
+
+.center[.hi[What do these figures indicate about the American Dream?]]
+
+--
+
+.center[.hii[It has become harder and harder to reach it]]
+
+
+--
+
+&lt;br&gt;
+
+.hi[Two] major changes in the American economy since the 1940s:
+
+.hii[(i)] Lower total economic growth
+
+.hii[(ii)] Less equal distribution of growth
+
+---
+# Growth in family income
+
+The following chart compares growth in real mean family income by quintile between 1947-1973 and 1973-2013
+
+.center[
+![:scale 85%](./figures/income-growth.png)
+]
+
+---
+# Growth in family income
+
+![](./figures/income.png)
+
+---
+# Growth in family income
+
+.center[
+![](./figures/the_one.png)
+]
+
+---
+# Growth in family income
+
+.hi[Two] major changes in the American economy since the 1940s:
+- Lower total economic growth
+- Less equal distribution of growth
+
+--
+
+.hi[What policies can increase absolute mobility?]
+
+--
+
+Consider two hypothetical scenarios for children born in 1980:
+
+.hii[(i)] .hi[Higher growth]
+
+&gt; 1940 cohort growth rate with the 1980 cohort historical distribution
+
+.hii[(ii)] .hi[More broadly shared growth]
+
+&gt; Same 1980 cohort historical growth rates but 1940 cohort distribution across income groups
+
+---
+class: inverse, middle
+## Which over these scenarios would have lead to a stronger American Dream?
+
+---
+# Hypothetical scenarios
+
+.center[
+![](./figures/hyp-1.png)
+]
+
+---
+# Hypothetical scenarios
+
+.center[
+![](./figures/hyp-2.png)
+]
+
+---
+# Hypothetical scenarios
+
+.center[
+![](./figures/hyp-3.png)
+]
+
+---
+# Restoring the American Dream
+
+.hi[Main lesson:] Restoring the American Dream of high rates of upward mobility will require .hii[more broadly shared] economic growth
+
+- Need policies that will increase incomes throughout the distribution
+
+--
+
+.hi[Two approaches of redistribution]
+
+.hii[(i)] .hi[Redistribution]
+
+  - Piketty and Saez: Reduction in top income taxes and erosion of unions and min wage have led working-class Americans to fall behind
+
+--
+
+.hii[(ii)] .hi[Human Capital Investment]
+
+  - Goldin and Katz: race between education and technology – need education to keep pace with technological change to increase wage rates
+  
+---
+class: inverse, middle
+# "Big data" and the American Dream
+
+---
+# Measuring the American Dream
+
+.hi[Central policy question:]
+.center[_Why are children's chances of climbing the income ladder .hi-red[falling] in America?_]
+
+--
+
+.center[_What can we do to .hi[reverse] this trend?_]
+
+--
+
+Difficult to answer using .hi[historical data] and .hii[macroeconomic trends]
+
+--
+
+.hi[Problem:] We have too few data points to test all alternative explanations
+
+--
+
+- We never had the data to link parental income across generations
+
+---
+# Measuring the American Dream
+
+The .hi[ideal data] to answer this question:
+
+--
+
+.hi[Individual] by .hii[year] observations across the American public including:
+- family identifiers to link across generation
+- residence information
+
+--
+
+The universe of .hi[tax records] fits the bill- linking generational income
+- Chetty et al. (2017)
+- Tracking earnings over someone's life at the .hi[individual level]
+
+--
+ 
+Allow researchers to observe .hi[generational differences] in income
+
+---
+class: clear
+
+.center[
+![](./figures/map01.png)
+]
+
+[Opportunity Atlas](https://www.opportunityatlas.org/)
+
+---
+class: clear
+
+.center[
+![](./figures/seattle.png)
+]
+
+[Opportunity Atlas](https://www.opportunityatlas.org/)
+
+---
+class: inverse, middle
+# Causal Effect of Neighborhoods
+
+
+&lt;!-- --- --&gt;
+&lt;!-- # Neighborhood effects --&gt;
+
+&lt;!-- .hi[Q:] How do we know that it truly is neighborhood effects (e.g who you grow up near) not driving this, and .hi[not] just ability sorting? --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!--   - Chetty et al. isolate the causal impacts of neighborhoods by analyzing the propensity to patent by a narrow technology class --&gt;
+
+&lt;!-- &lt;br&gt; --&gt;
+
+&lt;!-- .hi[Intuition:] Genetic ability (sorting of high skilled labor) is unlikely to vary significantly across similar technology classes.  --&gt;
+
+
+---
+# Causal Effect of Neighborhoods
+
+The propensity for an individual to reach the American Dream seems to depend greatly on the location they were raised
+
+--
+
+Understanding why this .hi[heterogeneity] exists may be key to understanding how to improve .hii[social mobility]
+
+--
+
+_But is this relationship .hi[causal]?_
+
+_How should we think about the explanations of these results?_
+
+--
+
+There are two different explanations: 
+
+--
+
+.hii[(i)] .hi[Sorting:] Similar people live near each other (educated people live near other educated people)
+
+--
+
+.hii[(ii)] .hi[Causal impacts:] places have a .hi[causal effect] on updward mobility
+
+---
+# Causal Effect of Neighborhoods
+
+What is the .hi[ideal experiment]?
+
+--
+
+.hii[Randomly assign] children to neighborhoods. Compare adult outcome
+- Can't do this? So what can we do?
+  
+--
+
+.hi[Chetty &amp; Hendren (2018)]
+
+.hi[Quasi-experiment:] Observe data on 7 million families that move 
+ 
+.hi[Key Idea:] Exploit variation in _age of child_ when family moves to identify causal impact of neighborhood environment
+  
+---
+class: clear
+
+.center[
+![](./figures/nbhds_1.png)
+]
+
+---
+count: false
+class: clear
+
+.center[
+![](./figures/nbhds_2.png)
+]
+
+---
+count: false
+class: clear
+
+.center[
+![](./figures/nbhds_3.png)
+]
+
+---
+count: false
+class: clear
+
+.center[
+![](./figures/nbhds_6.png)
+]
+
+---
+# Assumptions
+
+To identify causal impact of neighborhoods, you need to believe that .hi[the timing of moves to better/worse areas are unrelated to other determinants of child's outcomes].
+
+--
+
+This assumption might not hold for two reasons:
+
+--
+
+.hi[(i)] Parents who move to good areas when their children are young might be different than those who move later
+
+--
+
+.hi[(ii)] Moving may be unrelated to other factors (e.g change in parents' job) that impact children directly
+
+--
+
+.hi[Both of these concerns are addressed]
+
+--
+
+- Compare across siblings
+
+---
+class: inverse, middle
+# Geography of Upward Mobility
+
+
+
+---
+
+
+# A Familiar Map
+
+![](./figures/chetty_map.png)
+
+
+---
+
+# Last Q
+
+OK, so: .hi[neighborhoods matter for upward mobility]. Next question: _why does this vary across cities/places?_
+
+- To answer this question, it would be good to start by comparing places with high upward mobility to low upward mobility
+  
+  - Do places with higher mobility have better schools, jobs, institutions, something else? All?
+  
+
+---
+
+# Correlations
+
+![](./figures/nbhds_4.png)
+
+---
+# Correlations
+
+5 strongest correlates of upward mobility are:
+
+.hii[(i)] .hi[Segregation:] Greater racial and income segregation associated with lower levels of mobility
+
+---
+count: fasle
+# Segregation
+
+.center[
+![:scale 90%](./figures/seg1.png)
+]
+
+---
+count: fasle
+# Segregation
+
+.center[
+![:scale 90%](./figures/seg2.png)
+]
+
+---
+count: false
+# Correlations
+
+5 strongest correlates of upward mobility are:
+
+.hii[(i)] .hi[Segregation:] Greater racial and income segregation associated with lower levels of mobility
+
+.hii[(ii)] .hi[Income Inequality:] Places with a smaller middle class have less mobility
+
+--
+
+.hii[(iii)] .hi[School Quality:] Higher expenditure, smaller classes, higher test scores `\(\implies\)` more mobility
+  
+--
+
+.hii[(iv)] .hi[Family Structure:] Areas with more single parents have much lower mobility
+  - Strong correlation even for kids whose _own_ parents are married
+  
+--
+  
+.hii[(v)] .hi[Social Capital:] "Takes a village to raise a child"
+
+---
+# Policies to improve upward mobility
+
+In general, there are two policy approaches to increasing upward mobility
+
+--
+
+.hii[(i)] .hi[Moving to Opportunity] (MTO): Provides affordable housing in high-opportunity areas
+
+--
+
+.hii[(ii)] .hi[Place-Based Investments:] Increases upward mobility in low-opportunity areas
+
+--
+
+.qa[Q]: Can you think of the pros and cons of each approach?
+
+---
+# MTO
+
+.hi[MTO Experiment:]
+
+Implemented from 1994-1998 in 5 locations: Baltimore, Boston, Chicago, LA, NY
+- 4,600 families randomly assigned to one of three groups:
+
+--
+
+.hii[(i)] .hi[Experimental:] Offered housing vouchers restricted to low-poverty census tracts
+  
+--
+
+.hii[(ii)] .hi[Section 8:] Offered conventional housing vouchers, no restrictions
+  
+--
+
+.hii[(iii)] .hi[Control:] not offered a voucher, stayed in public housing
+
+---
+
+# Results
+
+.center[
+![](./figures/nbhds_5.png)
+]
+
+---
+# Implications
+
+Housing vouchers can be effective -- but should be target carefully
+
+- Vouchers should be explicitly designed to help families move to affordable, high-opportunity areas
+
+--
+
+  - In MTO experiment, unrestricted vouchers produced .hi[smaller] gains even though families could have made same moves
+ 
+--
+
+  - More generally, low-income families rarely use cash transfers to move to better neighborhoods
+
+--
+
+  - 80% of 2.1 Section 8 vouchers are currently used in high-poverty, low-opportunity neighborhoods
+
+---
+
+
+# MTO Issues
+
+What are the concerns with experiments like MTO?
+
+--
+
+.hii[(i)] .hi[Costs]: how costly would it be to scale this up?
+
+--
+
+.hii[(ii)] .hi[Negative spillovers]: does integration hurt the wealthy (which would dampen the effect of the spillovers)?
+
+--
+
+.hii[(iii)] .hi[Limits to scaling due to sorting]. If you move all low-income people into a high-income neighborhood, it is no longer a high-income neighborhood. 
+
+---
+
+# Place-Based Approaches
+
+A .hi[place-based approach] would be something like:
+
+.hii[(i)] Investment in schools in high-poverty areas
+
+--
+
+.hii[(ii)] Investment in infrastructure in high-poverty areas
+
+--
+
+.qa[Q]: What is the main problem with place-based approaches?
+
+--
+
+  - Displacement! Locational eq `\(\implies\)` more people sort into a neighborhood if it has higher school quality
+  
+--
+
+  - This drives up prices and the residents that it intended to help were ultimately harmed
+
+---
+class: inverse, middle
+# Review
+
+---
+
+# This course: In Review
+
+We have finished all of the material in the class!
+
+__Thank you__ for your time and energy. A quick recap:
+
+
+  
+---
+
+count: false
+# This course: In Review
+
+We have finished all of the material in the class!
+
+__Thank you__ for your time and energy. A quick recap:
+
+1) Big, philosophical questions
+  
+  - What is a city? Why do they exist?
+  
+  - What makes some cities grow and others shrink?
+
+2) Tools!
+
+  - Locational equilibrium (x2)
+  
+  - Bid-rent curves
+  
+  - Two labor market models
+  
+---
+# This course: In Review
+
+3) Applications:
+
+  - Min wage &amp; rent control
+  
+  - Land use &amp; housing policy
+  
+--
+
+My .hi[big picture] takeaways:
+
+  - Location matters! The geographic level at which we implement policy matters, too
+  
+  - Differences in structure of labor/housing market can lead to vastly different outcomes from the same policy
+  
+  - Public policy questions are often more nuanced than they appear on a surface level 
+  
+---
+class: inverse, middle
+# Thank you for a great class :)
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

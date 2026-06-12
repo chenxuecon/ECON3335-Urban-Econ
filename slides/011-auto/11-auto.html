@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Autos</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andrew Dickinson" />
+    <script src="11-auto_files/header-attrs/header-attrs.js"></script>
+    <link href="11-auto_files/remark-css/default.css" rel="stylesheet" />
+    <link href="11-auto_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="11-auto_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="11-auto_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="11-auto_files/tile-view/tile-view.js"></script>
+    <script src="11-auto_files/fabric/fabric.min.js"></script>
+    <link href="11-auto_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="11-auto_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link rel="stylesheet" href="nord.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Autos
+]
+.subtitle[
+## Set 11
+]
+.author[
+### Andrew Dickinson
+]
+.date[
+### Fall 2022
+]
+
+---
+
+
+
+
+class: inverse, middle
+# Content
+
+.hi-white[(i) Homeownership]
+
+.hi-white[(ii) Rental markets]
+
+---
+# Housekeeping
+
+.pull-left[
+.hi[PS03] _(due Friday, Nov. 25)_
+- Posted now (a couple of minutes ago)
+]
+
+.pull-right[
+.hi[PS04] _(due Wed, Nov. 30)_
+- will be posted by Mon next week
+]
+
+--
+
+.hi[TotC book report] _(due Thu, Dec. 8)_
+- Short (1000 words) assignment 
+- rubric posted on canvas and on the course repo
+- will be checking for plagiarism 
+
+--
+
+.hi-red[Final] _(14:45 Wed, Dec. 7)_
+- [final schedule](https://registrar.uoregon.edu/calendars/examinations)
+- Comprehensive exam with an emphasis on the newer material
+
+---
+class: inverse, middle
+# Autos
+
+---
+
+# Auto use in the US
+
+![](figures/fred_vmt.png)
+
+
+---
+
+# Auto use in the US
+
+.pull-left[
+![](./figures/modal-commuter.png)
+]
+
+--
+
+.pull-right[
+.hi[Facts about American commuters:]
+- 88 % use the car
+- 5% use public transit
+- 2 metro areas have public transit use &gt; 10%
+  - NYC
+  - Chicago
+]
+
+
+
+
+---
+class: clear
+
+&lt;iframe src="https://ourworldindata.org/grapher/road-vehicles-per-1000-inhabitants-vs-gdp-per-capita" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"&gt;&lt;/iframe&gt;
+
+---
+# Climate crisis
+
+A recent [UN scientific report](https://www.ipcc.ch/report/ar6/wg1/#SPM) leaves no doubt that humans are responsible for the current climate crisis
+
+--
+
+Increased frequency of extreme weather including:
+
+.pull-left[
+- Wildfires
+- Winter storms
+- Hurricanes]
+.pull-right[
+- Heat waves
+- Floods
+- Droughts
+]
+
+--
+
+Other consequences include:
+
+.pull-left[
+- Mass extinctions
+- Changes in ocean currents]
+.pull-right[
+- Loss of habitat (reefs, rainforest, ice sheets)
+- Sea level rise
+]
+
+---
+class: clear
+
+![](./figures/greenhouse.png)
+
+---
+class: clear
+
+&lt;iframe src="https://ourworldindata.org/grapher/co-emissions-per-capita?tab=chart" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"&gt;&lt;/iframe&gt;
+
+---
+class: clear
+
+&lt;iframe src="https://ourworldindata.org/grapher/annual-co2-emissions-per-country" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"&gt;&lt;/iframe&gt;
+
+
+
+---
+# Policy questions
+
+  
+CO2 emissions in developing countries are .hi[skyrocketing]
+
+--
+
+&lt;br&gt;
+
+_How do we .hi[reduce] CO2 per capita emissions?_
+
+--
+
+_What axiom is relevant here?_
+
+--
+
+_Do drivers fully .hii[internalize] the costs of CO2 emissions?_
+
+---
+class: inverse, middle
+# Externalities
+
+---
+
+# Externalities
+
+.hi[Recall Axiom 3:] .hii[Externalities cause inefficiency]
+
+--
+
+What are some externalities from driving?
+
+--
+.pull-left[
+- Congestion
+- Environmental Damage
+- Collisions]
+.pull-right[
+- Blight (parking lots instead of parks)
+- Noise Pollution]
+
+--
+
+.hi[How costly is congestion?]
+
+Typical commuter spends .hi[47 hours per year] in traffic
+- Very high in some metro areas (LA: 93, SF: 72, Atlanta: 67)
+- Estimated gasoline cost due to congestion delays: .hi[5 billion per year]
+- Time + Gas cost estimate: .hi[63 billion per year]
+
+
+---
+# Externalities
+
+--
+
+.smallerer[
+.hi[Definition: Marginal Social Cost] (MSC)
+&gt; Added cost to _society_ from one extra unit of production/consumption
+
+.hi[Note:] `\(MSC \neq  MC\)`
+]
+
+--
+
+.smallerer[.hi[Definition: Marginal Private Cost] (MPC)
+
+&gt; Added cost to _agent_ from one extra unit of production/consumption
+
+.hi[MSC] is the marginal cost (private) _plus_ the marginal _external_ cost]
+
+--
+
+.smallerer[
+.hi[Definition: Marginal Social Benefit] (MSB)
+
+&gt; Added benefit to _society_ from one extra unit of production
+
+]
+
+--
+
+.smallerer[
+.hi[Definition: Marginal Private Benefit] (MPB)
+
+
+
+&gt; Added benefit to _society_ from one extra unit of production
+
+]
+
+---
+# Congestion Externalities
+
+MEC from congestion = `\(m\cdot v\cdot c\)` where
+- `\(m\)` is the additional time in traffic from an extra vehicle on the road
+- `\(v\)` is the number of other road users
+- `\(c\)` is the opportunity cost of time
+
+--
+
+.hi[Note:] When there are few cares on the road, `\(m\)` and `\(v\)` are relatively small
+- As the number of cars increases, MEC increases (it is nonlinear)
+- Also: the above formula makes a strong assumption, what is it?
+
+
+---
+class: inverse, middle
+# Congestion pricing
+
+---
+# Congestion
+
+_How do we fix .hi[Congestion]?_
+
+--
+
+_What is the popular answer?_
+--
+ .hi[Build more roads]
+
+--
+  
+If you build more
+- more space for cars allowing congestion will decrease
+
+--
+
+_What assumption must we make when stating:_
+
+.center[_"building roads will reduce congestion"_]
+
+--
+
+.hi[A:] The number of drivers will remain the same after the road is built
+
+---
+class: clear
+
+![](figures/la_traffic.jpg)
+
+---
+# Congestion
+
+Think of the .hi[incentives] of drivers
+
+--
+
+.hi[(i)] People avoid driving because it is costly
+- time, gas, maintenance costs
+
+--
+
+.hi[(ii)] Building a new road makes it less costly
+- time costs reduce
+
+--
+
+.hi[(iii)] On the .hi[margin], people will start to drive when the new road is built
+
+--
+
+.hi[Fundamental law of highway congestion:] 
+
+&gt; When you expand highways, more drivers will substitute toward the new lane
+
+---
+# Externalities
+
+Generally when facing .hi-red[negative externalities], there exist .hi[two avenues] to reduce private consumption
+
+.hii[(i)] Quotas
+
+&gt; Set minimum or maximum level of activity allowed
+
+--
+
+.hi[Examples:]
+
+.pull-left[
+- Fishing/hunting quotas/permits
+- Cap and trade policies
+]
+
+.pull-right[
+- minimum rest for truck drivers
+- minimum age for driver's license + alcohol consumption
+]
+
+---
+count: false
+# Externalities
+
+Generally when facing .hi-red[negative externalities], there exist .hi[two avenues] to reduce private consumption
+
+.hii[(ii)] Taxes
+
+&gt; Increase the cost of consumption
+
+Sometimes referred to as .hi[sin taxes]
+
+--
+
+.hi[Examples:]
+.pull-left[
+- tobacco taxes
+- alcohol taxes
+]
+.pull-right[
+- luxury taxes
+]
+
+---
+# Congestion
+
+If building more roads is not a great solution...
+
+--
+
+and self-driving cars are not viable...
+
+--
+
+.hi[Pigouvian taxes] are an excellent alternative
+
+--
+
+.hi[Main insight:] 
+
+The social cost of driving exceeds private cost
+
+So how can we raise the MPC such that `\(MPC = MSC\)`
+
+--
+
+_How can we do this?_
+--
+ .hi[Tax them.]
+
+--
+
+- Pigouvian tax specific to reducing road congestion is .hi[congestion pricing]
+  
+---
+# Externalities: Pigouvian taxes
+
+Many cities across the globe have enacted or are planning to enact congestion pricing
+
+.pull-left[
+- London
+- Singapore
+- Milan]
+.pull-right[
+- Stockholm
+- Bejing
+- NYC, LA, SF (coming soon)
+]
+
+--
+
+.hi[Results:]
+
+Following enactment of congestion pricing in London:
+
+- Traffic was reduced by 15%
+- Reduced travel times in the city by 30%
+
+---
+class: clear
+
+.center[
+![](./figures/london.png)
+]
+
+London, UK
+
+---
+# Congestion pricing: London
+
+.center[
+![](./figures/london_pricing.jpg)
+]
+
+---
+# Congestion pricing: London
+
+.center[
+![:scale 115%](./figures/london_cars.png)
+]
+
+
+---
+
+# Peak vs. Off Period Taxes
+
+
+---
+# Mechanisms
+
+Model demonstrated congestion taxes reduce traffic volume. How?
+
+--
+
+.hi[(i)] Modal substition: switch to carpool, public transit
+
+--
+
+.hi[(ii)] Switch to off-peak travel
+
+--
+
+.hi[(ii)] Switch route
+
+--
+
+.hi[(iv)] Location decisions: change residence or workplace
+
+
+---
+# Discussion
+
+Congestion taxes sound like a good idea, right? What are the problems?
+
+--
+
+- Roads aren't always congested. So tax needs to be time-varying. Gets very complicated
+
+- Are all autos charged the same amount (semis and prius?)
+
+--
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

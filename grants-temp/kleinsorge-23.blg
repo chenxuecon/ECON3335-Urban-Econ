@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/Homebrew)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: kleinsorge-23.aux
+The style file: chicago.bst
+Database file #1: kleisorge23.bib
+Warning--no journal in holloway2022unequal
+Warning--no number and no volume in holloway2022unequal
+Warning--page numbers missing in holloway2022unequal
+You've used 5 entries,
+            2861 wiz_defined-function locations,
+            646 strings with 5889 characters,
+and the built_in function-call counts, 4200 in all, are:
+= -- 329
+> -- 388
+< -- 0
++ -- 122
+- -- 134
+* -- 418
+:= -- 782
+add.period$ -- 14
+call.type$ -- 5
+change.case$ -- 43
+chr.to.int$ -- 5
+cite$ -- 8
+duplicate$ -- 86
+empty$ -- 213
+format.name$ -- 150
+if$ -- 763
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 5
+newline$ -- 27
+num.names$ -- 50
+pop$ -- 29
+preamble$ -- 1
+purify$ -- 73
+quote$ -- 0
+skip$ -- 97
+stack$ -- 0
+substring$ -- 212
+swap$ -- 27
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 100
+warning$ -- 3
+while$ -- 50
+width$ -- 0
+write$ -- 65
+(There were 3 warnings)

@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Neighborhood Choice</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andrew Dickinson" />
+    <script src="06-nbhd-choice_files/header-attrs/header-attrs.js"></script>
+    <link href="06-nbhd-choice_files/remark-css/default.css" rel="stylesheet" />
+    <link href="06-nbhd-choice_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="06-nbhd-choice_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="06-nbhd-choice_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="06-nbhd-choice_files/tile-view/tile-view.js"></script>
+    <script src="06-nbhd-choice_files/fabric/fabric.min.js"></script>
+    <link href="06-nbhd-choice_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="06-nbhd-choice_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <script src="06-nbhd-choice_files/kePrint/kePrint.js"></script>
+    <link href="06-nbhd-choice_files/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="nord.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Neighborhood Choice
+]
+.subtitle[
+## Set 06
+]
+.author[
+### Andrew Dickinson
+]
+.date[
+### Fall 2022
+]
+
+---
+
+class: inverse, center, middle
+
+
+
+.white[_"Love thy neighbor as yourself, but choose your neighborhood."_]
+
+.white[-Louise Beal]
+
+---
+# Housekeeping
+
+.hi[Assignments:]
+- .hi[PS01] was due last night
+  - Go over solutions .hi[today]
+- .hi[PS02] will be posted tomorrow
+  - due date .hi-red[Sun Oct 30.]
+  - go over solutions + review on .hi-blue[Mon Oct 31] 
+- .hi[Reading]
+  - finish up to chapter 5 before the midterm
+  
+--
+
+&lt;br&gt;
+
+.hi[Midterm:] .hi-red[Wed, Nov 2]
+
+---
+# Introduction to neighborhood choice
+
+We have a fairly simple model of .hi[residential choice] (rental prices)
+
+--
+
+.hi[Q:] What factor(s) in the model determine housing demand?
+
+--
+
+.hi[A:] Bid-Rent model assumes commuting costs are the .hii[only factor]
+- this .hi[unreasonable] assumption isolates particular economic factors
+
+--
+
+_What factors influence neighborhood decision choices?_
+
+--
+
+.hi-blue[Examples:]
+
+--
+
+.pull-left[
+- Schools
+- Demographics
+- Tax rates]
+.pull-right[
+- Public safety
+- Air quality
+- Natural beauty]
+
+---
+# Neighborhood choice: Amenities
+
+.hi[Definition:] .hii[Amenity] 
+
+An _amenity_ is a .hi[location-specific] consumption good
+
+--
+
+.pull-left[
+- Beaches
+- Weather
+- Public transport]
+.pull-right[
+- Parks
+- Restaurants
+- Recreation]
+
+--
+
+Different types of .hii[amenities]
+- Some are nonrival&lt;sup&gt;.hii[†]&lt;/sup&gt;: Theaters, public transport 
+- Some are nonexcludable&lt;sup&gt;.hii[††]&lt;/sup&gt;: Parks
+- Some are both nonrival and nonexcludable: National defense, sports teams, fireworks
+
+.footnote[.hii[†] Nonrival goods: Accessible by all; usage does limit subsequent use &lt;br&gt; .hii[††] Nonexcludable goods: Impossible to exclude other from consuming]
+
+---
+# Neighborhood choice: Amenities
+
+.hi[Two more refined definitions:]
+
+.hi[(i) Exogenous Amenities:] Location-specific consumption good that exist .hi-red[are not] influenced by where people decide to live
+
+--
+
+  - .hi[Exogenous:] "Determined outside of the model" (fall from the sky)
+    
+  - Weather, geographic characteristics
+
+--
+
+.hi[(ii)] .hii[Endogenous Amenities:] Location-specific consumption goods that .hi-blue[are] influenced by location decisions of individuals
+
+--
+
+  - .hii[Endogenous:] "Determined within the model"
+  
+  - School quality, crime, pollution
+
+---
+# Neighborhood choice: Amenities
+
+To determine whether or not an amenity is .hi[exogenous] (.hii[endogenous]):
+
+--
+
+.center[_"Will choosing to live here impact the amenity?"_]
+
+&lt;br&gt;
+
+--
+
+  - .hi[Exogenous] _Beaches exist regardless whether people live near by_
+ 
+--
+
+  - .hii[Endogenous] _Crime is a function of the individuals in the area_
+  
+--
+
+&lt;br&gt;
+
+Questions regarding differences between .hi[EXOGENOUS] and .hii[ENDOGENOUS?]
+
+---
+# Neighborhood choice
+
+Previously we explored (broadly) a cities shape
+- modeled where different sectors of the economy choose to locate
+
+But we made an assumption that everyone was the .hi[same]
+
+--
+
+&lt;br&gt;
+
+_Why are city neighborhoods so .hi[heterogeneous]?_
+
+--
+
+_What economics factor influence .hi[neighborhood sorting] within a city?_
+
+&lt;br&gt;
+
+--
+
+Model this .hi[heterogeneity] by considering a public good: .hii[Public parks]
+
+
+---
+class: inverse, middle
+# Neighborhood choice + Sorting for public goods
+
+
+---
+# Demand for public goods
+
+.hi[Consider a simple sorting model for a single, non-rival public good]
+
+--
+
+Model a three-person city with one public good: .hi-blue[Public park]
+
+- Cost .hi[$60 per acre] to build
+
+- Cost is shared equally across all three citizens: .hi-blue[$20 per acre] each
+
+--
+
+Of the three citizen, demand for the park varies:
+
+--
+
+- Low demand: `\(\text{Lyla}: \color{#4c566a} {P = 30 - 2*\text{acres}}\)`
+
+- Mid demand: `\(\text{Gracie}: \color{#b48ead}{P = 40 -2*\text{acres}}\)`
+
+- High demand: `\(\text{Cooper}: \color{#bf616a} {P = 50 -2*\text{acres}}\)`
+
+--
+
+Together they must .hi[vote] for one park size in a binary election
+
+---
+# Demand for public goods
+
+&lt;img src="06-nbhd-choice_files/figure-html/inc_plot-1.svg" style="display: block; margin: auto;" /&gt;
+
+--
+
+For each citizen, optimal park size is found when `\(MB_{park} = MC_{park}\)`
+
+---
+count: false
+# Demand for public goods
+
+&lt;img src="06-nbhd-choice_files/figure-html/demand3-1.svg" style="display: block; margin: auto;" /&gt;
+
+If a first past the post election system is used, who wins their preferred park size? Who loses?
+
+---
+# Demand for public goods: Majority rule
+
+Under .hi[majority rule] Gracie's optimal park wins
+
+--
+
+.center[.hii[Why?]]
+
+
+
+&lt;table class="table" style="font-size: 28px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Election &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 10 acre votes &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Other votes &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; 5 acres vs 10 acres &lt;/td&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Gracie and Cooper &lt;/td&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Lyla &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; 15 acres vs 10 acres &lt;/td&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Gracie and Lyla &lt;/td&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Cooper &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+Gracie is the .hii[median voter]
+
+  - Splits the voting public in half
+
+---
+# Alternative to majority rule
+
+Majority rule always leave two citizens unhappy: .hi-red[Cooper] and .hi[Lyla]
+
+--
+
+Suppose an _alternative_ is to form new municipalities
+
+&lt;br&gt;
+
+--
+
+Consider a new metropolitan area with .hii[3] municipalities with 3 citizen
+- Each district votes on their own park
+- Each citizen knowns each other's preferences
+
+--
+
+.hii[Key assumption:] Citizens pick which municipality to live in
+
+--
+
+Implication: Similar types sort into the same neighborhood
+
+--
+
+.pull-left[
+- Lylaville: 5 acre park
+- Gracity: 10 acre park]
+.pull-right[
+- Cooperstown: 15 acre park]
+
+---
+# Alternative to majority rule
+
+By .hi[voting with their feet] each citizen sorts themselves into homogenous communities with their preferred public good allocation (park size)
+
+.hi[Now our city has three neighborhoods with homogenous types]
+
+- Accomodates diversity in demand
+
+--
+
+.center[.hi[Is reality this simple?]]
+
+--
+
+.center[.hii[Nope]]
+
+--
+
+.hi[Let's add another layer of complexity:] .hii[Taxes]
+
+---
+# Alternative: Property tax
+
+Up to this point, funding for the park is financed with a .hi[head tax]
+
+--
+
+More realistic to model neighborhood sorting using .hi[property taxes]
+
+--
+
+- Allow for variation in preferences + property values:
+
+  - The higher your property value, the more taxes you pay for the park
+    - `\(\tau = PV * 10\)`
+  - .hi[3] different property values: 2, 10, 24
+  - .hi[9] combos: Low-Low, Low-Mid, Low-High, Mid-Low...High-High
+  
+--
+
+
+
+
+&lt;table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Outcome &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Tax rate per dollar in PV &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Small PV &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Mid PV &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Big PV &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Mixed municipality &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $10 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $20 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $100 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $240 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Exclusive small PV &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $60 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $120 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Exclusive mid PV &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $12 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $120 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Exclusive big PV &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $120 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+# Alternative: Property tax
+
+&lt;table class="table" style="font-size: 24px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Outcome &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Tax rate per dollar in PV &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Small PV &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Mid PV &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Big PV &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Mixed municipality &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $10 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $20 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $100 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $240 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Exclusive small PV &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $60 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $120 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Exclusive mid PV &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $12 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $120 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;color: #314f4f !important;background-color: white !important;"&gt; Exclusive big PV &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $5 &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;color: #314f4f !important;background-color: white !important;"&gt; $120 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+Citizen of PV similar type have incentive to sort together to reduce tax
+
+--
+
+In equilibrium citizen will form .hii[9 different neighborhoods]
+
+.hi[Generates a fragmented system of local government in a metro area]
+
+- Negative implications arise from this sorting
+
+---
+# Neighborhood sorting: Income
+
+.center[
+![:scale 60%](figures/boston.png)
+]
+
+---
+# Neighborhood sorting: Education
+
+.center[
+![:scale 60%](figures/denver.png)
+]
+
+---
+# Neighborhood sorting: Atlas
+
+.center[
+![:scale 95%](figures/map1.png)
+]
+
+Source: [Oppurtunity Atlas](https://www.opportunityatlas.org/)
+
+---
+class: inverse, middle
+# Neighborhood sorting: Externalities
+
+---
+# Neighborhood sorting: Externalities
+
+Do you .hi[_fully_ internalize] the costs and benefits of where you decide to live?
+- _Is your choice of neighborhood free from externalities?_
+
+--
+
+.center[.hii[Nope.]]
+
+--
+
+.hi[Examples?]
+
+--
+
+.pull-left[
+- Social networks
+- Jobs
+- Good schools
+- Culture]
+
+--
+
+.pull-right[
+- Noise
+- Drug use
+- Litter
+- Pollution
+]
+
+--
+
+Neighborhood externalities tend to be massively important for .hi[youth]
+
+.pull-left[
+  - Peer effects]
+.pull-right[
+  - Role models]
+  
+---
+# Neighborhood sorting: Externalities
+
+.hi[When your neighbor...]
+
+.pull-left[
+- remodels their kitchen... 
+- gives the scoop on a new job...
+- tells you how to apply for a fraudulent PPP loan...
+]
+
+.pull-right[
+- does a bunch of drugs...
+- makes a ton of noise...
+- is a bad role model to your children...
+]
+
+--
+
+.pull-left[
+... .hi-red[_do you pay them?_]
+]
+
+.pull-right[
+... .hi[_do they pay you?_]
+]
+
+--
+
+.hi[Positive externalities] general increase with income and education level
+- more desirable; higher demand
+
+.center[_What does this .hi[imply?]_]
+
+---
+class: inverse, middle
+# Becker-Murphy model
+
+---
+# Becker-Murphy model
+
+In real life households compete for places in .hi[desirable] neighborhoods
+
+In the Becker-Murphy model we consider this competition
+- _land always goes to the highest bidder_
+
+Focus on .hi[positive] externalities for now
+- assume these increase with income and education
+- ie desirability is a function of number of high income neighbors
+
+--
+
+Consider a model where:
+- Two neighborhoods, A and B (80 lots each)
+- Infinite number of households on the market
+- Only difference between the neighborhoods is income mix
+
+---
+# Becker-Murphy model
+
+Individual choices to move are determined by the _rent premium_
+
+.hi[Rent Premium:] Difference in rent between A and B
+- `\(RP = R(A)-R(B)\)` (for neighborhood A)
+
+&lt;br&gt;
+
+--
+
+.hi[In this model:]
+- Consider two types of workers: .hi[HT], .hi-red[LT]
+- .hi[RP] for workers (may) differ by type: `\(RP_{h} \neq RP_{l}\)` 
+  - ie benefit of living close to high types might vary by type
+- land will be allocated to the highest bidder
+- rental prices are .hi-blue[homogeneous] within a neighborhood
+
+---
+# Integrated + Segregated Eq
+
+.pull-left[
+&lt;img src="06-nbhd-choice_files/figure-html/seg_eq1-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+
+Suppose 40 HH's start in A
+- .hi[integrated] equilibrium
+- `\(RP_{low} = RP_{high} = 0\)` 
+- .hi[Eq:] HH's indifferent (A ~ B)
+
+.hii[Eq "shock":] 5 high type households moves to A?
+- What happens?
+]
+
+---
+count: false
+# Integrated vs Segregated Eq
+
+.pull-left[
+&lt;img src="06-nbhd-choice_files/figure-html/seg_eq3-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+If 5 high types move into A
+- `\(RP(high) &gt; RP(low)\)`
+- favorable mix of neighbors
+- HT WTP for A increases
+- cascading effect
+- Neighborhood A is only high income HH's .hi-red[segregated eq]
+  - Slope .hi[blue line] `\(&gt;\)` slope .hi-red[red line]
+]
+
+--
+
+Recall  .hi[A02:] Self-reinforcing changes lead to extreme outcomes
+
+---
+# Eq Defn
+
+.hi[Recall:] an .hi[locational eq] is a point at which no one wants to move
+- in this model, it occurs when the rent premiums are equal
+
+--
+
+This always holds when the rent premium curves intersect
+
+--
+
+May also occur when the do not (full segregation)
+
+- If the `\(RP\)` for the group listed on the axis is _.hi[higher]_ then this will also be an equilibrium because .hi[there is no tendency for change]
+
+- If the `\(RP\)` for the group listed on the axis is _.hii[lower]_ then population dynamics move away from this point
+
+---
+# Stable vs Unstable Eq
+
+An equilibrium is .hi[stable] if a small movement away will encounter self - .hi[correcting] forces
+- An equilibrium is stable if when you move away from it, the pop. dynamics push you back to where you came from
+- Physical ex: Funnel
+
+--
+
+A equilibrium is .hii[unstable] if a small movement away will encounter self - .hii[reinforcing] forces
+- That is, an equilibrium is unstable if when you move away from it, the population dynamics push you even farther than where you came from
+- Physical ex: Stacking golf balls
+  
+
+
+---
+# Integration Eq
+.pull-left[
+&lt;img src="06-nbhd-choice_files/figure-html/int_eq2-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+- Is the story the same here?
+
+- Now, a small movement of high income HH's into A means `\(RP(High) &lt; RP(low)\)`
+
+- So we get pushed back to the initial equilibrium. In this case, integration is the .hi[only equilibrium]
+
+- Furthermore, integration is a .hi[stable equilibrium]
+
+]
+
+---
+# Integration Eq
+.pull-left[
+&lt;img src="06-nbhd-choice_files/figure-html/int_eq4-1.svg" style="display: block; margin: auto;" /&gt;
+.hi[Note]: 80 high income HH's in A is not an EQ because `\(RP(low)&gt;RP(high)\)`. So low incomes will outbid highs and move in
+
+]
+
+.pull-right[
+
+- Is the story the same here?
+
+- Now, a small movement of high income HH's into A means `\(RP(High) &lt; RP(low)\)`
+
+- So we get pushed back to the initial equilibrium. In this case, integration is the .hi[only equilibrium]
+
+- Furthermore, integration is a .hi[stable equilibrium]
+
+]
+
+---
+#Mixed Eq
+
+--
+
+.pull-left[
+&lt;img src="06-nbhd-choice_files/figure-html/mixed_eq-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+- What about a story like this?
+
+- Integration eq (40 of each type in each nbhd) is still an equilibrium. Is it .hi[stable]?
+
+- No. A small deviation away means `\(RP(high) &gt; RP(low)\)`. So highs outbid lows until `\(RP(high) = RP(low)\)` at 45 highs in A and 35 lows. 
+
+- Is 45 highs in A stable?
+
+]
+
+
+---
+#Mixed Eq
+
+.pull-left[
+&lt;img src="06-nbhd-choice_files/figure-html/mixed_eq4-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+- What about a story like this?
+
+- Integration eq (40 of each type in each nbhd) is still an equilibrium. Is it .hi[stable]?
+
+- No. A small deviation away means `\(RP(high) &gt; RP(low)\)`.  So highs outbid lows until `\(RP(high) = RP(low)\)` at 45 highs in A and 35 lows. 
+
+- Is 45 highs in A stable? Yes (you think about why)
+
+]
+
+
+---
+#Mixed Eq
+
+.pull-left[
+&lt;img src="06-nbhd-choice_files/figure-html/mixed_eq5-1.svg" style="display: block; margin: auto;" /&gt;
+- .hi[Note]: Full segregation here is _not_ an equilibrium for a similar reason to the last example
+]
+
+.pull-right[
+
+- What about a story like this?
+
+- Integration eq (40 of each type in each nbhd) is still an equilibrium. Is it .hi[stable]?
+
+- No. A small deviation away means `\(RP(high) &gt; RP(low)\)`.  So highs outbid lows until `\(RP(high) = RP(low)\)` at 45 highs in A and 35 lows. 
+
+- Is 45 highs in A stable? Yes (you think about why)
+
+]
+
+---
+# A Heuristic
+
+1) Draw a vertical dashed line at every intersection point
+
+2) For every region between the vertical dashed lines, it must be the case that one of the rent premium curves is above the other
+
+  - If the rent prem curve for the group listed on the axis is .hi[higher], then this group will increase in number. Draw rightward arrows on the axis
+  
+  - If the rent prem curve for the group listed on the axis is .hii[lower], then this group will decrease in number. Draw leftward arrows
+
+
+---
+# A Heuristic
+
+3) If there are rightward arrows pushing toward 100% in one nbhd, then 100% (complete segregation) is an eq even if the rent prem curves do not intersect there
+
+4) For every eq. value, look at its immediate vicinity
+
+  - If there are arrows moving towards it, it is a .hi[stable eq]
+  
+  - If there are arrows moving away from it on one or both sides, it is a .hi[unstable eq]
+  
+---
+# Neighborhood Sorting
+
+
+.hi[Externalities] for kids:
+
+  - Good/bad role models as adults
+  
+  - Classmates in school: focused vs disruptive
+
+
+--
+
+.hi[Externalities] for adults:
+
+  - Positive: job information, property valuation
+  
+  - Negative: property values 
+
+--
+
+In general: positive externalities increase with income and education level. Why?
+
+---
+# Neighborhood Sorting
+
+These externalities give rise to the following questions:
+
+.hi[(i)] Who gets desirable neighbors?
+
+.hi[(ii)] Will there be segregated or integrated neighborhoods?
+
+.hi[(iii)] Will there be sorting or mixing with respect to income, age, race, or some combination of those factors?
+
+.hi[(iv)] What are the implications for the price of land in various neighborhoods?
+
+
+---
+class: inverse, center, middle
+# End of MT material
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

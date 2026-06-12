@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Housing</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andrew Dickinson" />
+    <script src="10-housing_files/header-attrs/header-attrs.js"></script>
+    <link href="10-housing_files/remark-css/default.css" rel="stylesheet" />
+    <link href="10-housing_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="10-housing_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="10-housing_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="10-housing_files/tile-view/tile-view.js"></script>
+    <script src="10-housing_files/fabric/fabric.min.js"></script>
+    <link href="10-housing_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="10-housing_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link rel="stylesheet" href="nord.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Housing
+]
+.subtitle[
+## Set 10
+]
+.author[
+### Andrew Dickinson
+]
+.date[
+### Fall 2022
+]
+
+---
+
+
+
+
+class: inverse, middle
+# Content
+
+.hi-white[(i) Homeownership]
+
+.hi-white[(ii) Rental markets]
+
+---
+# Housekeeping
+
+.pull-left[
+.hi[PS03] _(due Friday, Nov. 25)_
+- Posted now (a couple of minutes ago)
+]
+
+.pull-right[
+.hi[PS04] _(due Wed, Nov. 30)_
+- will be posted by Mon next week
+]
+
+--
+
+.hi[TotC book report] _(due Thu, Dec. 8)_
+- Short (1000 words) assignment 
+- rubric posted on canvas and on the course repo
+- will be checking for plagiarism 
+
+--
+
+.hi-red[Final] _(14:45 Wed, Dec. 7)_
+- [final schedule](https://registrar.uoregon.edu/calendars/examinations)
+- Comprehensive exam with an emphasis on the newer material
+
+
+
+---
+class: inverse, middle
+# Housing markets
+
+---
+# Housing markets 
+
+Distinguish the following two markets:
+- .hi[Rental Market:] Supply and Demand for rentals
+- .hii[Housing Market:] Supply and Demand for houses
+
+&lt;br&gt;
+
+--
+
+&lt;br&gt;
+
+_Why is it important to distinguish these?_
+ - A house is an asset. A month of rent is not
+ - Homeowners are much less mobile than renters
+  
+  
+---
+# Homeownership
+
+Following the great depression the .hi[New Deal] stimulated private homeownership by making it easier for individuals to buy and sell houses
+- established the .hi[Federal Housing Administration] and the .hi[Home Owners Loan Corporation]
+
+--
+
+The Federal Government .hi[invented] the modern home mortgage by .hii[insuring] private home loans
+
+Which .hi[incentivised] banks to accept:
+- .hi-red[smaller] down payments
+- .hi-red[lower] interest rates
+- .hi-blue[longer] term loans (15/30 year mortgage) 
+
+--
+
+Allowed citizens to buy homes that they otherwise would not have afforded, establishing cycles of .hi[generational wealth]
+
+
+---
+# Homeownership
+
+_Why is buying a home different than buying a pair of jeans?_
+
+--
+
+Houses are a major investment and store of value (.hi[equity])
+
+--
+
+Homeownership remains a .hi[key] component of household wealth
+- The value is subject to some uncertainty
+ 
+--
+
+&lt;br&gt;
+ 
+Purchasing a home is a .hi[dynamic] (forward-looking) decision
+
+Jeans (a pure consumption good) is not really a store of value
+
+--
+
+We will focus on the rental  market.
+--
+ But first some data.
+
+---
+class: clear
+# Rentals vs Homeowners
+
+.center[
+![:scale 60%](figures/ownership_plot.png)
+]
+
+--
+
+.smallerer[Why such a big spike?]
+
+---
+# Housing prices (nominal)
+
+.center[
+![:scale 80%](./figures/nominal-prices.png)
+]
+
+---
+# Housing inventory
+
+.center[
+![:scale 80%](./figures/inventory.png)
+]
+
+---
+# Housing crisis (summarized)
+
+.center[.hi[What caused the housing market crash in 2007?]]
+
+--
+
+.center[.hii[Among many other things, subprime mortgages]]
+
+--
+
+Historically, mortgage loans were a safe investment as defaulting was rare
+
+--
+
+Mortgages are typically bundled together with lots of other home loans and sold on a marketplace better banks
+
+--
+
+Due to growing home prices in the US housing market, these ".hi[securities]" were desirable and had higher returns than US treasury bonds and were in high demand. Lenders tried to keep up.
+
+--
+
+Mortgage lenders took too much risk by extending loans the millions of Americans who could not afford them
+
+---
+# Housing crisis (summarized)
+
+These high risk, subprime loans were bundled into .hi[securities] with lower risk loans and sold them to banks
+
+--
+
+Rating agencies didn't fully understand the extent to which lenders were extending subprime loans and granted high grades (AAA)
+
+--
+
+Then the housing bubble popped, and high interest rates set in on adjustable loans, massive amounts of people defaulted
+
+--
+
+People shorted the banks on their investments and it lead to a massive financial crisis
+
+
+---
+class: inverse, middle 
+# Rental markets
+
+---
+# Rental market model
+
+Just like labor markets, each city has its own market for rental units 
+- Consists of suppliers (absentee landlords) 
+- Individuals making optimal housing demand decisions
+
+--
+
+.hi[Important:] Firms (landlords) supply housing to households
+
+--
+
+.hi[Assumptions:]
+
+--
+
+.hii[(i)] No individual landlord can influence the price of rents
+
+--
+
+.hii[(ii)] Landlords decide how much housing to provide
+
+--
+
+.hii[(iii)] The amount of housing they provide will again come from profit maximization
+
+
+---
+# Rental market model: Perf Comp
+
+Profit function given by:
+
+`\begin{align*}
+\pi(Q) = P*Q - TC(Q)
+\end{align*}`
+
+--
+
+.hi[Note:] Now cost is a function of quantity
+
+--
+
+Implicitly we are assuming that at any quantity, the firm will use the optimal level of labor and capital
+
+--
+
+Marginal profit equals zero , `\(\frac{\Delta \pi(Q)}{\Delta Q}= 0\)`:
+
+--
+
+`\begin{align*}
+ \frac{P*\Delta Q}{\Delta Q} - \frac{\Delta TC(Q)}{\Delta Q} = 0
+\end{align*}`
+
+---
+count: false
+# Rental market model: Perf Comp
+
+Profit function given by:
+
+`\begin{align*}
+\pi(Q) = P*Q - TC(Q)
+\end{align*}`
+
+.hi[Note:] Now cost is a function of quantity
+
+Implicitly we are assuming that at any quantity, the firm will use the optimal level of labor and capital
+
+Marginal profit equals zero , `\(\frac{\Delta \pi(Q)}{\Delta Q}= 0\)`:
+
+`\begin{align*}
+ \frac{P*\Delta Q}{\Delta Q} - \frac{\Delta TC(Q)}{\Delta Q} &amp;= 0\\
+ P &amp;= \frac{\Delta TC(Q)}{\Delta Q}
+\end{align*}`
+
+---
+count: false
+# Rental market model: Perf Comp
+
+Profit function given by:
+
+`\begin{align*}
+\pi(Q) = P*Q - TC(Q)
+\end{align*}`
+
+.hi[Note:] Now cost is a function of quantity
+
+Implicitly we are assuming that at any quantity, the firm will use the optimal level of labor and capital
+
+Marginal profit equals zero , `\(\frac{\Delta \pi(Q)}{\Delta Q}= 0\)`:
+
+`\begin{align*}
+ \frac{P*\Delta Q}{\Delta Q} - \frac{\Delta TC(Q)}{\Delta Q} &amp;= 0\\
+ P &amp;= \frac{\Delta TC(Q)}{\Delta Q}\\
+ P &amp;= MC(Q)
+\end{align*}`
+
+---
+count: false
+# Rental market model: Perf Comp
+
+Profit function given by:
+
+`\begin{align*}
+\pi(Q) = P*Q - TC(Q)
+\end{align*}`
+
+.hi[Note:] Now cost is a function of quantity
+
+Implicitly we are assuming that at any quantity, the firm will use the optimal level of labor and capital
+
+Marginal profit equals zero , `\(\frac{\Delta \pi(Q)}{\Delta Q}= 0\)`:
+
+`\begin{align*}
+ \frac{P*\Delta Q}{\Delta Q} - \frac{\Delta TC(Q)}{\Delta Q} &amp;= 0\\
+ P &amp;= \frac{\Delta TC(Q)}{\Delta Q}\\
+ P &amp;= MC(Q)
+\end{align*}`
+
+.center[.hi[Increasing marginal costs leads to upward sloping supply curves!]]
+
+---
+class: inverse, middle
+
+# Monopoly
+
+---
+# Rental market model: Monopoly
+
+Now let's consider the .hi[monopoly] situation:
+
+--
+
+.hi[Assume:]
+
+--
+
+.hii[(i)] One seller of the good (rental units)
+
+--
+
+.hii[(ii)] The monopolist has market power; ability to set prices
+
+--
+
+.hii[(iii)] The monopolist is a profit maximizer
+
+---
+# Rental market model: Monopoly
+
+Equilibrium relies on the assumption that firms maximize profits
+
+--
+
+Now TR is a function of quantity
+
+`\begin{equation*}
+TR = P(Q)*Q
+\end{equation*}`
+
+--
+
+Quantity of houses that the monopolist produces changes the market price
+
+--
+
+`\(P(Q)\)` in this context is called the inverse demand function
+  
+--
+
+.hi[Profit is given by:]
+
+`\begin{align*}
+\pi(Q) = P(Q)*Q - TC(Q)
+\end{align*}`
+  
+
+
+---
+# Rental market model: Monopoly
+
+Profit Maximization gives us the familiar `\(\frac{\Delta \pi(Q)}{\Delta Q} = 0\)`
+
+--
+
+`\begin{align*}
+\frac{\Delta P(Q)*Q}{\Delta Q} - \frac{\Delta TC(Q)}{\Delta Q} = 0 
+\end{align*}`
+  
+---
+count: false
+# Rental market model: Monopoly
+
+Profit Maximization gives us the familiar `\(\frac{\Delta \pi(Q)}{\Delta Q} = 0\)`
+
+`\begin{align*}
+\frac{\Delta P(Q)*Q}{\Delta Q} - \frac{\Delta TC(Q)}{\Delta Q} &amp;= 0 \\
+MR(Q) &amp;= MC(Q)
+\end{align*}`
+
+--
+
+.hi[Note:] Now, `\(\frac{\Delta P(Q)*Q}{\Delta Q} \neq P\)`.
+
+---
+# Simple monopoly example
+
+---
+# Monopoly Graph
+
+--
+
+&lt;img src="10-housing_files/figure-html/m1-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+count: false
+# Monopoly Graph
+
+&lt;img src="10-housing_files/figure-html/m2-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+count: false
+# Monopoly Graph
+
+&lt;img src="10-housing_files/figure-html/m3-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, middle
+# Rental markets across cities
+
+---
+# Rents across cities
+
+.hi[Key question:] What causes rental curves to vary across cities?
+
+--
+  
+Supply curves across cities are impacted by:
+- .hi-blue[local construction costs]
+- .hi-green[limited land availability] (for development)
+- .hi-green[land-use regulations]
+
+--
+
+.hi-blue[Local construction costs]: shifts supply curve (labor is more expensive for all firms in one area vs another)
+
+--
+
+.hi-green[Land availability] + .hi-green[land use regulations:] rotates supply curve (changes in the marginal cost of developing land)
+
+---
+# Rents across cities
+
+_Why do changes in local constructions costs shift the supply curve when land use regulations rotate it?_
+
+--
+
+.hi[Answer:] 
+
+Changes in .hi-blue[construction costs] impact all development equally.
+- if wood becomes more expensive then every project becomes equally more expensive across the city
+
+Changes in .hi-green[land availability] or .hi-green[land-use regulations] increase the .hii[opportunity cost] of developing additional plots of land
+- prices bid faster for each additional development
+
+
+
+---
+# Urban Housing Supply Curves
+
+&lt;img src="10-housing_files/figure-html/supply1-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+count: false
+# Urban Housing Supply Curves
+
+&lt;img src="10-housing_files/figure-html/supply2-1.svg" style="display: block; margin: auto;" /&gt;
+
+.hii[purple:] lower construction cost (lower intercept)
+
+
+---
+count: false
+# Urban Housing Supply Curves
+
+&lt;img src="10-housing_files/figure-html/supply3-1.svg" style="display: block; margin: auto;" /&gt;
+
+
+.hi-green[green:] higher .green[land-use regulations]
+
+&lt;!-- --- --&gt;
+&lt;!-- class: inverse, middle --&gt;
+&lt;!-- # Rental markets --&gt;
+
+&lt;!-- .hi-white[We will focus on .hii[two] policies:] --&gt;
+
+&lt;!-- .hi-white[(i) Rent Control] --&gt;
+
+&lt;!-- .hi-white[(ii) Land-use restrictions] --&gt;
+
+---
+class: inverse, middle
+# Rent control
+
+---
+# Rent control
+
+.hi[Definition:] .hii[Rent Control]
+
+&gt; A _price ceiling_ set on rental units
+
+--
+
+&gt; _Price Ceiling:_ Max allowed price on the market
+
+--
+
+Brief History (US):
+
+- Started around WW1. Expanded during WWII
+  
+--
+
+- 1970: Nixon puts 90-day freeze on prices to combat inflation
+
+--
+
+- _Mostly_ a .hi[place based policy]. 
+  - SF, NY, LA, Oakland, DC, Berkeley, West Hollywood
+  - Oregon: first state to have  state-wide rent control
+
+---
+class: clear
+# Rent Control 
+
+![](figures/oregon_control.png)
+
+
+---
+# Rent Control in Oregon
+
+### Senate Bill 608
+
+2019: Oregon passes .hi[state-wide] rent control 
+- limits annual increases to inflation (2-3%) + 7%
+- landlords can increase rent without limit for new tenants
+
+--
+
+Also includes a series of eviction protections for renters 
+
+---
+class: inverse, middle
+# Land use restrictions
+
+---
+# Land use restrictions
+
+Land use restrictions limit what one can do with available land. 
+
+--
+
+Examples:
+
+.hi[(i)] Density restrictions
+
+.hi[(ii)] Minimum lot sizes
+
+.hi[(iii)] Parking requirements
+
+.hi[(iv)] Sidewalk and street size requirements
+
+.hi[(v)] Height restrictions
+
+--
+
+Not all of these are bad things. But they do make developing land more expensive.
+
+---
+# Wharton Index
+
+![](figures/wharton_new.png)
+
+
+Higher values of the Wharton index `\(\implies\)` tighter land use restrictions
+
+---
+# Example
+
+
+
+---
+
+
+# A Model
+
+Do Land-Use regs and rent control interact? Absolutely! Let's model it
+
+--
+
+`\begin{align*}
+P(Q_d) &amp;= 20 - 2*Q_d\\
+P(Q_s) &amp;= 8 + Q_s\\
+\end{align*}`
+
+Compute the equilibrium. Graph it, if that is helpful
+
+--
+
+- Now suppose the government ratchets up land-use regs. New supply is given by:
+
+`\begin{align*}
+P(Q_s^{new}) = 8 + 2*Q_s^{new}
+\end{align*}`
+
+---
+# Example
+
+Old eq: `\(Q^* = 4\)`, `\(P^* = 12\)`
+
+New eq: `\(Q^* = 3\)`, `\(P^* = 15\)`
+
+
+Government comes in and says the rents are too high. Rent control set at `\(12\)` per unit. Now you have:
+
+`\begin{align*}
+12 = 8+2*Q_s \implies Q_s = 2
+\end{align*}`
+
+
+---
+count: false
+# Example
+
+Old eq: `\(Q^* = 4\)`, `\(P^* = 12\)`
+
+New eq: `\(Q^* = 3\)`, `\(P^* = 15\)`
+
+
+Government comes in and says the rents are too high. Rent control set at `\(12\)` per unit. Now you have:
+
+`\begin{align*}
+12 = 8+2*Q_s &amp;\implies Q_s = 2\\
+12 = 20 - 2*Q_d &amp;\implies Q_d = 4
+\end{align*}`
+
+---
+count: false
+# Example
+
+Old eq: `\(Q^* = 4\)`, `\(P^* = 12\)`
+
+New eq: `\(Q^* = 3\)`, `\(P^* = 15\)`
+
+
+Government comes in and says the rents are too high. Rent control set at `\(12\)` per unit. Now you have:
+
+`\begin{align*}
+12 = 8+2*Q_s &amp;\implies Q_s = 2\\
+12 = 20 - 2*Q_d &amp;\implies Q_d = 4
+\end{align*}`
+
+So we have a .pink[shortage] of two units at the .hi.purple[old] equilibrium price. 😧
+
+---
+# A Note
+
+We wont have time (but it might be good practice) for you to think through what would happen if the market was a .hi[monopoly]
+- Similar to the .hi.purple[monopsonist], rent control can actually .pink[lower prices] in a completely .purple[monopolized] housing market
+
+
+Let's take a (quick) look at some recent empirical evidence
+
+---
+# Empirics
+
+[Diamond et. al (2019)](https://web.stanford.edu/~diamondr/DMQ.pdf)
+- 1979: Rent control in SF put in place for all standing buildings with 5 apartments or more
+- New buildings exempt (to promote developers to continue building)
+- Small multi-family apartment buildings ("mom &amp; pop") exempted
+- 1994: Exemption for small multi-family buildings removed. All apartments .hi[built before 1980] subject to rent control
+    
+  
+---
+# Empirics
+
+In this study:
+
+- .hi[Treatment:] Those living in small apartment complexes (5 or less) built in 1979 or before
+
+- .hi[Control:] Those living in small apartments complexes (5 or less) built after 1979 (not subject to rent control)
+
+--
+
+A fair comparison? Maybe concerned that those living in apartments built before or after 1979 are systematically different.
+
+.hi.slate[Main Findings]: 
+
+.hi[(i)] Reduced renter mobility by ~20%
+
+.hi[(ii)] Reduced housing supply by about 15%
+
+
+
+
+
+&lt;!-- --- --&gt;
+&lt;!-- exclude: true --&gt;
+
+&lt;!-- ```{R, generate pdfs, include = F} --&gt;
+&lt;!-- system("decktape remark 02_goodsmarket_part1.html 02_goodsmarket_part1.pdf --chrome-arg=--allow-file-access-from-files") --&gt;
+&lt;!-- ``` --&gt;
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,1041 @@
+---
+title: "Neighborhood Choice"
+subtitle: "Set 06"
+author: "Andrew Dickinson"
+date: "Fall 2022"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'nord.css']
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+# knit: pagedown::chrome_print
+
+---
+class: inverse, center, middle
+
+```{R, setup, include = F}
+options(htmltools.dir.version = FALSE)
+pacman::p_load(
+  broom, here, tidyverse, latex2exp, ggplot2, ggthemes, viridis, extrafont,
+  gridExtra, kableExtra, dplyr, magrittr, knitr, emo, ggrepel, sf, hrbrthemes
+)
+
+# Define colors
+## source color script from local directory
+## comment out and replace colors if user is not Andrew
+source("~/Documents/scripts/colors/colors.R")
+blue <- "#4c566a"
+purple <- "#b48ead"
+red <- "#bf616a"
+# XaringanExtra functions
+## Tile view
+xaringanExtra::use_tile_view()
+## Scribble
+xaringanExtra::use_scribble()
+# Knitr options
+opts_chunk$set(
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 10.5,
+  warning = F,
+  message = F
+)
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+
+mytheme = theme_ipsum(base_family = "Fira Sans Book", base_size = 20) + theme(panel.grid.minor.x = element_blank(),
+      axis.title.x = element_text(size = 20),
+      axis.title.y = element_text(size = 20))
+
+
+```
+
+.white[_"Love thy neighbor as yourself, but choose your neighborhood."_]
+
+.white[-Louise Beal]
+
+---
+# Housekeeping
+
+.hi[Assignments:]
+- .hi[PS01] was due last night
+  - Go over solutions .hi[today]
+- .hi[PS02] will be posted tomorrow
+  - due date .hi-red[Sun Oct 30.]
+  - go over solutions + review on .hi-blue[Mon Oct 31] 
+- .hi[Reading]
+  - finish up to chapter 5 before the midterm
+  
+--
+
+<br>
+
+.hi[Midterm:] .hi-red[Wed, Nov 2]
+
+---
+# Introduction to neighborhood choice
+
+We have a fairly simple model of .hi[residential choice] (rental prices)
+
+--
+
+.hi[Q:] What factor(s) in the model determine housing demand?
+
+--
+
+.hi[A:] Bid-Rent model assumes commuting costs are the .hii[only factor]
+- this .hi[unreasonable] assumption isolates particular economic factors
+
+--
+
+_What factors influence neighborhood decision choices?_
+
+--
+
+.hi-blue[Examples:]
+
+--
+
+.pull-left[
+- Schools
+- Demographics
+- Tax rates]
+.pull-right[
+- Public safety
+- Air quality
+- Natural beauty]
+
+---
+# Neighborhood choice: Amenities
+
+.hi[Definition:] .hii[Amenity] 
+
+An _amenity_ is a .hi[location-specific] consumption good
+
+--
+
+.pull-left[
+- Beaches
+- Weather
+- Public transport]
+.pull-right[
+- Parks
+- Restaurants
+- Recreation]
+
+--
+
+Different types of .hii[amenities]
+- Some are nonrival<sup>.hii[†]</sup>: Theaters, public transport 
+- Some are nonexcludable<sup>.hii[††]</sup>: Parks
+- Some are both nonrival and nonexcludable: National defense, sports teams, fireworks
+
+.footnote[.hii[†] Nonrival goods: Accessible by all; usage does limit subsequent use <br> .hii[††] Nonexcludable goods: Impossible to exclude other from consuming]
+
+---
+# Neighborhood choice: Amenities
+
+.hi[Two more refined definitions:]
+
+.hi[(i) Exogenous Amenities:] Location-specific consumption good that exist .hi-red[are not] influenced by where people decide to live
+
+--
+
+  - .hi[Exogenous:] "Determined outside of the model" (fall from the sky)
+    
+  - Weather, geographic characteristics
+
+--
+
+.hi[(ii)] .hii[Endogenous Amenities:] Location-specific consumption goods that .hi-blue[are] influenced by location decisions of individuals
+
+--
+
+  - .hii[Endogenous:] "Determined within the model"
+  
+  - School quality, crime, pollution
+
+---
+# Neighborhood choice: Amenities
+
+To determine whether or not an amenity is .hi[exogenous] (.hii[endogenous]):
+
+--
+
+.center[_"Will choosing to live here impact the amenity?"_]
+
+<br>
+
+--
+
+  - .hi[Exogenous] _Beaches exist regardless whether people live near by_
+ 
+--
+
+  - .hii[Endogenous] _Crime is a function of the individuals in the area_
+  
+--
+
+<br>
+
+Questions regarding differences between .hi[EXOGENOUS] and .hii[ENDOGENOUS?]
+
+---
+# Neighborhood choice
+
+Previously we explored (broadly) a cities shape
+- modeled where different sectors of the economy choose to locate
+
+But we made an assumption that everyone was the .hi[same]
+
+--
+
+<br>
+
+_Why are city neighborhoods so .hi[heterogeneous]?_
+
+--
+
+_What economics factor influence .hi[neighborhood sorting] within a city?_
+
+<br>
+
+--
+
+Model this .hi[heterogeneity] by considering a public good: .hii[Public parks]
+
+
+---
+class: inverse, middle
+# Neighborhood choice + Sorting for public goods
+
+
+---
+# Demand for public goods
+
+.hi[Consider a simple sorting model for a single, non-rival public good]
+
+--
+
+Model a three-person city with one public good: .hi-blue[Public park]
+
+- Cost .hi[$60 per acre] to build
+
+- Cost is shared equally across all three citizens: .hi-blue[$20 per acre] each
+
+--
+
+Of the three citizen, demand for the park varies:
+
+--
+
+- Low demand: $\text{Lyla}: \color{#4c566a} {P = 30 - 2*\text{acres}}$
+
+- Mid demand: $\text{Gracie}: \color{#b48ead}{P = 40 -2*\text{acres}}$
+
+- High demand: $\text{Cooper}: \color{#bf616a} {P = 50 -2*\text{acres}}$
+
+--
+
+Together they must .hi[vote] for one park size in a binary election
+
+---
+# Demand for public goods
+
+```{R, inc_plot, echo=F,fig.height = 4, fig.width = 8, dev = "svg", cache=T}
+
+
+
+cooper <- function(x) 50 - 2*x
+gracie <- function(x) 40 - 2*x
+lyla <- function(x) 30 - 2*x
+tax <- function(x) 20
+
+ggplot(data.frame(x=c(0, 20)), aes(x)) + 
+  stat_function(fun= lyla, col = blue, size = 1.5) +
+  stat_function(fun = gracie, col = purple, size = 1.5) +
+  stat_function(fun = cooper, col = red, size = 1.5) +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  labs(x = "acres", y = "Price (WTP)") +
+  mytheme 
+
+```
+
+--
+
+For each citizen, optimal park size is found when $MB_{park} = MC_{park}$
+
+---
+count: false
+# Demand for public goods
+
+```{R, demand3, echo=F,fig.height = 4, fig.width = 8, dev = "svg", cache=T}
+
+ggplot(data.frame(x=c(0, 20)), aes(x)) + 
+  stat_function(fun= lyla, col = blue, size = 1.5) +
+  stat_function(fun = gracie, col = purple, size = 1.5) +
+  stat_function(fun = cooper, col = red, size = 1.5) +
+  stat_function(fun = tax, col = "#a3be8c")+
+  geom_segment(x = 5, xend =5 , y = 0, yend = 20,linetype = "dashed")+
+  geom_text(x =5, y=0, label = "Q* Lyla", vjust=2)+
+  geom_segment(x = 10, xend =10 , y = 0, yend = 20,linetype = "dashed")+
+  geom_text(x =10, y=0, label = "Q* Gracie", vjust=2)+
+  geom_segment(x = 15, xend = 15 , y = 0, yend = 20,linetype = "dashed")+
+  geom_text(x =15, y=0, label = "Q* Cooper", vjust=2)+
+  geom_vline(xintercept = 0)+
+  geom_hline(yintercept = 0)+
+  labs(x = "acres", y = "Price (WTP)")+
+  mytheme 
+
+```
+
+If a first past the post election system is used, who wins their preferred park size? Who loses?
+
+---
+# Demand for public goods: Majority rule
+
+Under .hi[majority rule] Gracie's optimal park wins
+
+--
+
+.center[.hii[Why?]]
+
+```{r, echo=FALSE}
+tib <- tibble(
+  Election = c("5 acres vs 10 acres", "15 acres vs 10 acres"),
+  ten_acre_votes = c("Gracie and Cooper", "Gracie and Lyla"),
+  other_votes = c("Lyla", "Cooper")
+)
+```
+
+```{r, echo=FALSE}
+tib %>% kable(
+  col.names = c("Election", "10 acre votes", "Other votes"),
+  align = c("l", "l", "l")
+) %>%
+kable_styling(font_size = 28) %>%
+row_spec(1:2, background = "white", color = slate)
+```
+
+--
+
+Gracie is the .hii[median voter]
+
+  - Splits the voting public in half
+
+---
+# Alternative to majority rule
+
+Majority rule always leave two citizens unhappy: .hi-red[Cooper] and .hi[Lyla]
+
+--
+
+Suppose an _alternative_ is to form new municipalities
+
+<br>
+
+--
+
+Consider a new metropolitan area with .hii[3] municipalities with 3 citizen
+- Each district votes on their own park
+- Each citizen knowns each other's preferences
+
+--
+
+.hii[Key assumption:] Citizens pick which municipality to live in
+
+--
+
+Implication: Similar types sort into the same neighborhood
+
+--
+
+.pull-left[
+- Lylaville: 5 acre park
+- Gracity: 10 acre park]
+.pull-right[
+- Cooperstown: 15 acre park]
+
+---
+# Alternative to majority rule
+
+By .hi[voting with their feet] each citizen sorts themselves into homogenous communities with their preferred public good allocation (park size)
+
+.hi[Now our city has three neighborhoods with homogenous types]
+
+- Accomodates diversity in demand
+
+--
+
+.center[.hi[Is reality this simple?]]
+
+--
+
+.center[.hii[Nope]]
+
+--
+
+.hi[Let's add another layer of complexity:] .hii[Taxes]
+
+---
+# Alternative: Property tax
+
+Up to this point, funding for the park is financed with a .hi[head tax]
+
+--
+
+More realistic to model neighborhood sorting using .hi[property taxes]
+
+--
+
+- Allow for variation in preferences + property values:
+
+  - The higher your property value, the more taxes you pay for the park
+    - $\tau = PV * 10$
+  - .hi[3] different property values: 2, 10, 24
+  - .hi[9] combos: Low-Low, Low-Mid, Low-High, Mid-Low...High-High
+  
+--
+
+```{r, echo=FALSE}
+tibb <- tibble(
+  Outcome = c("Mixed municipality", "Exclusive small PV", "Exclusive mid PV", "Exclusive big PV"),
+  Tax_rate = c("$10", "$60", "$12", "$5"),
+  small = c("$20", "$120", "-", "-"),
+  mid = c("$100", "-", "$120", "-"),
+  big = c("$240", "-", "-", "$120")
+)
+```
+
+
+```{r, echo=FALSE}
+tibb %>% kable(
+  col.names = c("Outcome", "Tax rate per dollar in PV", "Small PV", "Mid PV", "Big PV"),
+  align = c("l", "c", "c", "c", "c")
+) %>%
+kable_styling(font_size = 18) %>%
+row_spec(1:4, background = "white", color = slate)
+```
+
+---
+# Alternative: Property tax
+
+```{r, echo=FALSE}
+tibb %>% kable(
+  col.names = c("Outcome", "Tax rate per dollar in PV", "Small PV", "Mid PV", "Big PV"),
+  align = c("l", "c", "c", "c", "c")
+) %>%
+kable_styling(font_size = 24) %>%
+row_spec(1:4, background = "white", color = slate)
+```
+
+Citizen of PV similar type have incentive to sort together to reduce tax
+
+--
+
+In equilibrium citizen will form .hii[9 different neighborhoods]
+
+.hi[Generates a fragmented system of local government in a metro area]
+
+- Negative implications arise from this sorting
+
+---
+# Neighborhood sorting: Income
+
+.center[
+![:scale 60%](figures/boston.png)
+]
+
+---
+# Neighborhood sorting: Education
+
+.center[
+![:scale 60%](figures/denver.png)
+]
+
+---
+# Neighborhood sorting: Atlas
+
+.center[
+![:scale 95%](figures/map1.png)
+]
+
+Source: [Oppurtunity Atlas](https://www.opportunityatlas.org/)
+
+---
+class: inverse, middle
+# Neighborhood sorting: Externalities
+
+---
+# Neighborhood sorting: Externalities
+
+Do you .hi[_fully_ internalize] the costs and benefits of where you decide to live?
+- _Is your choice of neighborhood free from externalities?_
+
+--
+
+.center[.hii[Nope.]]
+
+--
+
+.hi[Examples?]
+
+--
+
+.pull-left[
+- Social networks
+- Jobs
+- Good schools
+- Culture]
+
+--
+
+.pull-right[
+- Noise
+- Drug use
+- Litter
+- Pollution
+]
+
+--
+
+Neighborhood externalities tend to be massively important for .hi[youth]
+
+.pull-left[
+  - Peer effects]
+.pull-right[
+  - Role models]
+  
+---
+# Neighborhood sorting: Externalities
+
+.hi[When your neighbor...]
+
+.pull-left[
+- remodels their kitchen... 
+- gives the scoop on a new job...
+- tells you how to apply for a fraudulent PPP loan...
+]
+
+.pull-right[
+- does a bunch of drugs...
+- makes a ton of noise...
+- is a bad role model to your children...
+]
+
+--
+
+.pull-left[
+... .hi-red[_do you pay them?_]
+]
+
+.pull-right[
+... .hi[_do they pay you?_]
+]
+
+--
+
+.hi[Positive externalities] general increase with income and education level
+- more desirable; higher demand
+
+.center[_What does this .hi[imply?]_]
+
+---
+class: inverse, middle
+# Becker-Murphy model
+
+---
+# Becker-Murphy model
+
+In real life households compete for places in .hi[desirable] neighborhoods
+
+In the Becker-Murphy model we consider this competition
+- _land always goes to the highest bidder_
+
+Focus on .hi[positive] externalities for now
+- assume these increase with income and education
+- ie desirability is a function of number of high income neighbors
+
+--
+
+Consider a model where:
+- Two neighborhoods, A and B (80 lots each)
+- Infinite number of households on the market
+- Only difference between the neighborhoods is income mix
+
+---
+# Becker-Murphy model
+
+Individual choices to move are determined by the _rent premium_
+
+.hi[Rent Premium:] Difference in rent between A and B
+- $RP = R(A)-R(B)$ (for neighborhood A)
+
+<br>
+
+--
+
+.hi[In this model:]
+- Consider two types of workers: .hi[HT], .hi-red[LT]
+- .hi[RP] for workers (may) differ by type: $RP_{h} \neq RP_{l}$ 
+  - ie benefit of living close to high types might vary by type
+- land will be allocated to the highest bidder
+- rental prices are .hi-blue[homogeneous] within a neighborhood
+
+---
+# Integrated + Segregated Eq
+
+.pull-left[
+```{R, seg_eq1, echo=F,fig.height = 8, fig.width = 8, dev = "svg", cache=F}
+
+u_1 <- function(x) sqrt(x)
+u_2 <- function(x) 2*sqrt(x)
+
+
+
+ggplot(data.frame(x=c(0, 8)), aes(x)) +
+  stat_function(fun=u_2, col = blue, size = 1.5)+
+  stat_function(fun= u_1, col = red, size = 1.5)+
+  labs(x = "number of high type HHs in neighborhood A",y = "Rent premium = R(A)-R(B)")+
+  mytheme +
+  geom_vline(xintercept = 0)+
+  geom_hline(yintercept = 0)+  
+  geom_segment(x = 8, xend=8, y=0, yend=10, linetype = "dashed")+
+  geom_text(x=4, y= 4, label = "premium (high)",vjust=2, hjust=1.5 )+
+  geom_text(x=4, y= 2, label = "premium (low)",vjust=2)+
+  geom_text(x = 0, y= 0, label = "40", vjust=1.5, hjust=-.5)+
+  geom_text(x = 0, y= 0, label = "0", vjust=-.5, hjust=1)+
+  geom_text(x = 8, y= 0, label = "80", vjust=1.5)+
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+
+```
+]
+
+--
+
+.pull-right[
+
+Suppose 40 HH's start in A
+- .hi[integrated] equilibrium
+- $RP_{low} = RP_{high} = 0$ 
+- .hi[Eq:] HH's indifferent (A ~ B)
+
+.hii[Eq "shock":] 5 high type households moves to A?
+- What happens?
+]
+
+---
+count: false
+# Integrated vs Segregated Eq
+
+.pull-left[
+```{R, seg_eq3, echo=F,fig.height = 8, fig.width = 8, dev = "svg", cache=F}
+
+u_1 <- function(x) sqrt(x)
+u_2 <- function(x) 2*sqrt(x)
+
+ggplot(data.frame(x=c(0, 8)), aes(x)) +
+  stat_function(fun=u_2, col = blue, size = 1.5)+
+  stat_function(fun= u_1, col = red, size = 1.5)+
+  labs(x = "number of high type HHs in neighborhood A",y = "Rent premium = R(A)-R(B)")+
+  mytheme +
+  geom_vline(xintercept = 0)+
+  geom_hline(yintercept = 0)+  
+  geom_segment(x = 8, xend=8, y=0, yend=10, linetype = "dashed")+
+  geom_segment(x = 1, xend=1, y=0, yend=1, linetype = "dashed")+
+  geom_segment(x = 1, xend=1, y=0, yend=2, linetype = "dashed")+
+  geom_segment(x = 0, xend=1, y=1, yend=1, linetype = "dashed")+
+  geom_segment(x = 0, xend=1, y=2, yend=2, linetype = "dashed")+
+  geom_text(x = 0, y= 1, label = "RP(low)", vjust=-1, angle=90)+
+  geom_text(x = 0, y= 2, label = "RP(high)", vjust = -1, angle =90)+
+  geom_text(x = 1, y= 0, label = "45", vjust=2)+
+  geom_text(x=4, y= 4, label = "premium (high)",vjust=2, hjust=1.5 )+
+  geom_text(x=4, y= 2, label = "premium (low)",vjust=2)+
+  geom_text(x = 0, y= 0, label = "40", vjust=1.5, hjust=-.5)+
+  geom_text(x = 0, y= 0, label = "0", vjust=-.5, hjust=1)+
+  geom_text(x = 8, y= 0, label = "80", vjust=1.5)+
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+
+```
+]
+
+.pull-right[
+If 5 high types move into A
+- $RP(high) > RP(low)$
+- favorable mix of neighbors
+- HT WTP for A increases
+- cascading effect
+- Neighborhood A is only high income HH's .hi-red[segregated eq]
+  - Slope .hi[blue line] $>$ slope .hi-red[red line]
+]
+
+--
+
+Recall  .hi[A02:] Self-reinforcing changes lead to extreme outcomes
+
+---
+# Eq Defn
+
+.hi[Recall:] an .hi[locational eq] is a point at which no one wants to move
+- in this model, it occurs when the rent premiums are equal
+
+--
+
+This always holds when the rent premium curves intersect
+
+--
+
+May also occur when the do not (full segregation)
+
+- If the $RP$ for the group listed on the axis is _.hi[higher]_ then this will also be an equilibrium because .hi[there is no tendency for change]
+
+- If the $RP$ for the group listed on the axis is _.hii[lower]_ then population dynamics move away from this point
+
+---
+# Stable vs Unstable Eq
+
+An equilibrium is .hi[stable] if a small movement away will encounter self - .hi[correcting] forces
+- An equilibrium is stable if when you move away from it, the pop. dynamics push you back to where you came from
+- Physical ex: Funnel
+
+--
+
+A equilibrium is .hii[unstable] if a small movement away will encounter self - .hii[reinforcing] forces
+- That is, an equilibrium is unstable if when you move away from it, the population dynamics push you even farther than where you came from
+- Physical ex: Stacking golf balls
+  
+
+
+---
+# Integration Eq
+.pull-left[
+```{R, int_eq2, echo=F,fig.height = 5, fig.width = 8, dev = "svg", cache=F}
+
+u_1 <- function(x) sqrt(x)
+u_2 <- function(x) 2*sqrt(x)
+
+
+ggplot(data.frame(x=c(0, 8)), aes(x)) +
+  stat_function(fun=u_1, col = blue, size = 1.5)+
+  stat_function(fun= u_2, col = red, size = 1.5)+
+  labs(x = "number of high type HHs in neighborhood A",y = "Rent premium = R(A)-R(B)")+
+  mytheme +
+  geom_vline(xintercept = 0)+
+  geom_hline(yintercept = 0)+  
+geom_segment(x = 8, xend=8, y=0, yend=10, linetype = "dashed")+
+  geom_segment(x = 1, xend=1, y=0, yend=1, linetype = "dashed")+
+  geom_segment(x = 1, xend=1, y=0, yend=2, linetype = "dashed")+
+  geom_segment(x = 0, xend=1, y=1, yend=1, linetype = "dashed")+
+  geom_segment(x = 0, xend=1, y=2, yend=2, linetype = "dashed")+
+  geom_text(x = 0, y= 1, label = "RP(high)", vjust=-1, angle=90)+
+  geom_text(x = 0, y= 2, label = "RP(low)", vjust = -1, angle =90)+
+  geom_text(x = 1, y= 0, label = "45", vjust=2)+
+  geom_text(x=4, y= 4, label = "premium (low)",vjust=2, hjust=1.5 )+
+  geom_text(x=4, y= 2, label = "premium (high)",vjust=2)+
+  geom_text(x = 0, y= 0, label = "40", vjust=1.5, hjust=-.5)+
+  geom_text(x = 0, y= 0, label = "0", vjust=-.5, hjust=1)+
+  geom_text(x = 8, y= 0, label = "80", vjust=1.5)+
+
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+
+
+```
+]
+
+.pull-right[
+
+- Is the story the same here?
+
+- Now, a small movement of high income HH's into A means $RP(High) < RP(low)$
+
+- So we get pushed back to the initial equilibrium. In this case, integration is the .hi[only equilibrium]
+
+- Furthermore, integration is a .hi[stable equilibrium]
+
+]
+
+---
+# Integration Eq
+.pull-left[
+```{R, int_eq4, echo=F,fig.height = 5, fig.width = 8, dev = "svg", cache=F}
+
+u_1 <- function(x) sqrt(x)
+u_2 <- function(x) 2*sqrt(x)
+
+
+ggplot(data.frame(x=c(0, 8)), aes(x)) +
+  stat_function(fun=u_1, col = blue, size = 1.5)+
+  stat_function(fun= u_2, col = red, size = 1.5)+
+  labs(x = "number of high type HHs in neighborhood A",y = "Rent premium = R(A)-R(B)")+
+  mytheme +
+  geom_vline(xintercept = 0)+
+  geom_hline(yintercept = 0)+  
+geom_segment(x = 8, xend=8, y=0, yend=10, linetype = "dashed")+
+  geom_segment(x = 1, xend=1, y=0, yend=1, linetype = "dashed")+
+  geom_segment(x = 1, xend=1, y=0, yend=2, linetype = "dashed")+
+  geom_segment(x = 0, xend=1, y=1, yend=1, linetype = "dashed")+
+  geom_segment(x = 0, xend=1, y=2, yend=2, linetype = "dashed")+
+  geom_text(x = 0, y= 1, label = "RP(high)", vjust=-1, angle=90)+
+  geom_text(x = 0, y= 2, label = "RP(low)", vjust = -1, angle =90)+
+  geom_text(x = 1, y= 0, label = "45", vjust=2)+
+  geom_text(x=4, y= 4, label = "premium (low)",vjust=2, hjust=1.5 )+
+  geom_text(x=4, y= 2, label = "premium (high)",vjust=2)+
+  geom_text(x = 0, y= 0, label = "40", vjust=1.5, hjust=-.5)+
+  geom_text(x = 0, y= 0, label = "0", vjust=-.5, hjust=1)+
+  geom_text(x = 8, y= 0, label = "80", vjust=1.5)+
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+
+
+```
+.hi[Note]: 80 high income HH's in A is not an EQ because $RP(low)>RP(high)$. So low incomes will outbid highs and move in
+
+]
+
+.pull-right[
+
+- Is the story the same here?
+
+- Now, a small movement of high income HH's into A means $RP(High) < RP(low)$
+
+- So we get pushed back to the initial equilibrium. In this case, integration is the .hi[only equilibrium]
+
+- Furthermore, integration is a .hi[stable equilibrium]
+
+]
+
+---
+#Mixed Eq
+
+--
+
+.pull-left[
+```{R, mixed_eq, echo=F,fig.height = 5, fig.width = 8, dev = "svg", cache=F}
+
+u_1 <- function(x) sqrt(x)
+u_2 <- function(x) 2*sqrt(x)
+u_3 <- function(x) x^(.3)
+
+
+  
+ggplot(data.frame(x=c(0, 8)), aes(x)) +
+  stat_function(fun=u_1, col = red, size = 1.5)+
+  stat_function(fun= u_3, col = blue, size = 1.5)+
+  labs(x = "number of high type HHs in neighborhood A",y = "Rent premium = R(A)-R(B)")+
+  mytheme +
+  geom_vline(xintercept = 0)+
+  geom_hline(yintercept = 0)+
+  geom_segment(x = 8, xend=8, y=0, yend=10, linetype = "dashed")+
+  geom_text(x = 0, y= 0, label = "40", vjust=1.5, hjust=-.5)+
+  geom_text(x = 0, y= 0, label = "0", vjust=-.5, hjust=1)+
+  geom_text(x = 8, y= 0, label = "80", vjust=1.5)+
+  geom_text(x = 6, y = 1.2, label = "premium (high)")+
+  geom_text(x = 6, y = 2.2, label = "premium (low)")+
+  theme(axis.text.y=element_blank(),
+  axis.ticks.y=element_blank(),
+  axis.text.x=element_blank(),
+  axis.ticks.x=element_blank(),
+  plot.title = element_text(hjust = 0.5))
+
+```
+]
+
+.pull-right[
+
+- What about a story like this?
+
+- Integration eq (40 of each type in each nbhd) is still an equilibrium. Is it .hi[stable]?
+
+- No. A small deviation away means $RP(high) > RP(low)$. So highs outbid lows until $RP(high) = RP(low)$ at 45 highs in A and 35 lows. 
+
+- Is 45 highs in A stable?
+
+]
+
+
+---
+#Mixed Eq
+
+.pull-left[
+```{R, mixed_eq4, echo=F,fig.height = 5, fig.width = 8, dev = "svg", cache=F}
+
+u_1 <- function(x) sqrt(x)
+u_2 <- function(x) 2*sqrt(x)
+u_3 <- function(x) x^(.3)
+
+
+  
+ggplot(data.frame(x=c(0, 8)), aes(x)) +
+  stat_function(fun=u_1, col = red, size = 1.5)+
+  stat_function(fun= u_3, col = blue, size = 1.5)+
+  labs(x = "number of high type HHs in neighborhood A",y = "Rent premium = R(A)-R(B)")+
+  mytheme +
+  geom_vline(xintercept = 0)+
+  geom_hline(yintercept = 0)+
+  geom_segment(x = 1, xend=1, y=0, yend=1, linetype = "dashed")+
+  geom_segment(x = 0, xend=1, y=1, yend=1, linetype = "dashed")+
+  geom_segment(x = 8, xend=8, y=0, yend=10, linetype = "dashed")+
+  geom_text(x = 0, y= 0, label = "40", vjust=1.5, hjust=-.5)+
+  geom_text(x = 0, y= 0, label = "0", vjust=-.5, hjust=1)+
+  geom_text(x = 8, y= 0, label = "80", vjust=1.5)+
+  geom_text(x = 6, y = 1.2, label = "premium (high)")+
+  geom_text(x = 6, y = 2.2, label = "premium (low)")+
+  theme(axis.text.y=element_blank(),
+  axis.ticks.y=element_blank(),
+  axis.text.x=element_blank(),
+  axis.ticks.x=element_blank(),
+  plot.title = element_text(hjust = 0.5))
+
+```
+]
+
+.pull-right[
+
+- What about a story like this?
+
+- Integration eq (40 of each type in each nbhd) is still an equilibrium. Is it .hi[stable]?
+
+- No. A small deviation away means $RP(high) > RP(low)$.  So highs outbid lows until $RP(high) = RP(low)$ at 45 highs in A and 35 lows. 
+
+- Is 45 highs in A stable? Yes (you think about why)
+
+]
+
+
+---
+#Mixed Eq
+
+.pull-left[
+```{R, mixed_eq5, echo=F,fig.height = 5, fig.width = 8, dev = "svg", cache=F}
+
+u_1 <- function(x) sqrt(x)
+u_2 <- function(x) 2*sqrt(x)
+u_3 <- function(x) x^(.3)
+
+
+  
+ggplot(data.frame(x=c(0, 8)), aes(x)) +
+  stat_function(fun=u_1, col = red, size = 1.5)+
+  stat_function(fun= u_3, col = blue, size = 1.5)+
+  labs(x = "number of high type HHs in neighborhood A",y = "Rent premium = R(A)-R(B)")+
+  mytheme +
+  geom_vline(xintercept = 0)+
+  geom_hline(yintercept = 0)+
+  geom_segment(x = 1, xend=1, y=0, yend=1, linetype = "dashed")+
+  geom_segment(x = 0, xend=1, y=1, yend=1, linetype = "dashed")+
+  geom_segment(x = 8, xend=8, y=0, yend=10, linetype = "dashed")+
+  geom_text(x = 0, y= 0, label = "40", vjust=1.5, hjust=-.5)+
+  geom_text(x = 0, y= 0, label = "0", vjust=-.5, hjust=1)+
+  geom_text(x = 8, y= 0, label = "80", vjust=1.5)+
+  geom_text(x = 6, y = 1.2, label = "premium (high)")+
+  geom_text(x = 6, y = 2.2, label = "premium (low)")+
+  theme(axis.text.y=element_blank(),
+  axis.ticks.y=element_blank(),
+  axis.text.x=element_blank(),
+  axis.ticks.x=element_blank(),
+  plot.title = element_text(hjust = 0.5))
+
+```
+- .hi[Note]: Full segregation here is _not_ an equilibrium for a similar reason to the last example
+]
+
+.pull-right[
+
+- What about a story like this?
+
+- Integration eq (40 of each type in each nbhd) is still an equilibrium. Is it .hi[stable]?
+
+- No. A small deviation away means $RP(high) > RP(low)$.  So highs outbid lows until $RP(high) = RP(low)$ at 45 highs in A and 35 lows. 
+
+- Is 45 highs in A stable? Yes (you think about why)
+
+]
+
+---
+# A Heuristic
+
+1) Draw a vertical dashed line at every intersection point
+
+2) For every region between the vertical dashed lines, it must be the case that one of the rent premium curves is above the other
+
+  - If the rent prem curve for the group listed on the axis is .hi[higher], then this group will increase in number. Draw rightward arrows on the axis
+  
+  - If the rent prem curve for the group listed on the axis is .hii[lower], then this group will decrease in number. Draw leftward arrows
+
+
+---
+# A Heuristic
+
+3) If there are rightward arrows pushing toward 100% in one nbhd, then 100% (complete segregation) is an eq even if the rent prem curves do not intersect there
+
+4) For every eq. value, look at its immediate vicinity
+
+  - If there are arrows moving towards it, it is a .hi[stable eq]
+  
+  - If there are arrows moving away from it on one or both sides, it is a .hi[unstable eq]
+  
+---
+# Neighborhood Sorting
+
+
+.hi[Externalities] for kids:
+
+  - Good/bad role models as adults
+  
+  - Classmates in school: focused vs disruptive
+
+
+--
+
+.hi[Externalities] for adults:
+
+  - Positive: job information, property valuation
+  
+  - Negative: property values 
+
+--
+
+In general: positive externalities increase with income and education level. Why?
+
+---
+# Neighborhood Sorting
+
+These externalities give rise to the following questions:
+
+.hi[(i)] Who gets desirable neighbors?
+
+.hi[(ii)] Will there be segregated or integrated neighborhoods?
+
+.hi[(iii)] Will there be sorting or mixing with respect to income, age, race, or some combination of those factors?
+
+.hi[(iv)] What are the implications for the price of land in various neighborhoods?
+
+
+---
+class: inverse, center, middle
+# End of MT material
+
+
+

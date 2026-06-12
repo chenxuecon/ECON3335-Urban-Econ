@@ -1,0 +1,955 @@
+---
+title: "Existence of Cities"
+subtitle: "EC330, Set 03"
+author: "Andrew Dickinson"
+date: "Fall 2022"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'nord.css']
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+#knit: pagedown::chrome_print
+
+---
+class: inverse, middle
+
+```{R, setup, include = F}
+options(htmltools.dir.version = FALSE)
+# Load packages
+pacman::p_load(
+  broom, here, tidyverse, latex2exp, ggplot2, ggthemes, viridis, extrafont,
+  gridExtra, kableExtra, dplyr, magrittr, knitr, emo, ggrepel, sf, hrbrthemes
+)
+
+# Define colors
+## source color script from local directory
+## comment out and replace colors if user is not Andrew
+source("~/Documents/scripts/colors/colors.R")
+blue <- "#4c566a"
+purple <- "#b48ead"
+red <- "#bf616a"
+# XaringanExtra functions
+## Tile view
+# xaringanExtra::use_tile_view()
+## Scribble
+# xaringanExtra::use_scribble()
+# Knitr options
+opts_chunk$set(
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 10.5,
+  warning = F,
+  message = F
+)
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+
+theme_curves <- theme_ipsum() + theme(
+  axis.line = element_line(),
+  panel.grid.minor = element_blank()
+)
+```
+
+name: schedule
+
+# Contents
+
+### (i) Historical data
+
+### (ii) Technological shifts
+
+### (iii) _Why do cities exist?_
+
+### (iv) Backyard  production model
+
+---
+# Housekeeping
+
+.hi[PS01] will be posted later today
+- Due on .hi[Wednesday, October 12th] on canvas by .hi[11:59p]
+- Should be straight forward
+- Though after today you won't be able to start question 5
+- Must be submitted as a pdf
+
+--
+
+.hi[Note:]
+- Use the space provided on the pdfs
+- If you need more space, use scratch paper
+- .hi-whites[Points will be deducted for messy work]
+
+---
+name: data
+class: inverse, middle
+# Historical data
+
+---
+# Historical data
+More than .hi[4 billion] people living in urban area globally <sup>.hi[†]</sup>
+
+<br>
+
+.footnote[ <sup>.hi[†]</sup> Although the definition of an "urban area" is not exactly [well defined](https://blogs.worldbank.org/sustainablecities/what-does-urban-mean)]
+
+--
+
+Urban populations are now greater than rural populations
+- Since .hi[2007]
+- Only .hii[10%] of humans lived in urban areas in .hi[1800]
+- Only .hii[1%] of land is categorize as urban area
+
+<br>
+
+--
+
+By .hi[2050], .hii[66%] of global populations will live in urban areas
+
+
+---
+class: clear
+# Historical data
+
+<iframe src="https://ourworldindata.org/grapher/urban-and-rural-population?time=2017&country=~OWID_WRL" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+---
+class: clear
+# Historical data
+
+<iframe src="https://ourworldindata.org/grapher/urban-and-rural-population?country=~OWID_WRL" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+---
+class: clear
+# Historical data
+
+<iframe src="https://ourworldindata.org/grapher/share-of-population-urban" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+---
+class: inverse, middle
+# Technological shifts
+
+
+
+---
+# Technological shifts
+
+.hi[Claim:] In the past 200 years the world _has become_ .hi[flat]
+
+--
+
+ - .smallerer[.hii[1840s:] .hi[Rail] becomes ubiquitous
+  - Transportation costs `r emo::ji("down_arrow")`]
+  
+---
+class: clear
+count: false
+background-image: url("./figures/cronon.png")
+background-position: center
+background-size: contain
+
+.footnote[ [Source: Atlas of Historical Geography of the United States](https://dsl.richmond.edu/historicalatlas/138/a/)]
+
+---
+count: false
+# Technological shifts
+
+.hi[Claim:] In the past 200 years the world _has become_ .hi[flat]
+
+ - .smallerer[.hii[1840s:] .hi[Rail] becomes ubiquitous
+  - Transportation costs `r emo::ji("down_arrow")`]
+
+---
+class: hide-count
+
+# Technological shifts
+
+.hi[Claim:] In the past 200 years the world _has become_ .hi[flat]
+
+.smallerer[.pull-left[
+.ex[- 1840s: Rail becomes ubiquitous
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+  
+-  .hii[1840s:] .hi[Telegraph] is invented
+
+  - Information costs `r emo::ji("down_arrow")`
+
+]]
+
+---
+class: hide-count
+
+# Technological shifts
+
+.hi[Claim:] In the past 200 years the world _has become_ .hi[flat]
+
+.smallerer[
+.pull-left[
+.ex[- 1840s: Rail becomes ubiquitous
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+  
+.ex[- 1840s: Telegraph is invented
+
+  - Information costs `r emo::ji("down_arrow")`]
+
+- .hii[1870's:] .hi[Telephone] is invented
+
+  - Information costs `r emo::ji("down_arrow")`
+]
+]
+
+---
+class: hide-count
+
+# Technological shifts
+
+.hi[Claim:] In the past 200 years the world _has become_ .hi[flat]
+
+.smallerer[.pull-left[
+.ex[- 1840s: Rail becomes ubiquitous
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+
+.ex[- 1840s: Telegraph is invented
+
+  - Information costs `r emo::ji("down_arrow")`]
+
+.ex[- 1870's: Telephone is invented
+
+  - Information costs `r emo::ji("down_arrow")`]
+
+- .hii[1908:] .hi[Model T] production starts
+
+  - Transportation costs `r emo::ji("down_arrow")`
+]]
+
+---
+class: hide-count
+
+# Technological shifts
+
+.hi[Claim:] In the past 200 years the world _has become_ .hi[flat]
+
+.smallerer[.pull-left[
+.ex[- 1840s: Rail becomes ubiquitous
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+
+.ex[- 1840s: Telegraph is invented
+
+  - Information costs `r emo::ji("down_arrow")`]
+
+.ex[- 1870's: Telephone is invented
+
+  - Information costs `r emo::ji("down_arrow")`]
+  
+.ex[- 1908: Model T production starts
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+
+- .hii[1914:] First commercial .hi[airline flight]
+
+  - Transportation costs `r emo::ji("down_arrow")`
+  
+]]
+
+---
+class: hide-count
+
+# Technological shifts
+
+.hi[Claim:] In the past 200 years the world _has become_ .hi[flat]
+
+.smallerer[.pull-left[
+.ex[- 1840s: Rail becomes ubiquitous
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+
+.ex[- 1840s: Telegraph is invented
+
+  - Information costs `r emo::ji("down_arrow")`]
+
+.ex[- 1870's: Telephone is invented
+
+  - Information costs `r emo::ji("down_arrow")`]
+  
+.ex[- 1908: Model T production starts
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+
+.ex[- 1914: First commercial airline flight
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+  
+]
+.pull-right[
+- .hii[1980s:] Airline [deregulation](https://en.wikipedia.org/wiki/Alfred_E._Kahn)
+
+  - Transportation costs `r emo::ji("down_arrow")`
+
+]]
+
+---
+class: hide-count
+
+# Technological shifts
+
+.hi[Claim:] In the past 200 years the world _has become_ .hi[flat]
+
+.smallerer[.pull-left[
+.ex[- 1840s: Rail becomes ubiquitous
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+
+.ex[- 1840s: Telegraph is invented
+
+  - Information costs `r emo::ji("down_arrow")`]
+
+.ex[- 1870's: Telephone is invented
+
+  - Information costs `r emo::ji("down_arrow")`]
+  
+.ex[- 1908: Model T production starts
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+
+- .ex[1914: First commercial airline flight
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+  
+]
+.pull-right[
+.ex[- 1980s: Airline deregulation
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+  
+- .hii[1990's:] The internet
+
+  - Information costs `r emo::ji("down_arrow")`
+
+]]
+
+---
+class: hide-count
+
+# Technological shifts
+
+.hi[Claim:] In the past 200 years the world _has become_ .hi[flat]
+
+.smallerer[.pull-left[
+.ex[- 1840s: Rail becomes ubiquitous
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+
+.ex[- 1840s: Telegraph is invented
+
+  - Information costs `r emo::ji("down_arrow")`]
+
+.ex[- 1870's: Telephone is invented
+
+  - Information costs `r emo::ji("down_arrow")`]
+  
+.ex[- 1908: Model T production starts
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+
+- .ex[1914: First commercial airline flight
+
+  - Transportation costs `r emo::ji("down_arrow")`]]
+
+.pull-right[
+.ex[- 1980s: Airline deregulation
+
+  - Transportation costs `r emo::ji("down_arrow")`]
+  
+.ex[- 1990's: The internet
+
+  - Information costs `r emo::ji("down_arrow")`]
+  
+- .hii[2020s:] Post COVID
+  
+  - Transportation costs `r emo::ji("down_arrow")`
+  
+  - Information costs `r emo::ji("down_arrow")`
+
+- Among many other technological changes
+
+]]
+
+---
+class: inverse, middle, center
+# Why do cities exist?
+
+---
+name: paradox
+# Paradox: Why do cities exist?
+
+Urban population trends and technological innovations seem .hi[paradoxical]
+
+--
+
+The world is getting .hi[flatter], yet urban populations are .hi-red[booming]
+
+--
+
+This .hi[paradox] motivates the questions: 
+
+<br>
+
+--
+
+.center[.h[Why do cities exist in the first place?]]
+
+--
+
+.center[.hi[Why have some cities succeeded?]]
+  
+--
+
+.center[.hii[Why have some cities failed?]]
+  
+--
+
+<br>
+
+We will draw insights from economic models to answer these questions
+
+
+---
+# Paradox: Why do cities exist?
+
+--
+
+.hi[What do you think?]
+
+--
+
+There is a pretty simple, one-word answer. .hii[Any guesses?]
+
+--
+
+.center[
+![:scale 80%](./figures/wordart.png)
+]
+
+---
+count: false
+# Paradox: Why do cities exist?
+
+.hi[What do you think?]
+
+There is a pretty simple, one-word answer. .hii[Any guesses?]
+
+<br>
+
+.bigger[.center[.hi[Trade.]]]
+
+.hi[Cities exist because individuals are not self-sufficient]
+
+--
+
+Suppose there was .hi[no trade]
+- _What would we need for this to be true?_
+- _Would this lead to no cities?_
+- _Even with trade, when is it the case that households just trade amongst themselves?_
+
+---
+
+# EC 201 Review 017: Trade
+
+.hi[Definitions:]
+
+--
+
+  - .hi[Absolute Advantage] (AA): An economic agent or entity has .hi-slate[AA] in exchange if they can produce more of the good in the same amount of time 
+  
+--
+ 
+  - .hi[Comparative Advantage] (CA) : An economic agent or entity has .hi-slate[CA] in exchange if they can produce the good at a lower _oppurtunity cost_
+
+--
+
+- .hi[Production Possibilities Frontier] (PPF): All possible combinations of goods that an economic agent or entity can produce
+
+---
+
+# EC 201 Review 017: Trade - example
+
+.hi[Example]: Suppose we have two countries, .hi[A] & .hii[B], producing guns and oil
+  
+Each countries .hi[PPF] is described by:
+
+- .hi[A:] $\color{#4c566a} {Guns_A = 10 - 2*Oil_A}$
+
+- .hii[B:] $\color{#b48ead} {Guns_B = 20 - 5*Oil_B}$
+
+<br>
+
+--
+
+.hi[(i)] Graph each countries .hi[PPF]
+
+.hi[(ii)] Determine who has the AA and who has the CA in each good
+
+---
+
+# EC 201 Review 017: Trade - example
+
+--
+
+.hi[PPFs:]
+
+```{R, ppf, echo = F, fig.height = 5, fig.width = 8, dev = "svg"}
+county_one <- function(x) 10 - 2 * x
+county_two <- function(x) 20 - 5 * x
+ggplot(data.frame(x = c(0, 10)), aes(x)) +
+  stat_function(fun = county_one, col = blue) +
+  geom_vline(xintercept = 0, size = 0.5) +
+  geom_hline(yintercept = 0, size = 0.5) +
+  theme_ipsum(base_family = "Fira Sans Book", base_size = 8) +
+  ylim(0, 22) +
+  geom_text(x = 0, y = 10, label = "Country A") +
+  labs(x = "Oil", y = "Guns")
+```
+
+---
+
+# EC 201 Review 017: Trade - example
+
+.hi[PPFs:] 
+
+```{R, ppf2, echo = F, fig.height = 5, fig.width = 8, dev = "svg"}
+county_one <- function(x) 10 - 2 * x
+county_two <- function(x) 20 - 5 * x
+ggplot(data.frame(x = c(0, 10)), aes(x)) +
+  stat_function(fun = county_one, col = blue) +
+  stat_function(fun = county_two, col = purple) +
+  geom_vline(xintercept = 0, size = 0.5) +
+  geom_hline(yintercept = 0, size = 0.5) +
+  theme_ipsum(base_family = "Fira Sans Book", base_size = 8) +
+  ylim(0, 22) +
+  geom_text(x = 0, y = 10, label = "Country A") +
+  geom_text(x = 0, y = 20, label = "Country B") +
+  labs(x = "Oil", y = "Guns")
+```
+
+???
+
+Whomever _gives up less_ to produce the same amount extra has the comparative advantage
+
+---
+
+# PPF Heuristics
+
+When looking at PPFs, to determine:
+
+
+(i) .hi[AA]: Check intercepts
+- Whoever has higher valued .hii[intercept] has the .hi[AA] in production
+
+
+(ii) .hi[CA]: Check slopes
+- A .hi[steeper slope] indicates CA on the vertical axis
+- A .hii[shallower slope] indicates CA on the horizontal axis
+
+
+---
+# Why do cities exist?
+
+We need land to produce food and resources; dense cities don't provide
+
+--
+
+Cities exist because of human .hi[technology] has created systems of production and trade that defy the natural order
+
+Three conditions must be satisfied:
+
+--
+
+.hi[(i).] .hii[Agricultural surplus:] People outside cities must produce enough food to feed themselves and city dwellers
+
+--
+
+.hi[(ii).] .hii[Urban production:] City dwellers must produce goods or services to exchange for food grown by rural workers
+
+--
+
+.hi[(iii).] .hii[Transportation for exchange:] Efficient transportation system to facilitate the exchange of food and urban products must exist
+
+--
+
+The technology in this case is what we call .hi[trade]
+
+---
+name: backyard
+class: inverse, middle
+# Backyard production model
+
+---
+# Backyard production model
+
+A .hi[simple] economic model to understand the economic incentives of cities
+
+--
+
+Consider a region that produces and consumers two products:
+
+- .hi[Bread]
+
+- .hii[Shirts]
+
+--
+
+.center[.hi[Let's make three assumptions that would eliminate any incentives for households to geographically cluster]]
+
+--
+
+Relaxing each assumption will give us .hii[intuition] about the formation of cities
+
+
+---
+# Backyard production model
+
+.hi[Model assumptions:]
+
+--
+
+.hi[A01:] There exist no differences in the productivity of land nor labor
+
+  - No comparative advantages
+  
+--
+  
+.hi[A02:] Constant Returns to Scale (CRS) in .hi-blue[exchange] and .hi-green[transportation]
+
+--
+
+  - Per unit price to .hi[trade] goods _is the same_ no matter how much is traded 
+  
+  - No need for middle man firms to help with distribution
+  
+--
+
+.hi[A03:] CRS in .hii[production]
+
+--
+
+  - The per unit price of production is constant
+  
+  - No economies of scale $\rightarrow$ households productivity = firm productivity
+
+---
+# Backyard production model
+
+.hi[These three assumptions would eliminate exchange and ensure each household is self sufficient]
+
+--
+
+.hi[A01:] Equal productivity
+
+.hi[A02:] CRS in exchange and transportation
+
+.hi[A03:] CRS in production
+
+--
+
+<br>
+
+There is no incentive to specialization due to .hi[transaction costs]<sup>.hi[†]</sup>
+
+.footnote[<sup>.hi[†]</sup>transaction cost is the opportunity cost of the time required to exchange products]
+
+Locational equilibrium would be .hi[uniformly distributed] population
+
+
+---
+
+# Backyard production model: Relax A01
+
+.hi[Q]: Is all land and labor equally productive? 
+
+--
+ 
+.hi[A]: Nope. Let's relax that assumption
+.hii[Ex:]
+- Soil may be more productive in certain regions; better climate
+- One region specializes in bread while the other in shirts
+
+--
+
+Relaxing A01 will lead to differences in productivity across cities:
+
+$\implies$ .hi[comparative advantages]
+
+$\implies$ specialization + trade
+
+--
+
+However, specialization and trade will not alone lead to urban growth
+- Households are just as effective at trading as any firm
+
+
+---
+# Relax A02
+
+In absence of scale economies, households trade directly<sup>.hi[†]</sup>
+
+.footnote[
+.hi[†] Scale economies: _bigger_ $\rightarrow$ _cheaper per unit_
+
+]
+
+--
+
+- .hi[CRS in Exchange]: Implies households are just as efficient at executing trades as firms (no cost benefits to scaling)
+- No reason to pay a firm to do so (and thus no reason to pay for density)
+
+<br>
+
+--
+
+A trading firm will use productive inputs such as:
+
+- Large truck for transportation
+
+- Specialized workers
+
+---
+
+
+# Relax A02
+
+To take full advantage advantage of scale economies firms locate s.t. they minimize costs of distribution
+
+--
+
+.center[.hi[ie. Build near river junctions, crossraods, ports]]
+
+--
+  
+$\implies$ higher prices of land $\implies$ density
+
+--
+
+.hi[Result:] Trading cities 
+
+<br>
+
+--
+
+These are represent the cities that .hi[existed before the industrial revolution]
+- Most city workers did not produce goods but distributed them
+- Trade was risky; insurance, credit, banking and legal services sprouted
+
+
+---
+
+
+
+name: factory
+# Relax A03
+
+Now relax the final assumption .hi[A03]
+
+--
+
+With economies of scale factories can outproduce households by lowering average costs
+- Use indivisible inputs (machines)
+- Allow workers to specialize
+
+--
+
+In order to pay for labor, a factory must pay such that they are indifferent between working in a factory and a rural area (.hi[A1.])
+
+--
+
+However, land scarcity .hi[binds] and rents near the factory begin to increase
+- Wages increase due to .hi[locational equilibrium]
+
+---
+# Factory area
+
+.hi[Example:]
+
+Consider the shirt making factory:
+
+  - .hi[Home] production: $20$  p shirt
+  - .hi[Factory]:  $12$ p shirt (economies of scale)
+  
+--
+
+The factory locates in a town with 50 miles to east and west of villages
+  
+   - 50 cents/mile to ship west.
+   - 20 cents/mile to ship east
+   
+---
+# Factory Towns
+
+--
+
+.hi[Market area:] Area over which factories underprice home production
+
+--
+
+Under what condition will a consumer purchase the shirt from a factory?
+
+\begin{align*}
+\underbrace{p_f}_\text{factory price} + \underbrace{t \times d}_\text{transit cost = cost p mile$\times$miles} \leq \underbrace{p_h}_\text{Home Price}
+\end{align*}
+
+--
+
+.hi[Questions]:
+
+1. Graph the cost of shirts throughout the entire region
+
+2. Find the .hi[market area] of the town
+
+--
+
+  - Find the sum of the .hii[maximum distances] to the east and west that consumers will purchase the shirt from the factory
+
+---
+
+#Regional Costs
+
+.hi[Home production:] 20 per shirt .hi[Factory production:] 12 per shirt
+
+.hi[Transportation costs:] 50 cents/mile to ship west; 20 cents/mile east
+
+--
+
+```{R, factory_town, echo=F,fig.height = 4, fig.width = 8, dev = "svg", cache=T}
+
+# create functions. didnt really end up using. probably better way to create this figure
+west <- function(x) 37 - .5 * x
+east <- function(x) 12 + .2 * x
+
+ggplot(data.frame(x = c(0, 100)), aes(x)) +
+  stat_function(fun = west, col = NA) +
+  geom_segment(x = 0, xend = 50, y = 37, yend = 12) +
+  geom_segment(x = 50, xend = 100, y = 12, yend = 22) +
+  geom_segment(x = 50, xend = 50, y = 0, yend = 12) +
+  geom_segment(x = 0, xend = 50, y = 12, yend = 12, linetype = "dashed") +
+  geom_vline(xintercept = 0, size = 0.5) +
+  geom_hline(yintercept = 0, size = 0.5) +
+  xlim(0, 100) +
+  ylim(-3, 40) +
+  theme_ipsum(base_family = "Fira Sans Book", base_size = 8) +
+  scale_x_discrete(name = "Distance") +
+  geom_text(aes(x = 25, y = -1, label = "West")) +
+  geom_text(aes(x = 75, y = -1, label = "East")) +
+  geom_text(aes(x = 2, y = 37.5, label = "$37")) +
+  geom_text(aes(x = 98, y = 22.5, label = "$22")) +
+  labs(y = "Cost (in Dollars)", title = "Factory Town Graph") +
+  geom_text(aes(x = 97, y = -2, label = "50 mi E")) +
+  geom_text(aes(x = 3, y = -2, label = "50 mi W")) +
+  theme(panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank())
+```
+
+---
+#Market Area Calculation
+
+Market area depends on which side we are looking at. Let $m$ denote miles
+
+--
+
+.hi[West:] Consumers buy from factory if
+
+--
+  
+  $12 + .5*m_{west} \leq 20 \implies m_{west} \leq 16$
+  
+--
+
+.hi[East:] Consumers buy from factory if 
+  
+  $12 + .2*m_{east} \leq 20 \implies m_{east} \leq 40$
+  
+--
+
+.hi[Market area:]
+
+--
+
+$40+16 = 56$
+
+---
+
+
+# Factory Towns
+
+1. Would workers rather live .hi.orange[closer] or .hi[further] from the factory?
+  
+--
+  
+  - .hi[Closer!]
+    
+--
+
+2. What happens to land-prices .hi[close] to the factory?
+
+--
+  
+  - They .hi[increase]
+  
+--
+
+3. What happens to .hi[density]?
+
+--
+
+ - It will .hi[increase] 
+ 
+--
+
+__Result:__ Factory town!
+
+
+---
+
+
+#Table of Contents
+
+.pull-left[
+###Data & History
+.smallest[
+1. [Urban Populations](#data)
+1. [History](#history)
+1. [Paradox](#paradox)
+]
+
+hello
+
+###Existence
+.smallest[
+
+1. [Why do Cities Exist?](#exist)
+1. [Trade Basics](#trade)
+1. [Factory Towns](#factory_towns)
+
+]
+]
+
+.pull-right[
+##Clustering
+1. [Zero Profit](#zero_profit)
+.smallest[
+
+]
+]
+
+
+
+
+
+
+

@@ -1,0 +1,686 @@
+---
+title: "Introduction to Urban Economics"
+subtitle: "EC 330, Set 01"
+author: "Andrew Dickinson"
+date: "Fall 2022"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'nord.css']
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+# knit: pagedown::chrome_print
+---
+class: inverse, center, white
+
+```{R, setup, include = F}
+options(htmltools.dir.version = FALSE)
+# Load packages
+ pacman::p_load( 
+      broom, here, tidyverse, latex2exp, ggplot2, ggthemes, viridis, extrafont, magrittr,
+      gridExtra, kableExtra, dplyr, magrittr, knitr, emo,  hrbrthemes, sf, tidycensus) 
+
+# Define colors
+## source color script from local directory
+## comment out and replace colors if user is not Andrew
+source("~/Documents/scripts/colors/colors.R")
+# XaringanExtra functions
+## Tile view
+xaringanExtra::use_tile_view()
+## Scribble
+xaringanExtra::use_scribble()
+# Knitr options
+opts_chunk$set(
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 10.5,
+  warning = F,
+  message = F
+)
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+
+
+```
+
+
+```{r, echo = FALSE, cache = FALSE, results = FALSE, message = FALSE, include = FALSE, error = FALSE}
+income <-  tidycensus::get_acs(
+ geography = "county", variables = "B19013_001",
+ state = c("WA", "OR", "CA"), geometry = TRUE, cache = TRUE
+)
+``` 
+
+```{css, echo = F, eval = F}
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+```
+
+class: inverse, middle
+# Prologue
+
+---
+# Schedule
+
+.bigger[.hi[Today]]
+- Welcome, check in, survey, and syllabus
+- Introduction: .it[What is (urban) economics?]
+- Toolkit: .it[What is a model?]
+
+--
+
+.bigger[.hi[Upcoming]]
+- EC201 review
+- Principals of urban economics
+
+
+---
+#Introduction: About me
+
+.hi[.ul[Admin:]] Just call me .h[Andrew]
+
+- Office: [PLC 523](https://map.uoregon.edu/7c6d0ffbd), Office Hours: .hi[TBD], Email: .hii[adickin3@uoregon.edu]
+
+
+--
+
+.hi-blue[.ul[School:]]
+
+- .hi[Fourth year] PhD student researching:
+  - Applied micro topics related to environmental economics
+  - Causal inference, ML, and data science
+
+--
+
+.hi-green[.ul[Not school:]]
+
+  - Grew up in San Diego, CA
+  - I enjoy spending time outside and listening to good music `r emo::ji("call me hand")`
+  
+---
+# Introduction: About you
+
+.bigger[.h[I hope that you:]]
+
+--
+
+.hi[(i)]   Are an eager student ready to learn about urban economics
+
+--
+
+.hi[(ii)]  Have passed EC201 with at least .hi-blue[some recollection] of the material
+
+--
+
+.hi[(iii)] Engage in class (ask lots of questions) and support your peers
+
+--
+
+.hi[(iv)]  Will read my [syllabus](https://www.youtube.com/watch?v=Tnlaokj1opA) .smallerer[(especially before sending me an email)]
+
+<br>
+
+--
+
+.bigger[.h[I want to discuss the following:]]
+
+--
+
+.pull-left[
+.hi[(i).] Course policies
+]
+.pull-right[
+.hi[(ii).] Grades and grading]
+
+---
+class: inverse, middle
+
+# Syllabus
+
+---
+# Syllabus: Attendance
+
+Attendance is ".hi[mandatory]", though
+- it does .hi-red[not] impact your grade
+- records will .hi-red[not] be kept (though I have a good memory)
+- lectures will .hi-red[not] be recorded
+
+--
+
+Attendance is an efficient use of your time
+- Mixture of .hi-blue[slide decks] and .hi-green[in-class examples] on the board
+
+--
+
+.hi[Slide decks] will be posted to the course page .smaller[(.l[https://ajdickinson/EC330F22])] _sometime_ after lecture<sup>.hii[†]</sup>
+
+.footnote[<sup>.hii[†]</sup> This is the only course material that will not be posted to the Canvas page. Examples will not be posted]
+
+--
+
+Exams will be administered during class time
+
+---
+# Syllabus: Grading
+
+There are .hi-red[500] points total.  .hi[Your grade will be determined by:]
+
+--
+
+- 45%: Final Exam: .hi[225] pts
+
+- 30%: Midterm Exam: .hi[150] pts
+
+- 25%: Problem sets: 25 pts each, .hi[75] pts total
+
+- 10%: Book Report: .hi[50] pts
+
+--
+
+<br>
+
+.center[.hi[Q]: Is there a curve?]
+
+--
+
+.center[.hi[A]: Typically yes. At the end of the term the class will be curved ]
+
+---
+# Syllabus: Grading
+
+.hi-blue[Caveat]: Due to a curve, standing in this course will depend on your score relative to your peers--I may not be able to give you an accurate assessment of your grade
+
+--
+
+From the syllabus:
+
+> Your grade will be determined relative to your peers, so during the course, I will not be able to tell you what your exact letter grade is at any point in time, because it depends on everyone’s overall scores of the class.
+
+--
+
+<br>
+
+Following department policies, for 300 and 400 level classes roughly 65% of the class will receive A’s and B’s.
+
+---
+# Syllabus: Exams
+
+.hi[Midterm:] Wed, Nov 2 (in class)
+
+.hi[Final:] [Wed, Dec 7 @ 14:45](https://registrar.uoregon.edu/calendars/examinations#ay22)
+
+--
+
+.center[.hi[Absolutely no makeups]]
+
+<br>
+  
+--
+
+Under .hi[extraordinary circumstances] I will shift midterm weight to the final
+- Entirely by my discretion
+- Must contact me before the exam via email
+    
+--
+
+<br>
+
+.hi[Drop this course if you are unable to take the scheduled midterm]
+
+
+---
+
+#Syllabus: TotC
+
+Required reading [Triumph of the City](https://www.amazon.com/Triumph-City-Greatest-Invention-Healthier/dp/0143120549) by Ed. Glaeser. 
+
+Easy reading that is .hi[suuuuper interesting], covering many of the same topics that we will in class; building your intuition
+
+--
+
+.hi[Book Report:] Due Sunday following the last day of class (Dec 4 @ 11:59p)
+- Instructions and a rubric are posted on the course page + canvas soon
+- Straight forward, easy points--so long as you read
+
+--
+
+.hi-red[Midterm] and .hi-red[final] will have questions connecting key topics in the books to topics in lecture
+- If you read they should be easy; if you do not read they will be painful
+
+---
+#Syllabus: Problem sets
+
+There will be .hi[4] problem sets throughout the term:
+- Signal what to expect on the exams
+- You must submit a .hi[.pdf] document on Canvas
+- The lowest scored problem set is dropped
+- No late homework assignments will be accepted
+- If you scan is bad, or your handwriting illegible, you get .hi-red[nothing]
+
+--
+
+The problem sets are your .hi[best study tool] for the .hi-red[exams]. Do all of them!
+
+--
+
+.hi[General tips:]
+
+--
+
+- Start them .hi[early]
+- Bring your work to class and ask for help
+- Go to my office hour
+
+---
+# Syllabus: Canvas + course site
+
+I use Canvas in conjunction to a simple course website hosted on GitHub
+
+--
+
+.bigger[.hi[Canvas:]]
+- .hi[All] assignments submissions and announcements
+
+--
+
+<br>
+
+.bigger[[Course site:](https://github.com/ajdickinson/EC330F22)]
+- Light, public page with links to all course material
+- Do not need an account
+- I use it out of convenience and other personal reasons
+- .hi[ONLY] thing on the page that will not be on Canvas is the slide decks
+
+---
+class: inverse, middle, center
+# What is economics?
+
+---
+# What is economics?
+
+.hi[_The Wealth of Nations_] _by_ [Adam Smith](https://www.adamsmith.org/about-adam-smith) (1776)
+
+--
+
+Seminal work on economics, four volumes; comparable to the works of:
+- Newton’s _Principia Mathematica_
+- Darwin’s _Origin of Species_
+  
+--
+
+.hi[Wealth] ("weal")
+
+--
+
+- Money and other assets
+- But also well-being, welfare
+  
+--
+  
+.hi[Archaic] use of "wealth" 
+- Economics is not merely the study of how to get rich
+- Please don't ask me about the stock market
+
+---
+# What is economics?
+
+In a nutshell:
+
+.center[.hi[Economics is the study of how people make allocation decisions to maximize their happiness when facing limited resources (budgets)]]
+
+--
+
+There is never .hi[enough resources]; we call this .hi-red[scarcity]
+
+--
+
+.hi-red[Scarcity] gives us constraints to which we do the best _we can_
+
+--
+
+.hi[Other examples of scarcity]
+.pull-left[
+  - Time
+- Health]
+.pull-right[
+  - Land
+- Natural resources]
+
+--
+
+.hi[Economics is very general;] the market lens can be used across many topics
+
+
+<!-- --- -->
+<!-- # Economic perspective -->
+
+<!-- Economics uses a positive perspective on the world -->
+<!-- - about how actors .hi[actually] behave; less about how they .hi[should] behave -->
+
+<!-- -- -->
+
+<!-- .hi-blue[Normative statements:] Matters of opinion; may never be resolved -->
+<!-- - Higher ed should be free -->
+
+<!-- .hi[Positive statements:] Matters of fact that can be resolved by data -->
+<!-- - Who should get federal grants? The best students or students in need? -->
+
+<!-- -- -->
+
+<!-- Figure out what the data say for evidence-based policy making -->
+
+<!-- -- -->
+
+<!-- .hi[Opportunity cost:] What you have to give up by not putting a resource to its _next-best_ alternative use -->
+
+<!-- - Economist use the word .hi[cost] differently than the general public -->
+<!--   - "Cost" is different than "price" -->
+
+---
+class: inverse, center, middle
+# Intro to Urban Economics
+
+---
+name:what_is_it
+# Intro to Urban Economics
+
+A mash-up between .hi[economics] and .hii[geography] 
+
+--
+
+.hi[Economics:] Study of how people and firms allocate scarce resources.
+- Individual utility, markets, trade, welfare
+
+--
+
+.hii[Geography:] Studies effects of location and the environment 
+- Hydrology, climate, resources, etc.
+
+--
+
+<br>
+
+.hi[Economics] + .hii[Geography]  : Study of how individuals and firms choose utility and profit maximizing locations, and consequences of these decisions
+
+---
+# Intro to Urban Economics
+
+We will study how the .hi[distribution] of people & firms across space impacts:
+
+--
+
+.pull-left[
+  - City growth `r emo::ji("cityscape")`
+- Crime `r emo::ji("policewoman")`
+- The environment `r emo::ji("recycle")`]
+.pull-right[
+  - Income growth & inequality  `r emo::ji("chart increasing")`
+- Education `r emo::ji("school")`
+- Employment + wages `r emo::ji("money-mouth face")`]
+  
+--
+
+We will also examine the efficacy of various .hi[place - based policies]
+.pull-left[
+  - Minimum Wage
+- Rent Control]
+.pull-right[
+  - Land Use Restrictions
+- Sustainability]
+
+--
+
+<br>
+
+.hi[What are the economic drivers behind urban development?]
+
+---
+# This Course
+
+This class has two fairly distinct halves:
+
+1. .hi[Philosophy & Tools]
+
+  - Why do cities exist? Why do they grow? Why do they decline?
+  
+  - Fundamental tools of labor & urban econ (supply and demand)
+  
+--
+
+2. .hi[Application]
+
+  - Rent Control & Minimum Wage
+  
+  - Highways and urban transportation
+  
+  - Income inequality and environmental issues
+
+---
+# What is a city?
+
+.hi[According to the Census Bureau...]
+
+--
+
+.hi[Urban Area:] a densely settled geographical area with:
+
+--
+
+  - Minimum population of .hi[2,500]
+  - Minimum density of .hi[500 people per square mile]
+
+--
+
+.hi[Metropolitan Area:] an urbanized area with at - least .hi[50k population]
+
+--
+
+.hi[Micropolitan Area:] an urbanized area with at least .hi[10k] but not as many as .hi[50k] people
+
+--
+
+.hi[MSA:] abbrev. for .slate[both] .hi[metropolitan] and .hi[micropolitan] statistical area
+
+--
+
+.hi[Principal City:] the .hi-blue[largest municipality in an MSA]
+
+--
+
+.hi[City:] .blue[Dense collection of people in specific geographic area]
+
+---
+# Intro to Urban: Cities
+
+The majority of the US population lives in cities<sup>.smallest[.hi-pink[†]]</sup> and more people will continue to migrate into urban areas
+
+.footnote[.hi-pink[†]. 80 - ish percent, according to the Census Bureau]
+
+.hi[Questions:]
+
+--
+
+1. Do you like cities?
+
+2. What are favorite city .hii[amenities]?
+
+3. Are cities at odds with the natural world?
+
+--
+
+.hi[Why do cities exist?]
+
+--
+
+.center[.hi[Location matters]]
+
+
+---
+# Intro to Urban: Location...
+
+Where you live has implications for
+
+--
+
+- Your contribution to .hi[global carbon emissions] 
+
+  - _Why does this vary across cities?_
+
+--
+
+- Your .hi[wage] and .hi[rent] 
+
+  - _Why does this vary across cities?_
+
+--
+
+- Your .hii[economic mobility]
+
+  - _Why does this vary across cities?_
+  
+--
+
+.hi[We will answer these questions as we progress through this course]
+
+---
+name:what_is_model
+# What is a model?
+
+In this class we will make use of various .hi[mathematical models]
+
+--
+
+What is a .hi[mathematical model]?
+  - A model is a description of a system using .... .hi[math]
+  - Useful to help .hi[explain] and .hi[predict] behavior
+
+--
+
+.hi[The Canonical Example]
+
+\begin{align*}
+\text{Supply}:\hspace{.1in} P(Q_s) &= 10 + 5*Q_s\\
+\text{Demand}: \hspace{.1in}P(Q_d) &= 20 - 2*Q_d
+\end{align*}
+
+--
+
+This model allows us to make predictions about prices and quantities (from the supply & demand side), _and_ the .hi[equilibrium] price and quantity
+
+
+---
+# What is a model?
+
+What are the .hi-blue[pros] of models?
+  - Allows for us to be very precise with our language
+  - Gives us the ability to .hi[predict] the various aspects of the economy
+  - Can shed insight on .hi[mechanisms] through which processes interact
+  
+--
+  
+What are the .hi-red[cons] of models?
+- They require assumptions
+- .hi[Almost] all assumptions are wrong
+  
+--
+
+But not all wrong assumptions are useless
+    
+--
+
+The ability of the model to .hi[predict data] and .hi-blue[understand mechanisms] determines how useful it is
+
+---
+# What is a model?
+
+
+Did we make assumptions our supply/demand model? .hi.purple[Discuss]
+
+
+\begin{align*}
+\text{Supply}:\hspace{.1in} P(Q_s) &= 10 + 5*Q_s\\
+\text{Demand}: \hspace{.1in}P(Q_d) &= 20 - 2*Q_d
+\end{align*}
+
+--
+
+1. .hi[Marginal values] are diminishing and .hi[marginal costs] are increasing <sup>.hi[†]</sup>
+
+  - Generates downward demand and upward supply
+  
+.footnote[.hi[†]: Marginal = Adding one additional unit]
+  
+2. Demand and Supply are .hi[linear]
+
+3. Demand and Supply are .hi[deterministic]
+
+--
+
+Are these reasonable? Can your behavior be explained by a simple .hi[linear function]?
+
+--
+
+.center[.hi[Does a function even exist?]]
+
+---
+class: inverse, middle
+# Planning
+
+.pull-left[
+.hi-white[Next Class]:
+
+- EC201 Review
+
+- 5 Axioms of Urban Economics]
+
+--
+
+.pull-right[
+.hi-white[Reading]:
+
+- Get the book ASAP!!
+
+- Read the introduction]
+
+---
+
+#Table of Contents
+
+.col-left[
+###Admin
+.smallest[
+1. [Schedule](#schedule)
+1. [Syllabus](#syllabus)
+]
+
+
+###Intro to Urban Economics
+.smallest[
+
+1. [What is Urban Economics?](#what_is_it)
+
+1. [What is a city?](#what_is_city)
+  
+1. [What is a model and why are they useful?](#what_is_model)
+
+]
+]
+
+
+---
+exclude: true
+```{r decktape, eval = FALSE}
+p_load(pagedown)
+pagedown::chrome_print(here::here("001-intro","lecture_one.html"))
+```
+
+
+
+
+

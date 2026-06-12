@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to Urban Economics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Andrew Dickinson" />
+    <script src="01-intro_files/header-attrs/header-attrs.js"></script>
+    <link href="01-intro_files/remark-css/default.css" rel="stylesheet" />
+    <link href="01-intro_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="01-intro_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="01-intro_files/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="01-intro_files/tile-view/tile-view.js"></script>
+    <script src="01-intro_files/fabric/fabric.min.js"></script>
+    <link href="01-intro_files/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="01-intro_files/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link rel="stylesheet" href="nord.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Introduction to Urban Economics
+]
+.subtitle[
+## EC 330, Set 01
+]
+.author[
+### Andrew Dickinson
+]
+.date[
+### Fall 2022
+]
+
+---
+
+class: inverse, center, white
+
+
+
+
+
+
+
+
+class: inverse, middle
+# Prologue
+
+---
+# Schedule
+
+.bigger[.hi[Today]]
+- Welcome, check in, survey, and syllabus
+- Introduction: .it[What is (urban) economics?]
+- Toolkit: .it[What is a model?]
+
+--
+
+.bigger[.hi[Upcoming]]
+- EC201 review
+- Principals of urban economics
+
+
+---
+#Introduction: About me
+
+.hi[.ul[Admin:]] Just call me .h[Andrew]
+
+- Office: [PLC 523](https://map.uoregon.edu/7c6d0ffbd), Office Hours: .hi[TBD], Email: .hii[adickin3@uoregon.edu]
+
+
+--
+
+.hi-blue[.ul[School:]]
+
+- .hi[Fourth year] PhD student researching:
+  - Applied micro topics related to environmental economics
+  - Causal inference, ML, and data science
+
+--
+
+.hi-green[.ul[Not school:]]
+
+  - Grew up in San Diego, CA
+  - I enjoy spending time outside and listening to good music 🤙
+  
+---
+# Introduction: About you
+
+.bigger[.h[I hope that you:]]
+
+--
+
+.hi[(i)]   Are an eager student ready to learn about urban economics
+
+--
+
+.hi[(ii)]  Have passed EC201 with at least .hi-blue[some recollection] of the material
+
+--
+
+.hi[(iii)] Engage in class (ask lots of questions) and support your peers
+
+--
+
+.hi[(iv)]  Will read my [syllabus](https://www.youtube.com/watch?v=Tnlaokj1opA) .smallerer[(especially before sending me an email)]
+
+&lt;br&gt;
+
+--
+
+.bigger[.h[I want to discuss the following:]]
+
+--
+
+.pull-left[
+.hi[(i).] Course policies
+]
+.pull-right[
+.hi[(ii).] Grades and grading]
+
+---
+class: inverse, middle
+
+# Syllabus
+
+---
+# Syllabus: Attendance
+
+Attendance is ".hi[mandatory]", though
+- it does .hi-red[not] impact your grade
+- records will .hi-red[not] be kept (though I have a good memory)
+- lectures will .hi-red[not] be recorded
+
+--
+
+Attendance is an efficient use of your time
+- Mixture of .hi-blue[slide decks] and .hi-green[in-class examples] on the board
+
+--
+
+.hi[Slide decks] will be posted to the course page .smaller[(.l[https://ajdickinson/EC330F22])] _sometime_ after lecture&lt;sup&gt;.hii[†]&lt;/sup&gt;
+
+.footnote[&lt;sup&gt;.hii[†]&lt;/sup&gt; This is the only course material that will not be posted to the Canvas page. Examples will not be posted]
+
+--
+
+Exams will be administered during class time
+
+---
+# Syllabus: Grading
+
+There are .hi-red[500] points total.  .hi[Your grade will be determined by:]
+
+--
+
+- 45%: Final Exam: .hi[225] pts
+
+- 30%: Midterm Exam: .hi[150] pts
+
+- 25%: Problem sets: 25 pts each, .hi[75] pts total
+
+- 10%: Book Report: .hi[50] pts
+
+--
+
+&lt;br&gt;
+
+.center[.hi[Q]: Is there a curve?]
+
+--
+
+.center[.hi[A]: Typically yes. At the end of the term the class will be curved ]
+
+---
+# Syllabus: Grading
+
+.hi-blue[Caveat]: Due to a curve, standing in this course will depend on your score relative to your peers--I may not be able to give you an accurate assessment of your grade
+
+--
+
+From the syllabus:
+
+&gt; Your grade will be determined relative to your peers, so during the course, I will not be able to tell you what your exact letter grade is at any point in time, because it depends on everyone’s overall scores of the class.
+
+--
+
+&lt;br&gt;
+
+Following department policies, for 300 and 400 level classes roughly 65% of the class will receive A’s and B’s.
+
+---
+# Syllabus: Exams
+
+.hi[Midterm:] Wed, Nov 2 (in class)
+
+.hi[Final:] [Wed, Dec 7 @ 14:45](https://registrar.uoregon.edu/calendars/examinations#ay22)
+
+--
+
+.center[.hi[Absolutely no makeups]]
+
+&lt;br&gt;
+  
+--
+
+Under .hi[extraordinary circumstances] I will shift midterm weight to the final
+- Entirely by my discretion
+- Must contact me before the exam via email
+    
+--
+
+&lt;br&gt;
+
+.hi[Drop this course if you are unable to take the scheduled midterm]
+
+
+---
+
+#Syllabus: TotC
+
+Required reading [Triumph of the City](https://www.amazon.com/Triumph-City-Greatest-Invention-Healthier/dp/0143120549) by Ed. Glaeser. 
+
+Easy reading that is .hi[suuuuper interesting], covering many of the same topics that we will in class; building your intuition
+
+--
+
+.hi[Book Report:] Due Sunday following the last day of class (Dec 4 @ 11:59p)
+- Instructions and a rubric are posted on the course page + canvas soon
+- Straight forward, easy points--so long as you read
+
+--
+
+.hi-red[Midterm] and .hi-red[final] will have questions connecting key topics in the books to topics in lecture
+- If you read they should be easy; if you do not read they will be painful
+
+---
+#Syllabus: Problem sets
+
+There will be .hi[4] problem sets throughout the term:
+- Signal what to expect on the exams
+- You must submit a .hi[.pdf] document on Canvas
+- The lowest scored problem set is dropped
+- No late homework assignments will be accepted
+- If you scan is bad, or your handwriting illegible, you get .hi-red[nothing]
+
+--
+
+The problem sets are your .hi[best study tool] for the .hi-red[exams]. Do all of them!
+
+--
+
+.hi[General tips:]
+
+--
+
+- Start them .hi[early]
+- Bring your work to class and ask for help
+- Go to my office hour
+
+---
+# Syllabus: Canvas + course site
+
+I use Canvas in conjunction to a simple course website hosted on GitHub
+
+--
+
+.bigger[.hi[Canvas:]]
+- .hi[All] assignments submissions and announcements
+
+--
+
+&lt;br&gt;
+
+.bigger[[Course site:](https://github.com/ajdickinson/EC330F22)]
+- Light, public page with links to all course material
+- Do not need an account
+- I use it out of convenience and other personal reasons
+- .hi[ONLY] thing on the page that will not be on Canvas is the slide decks
+
+---
+class: inverse, middle, center
+# What is economics?
+
+---
+# What is economics?
+
+.hi[_The Wealth of Nations_] _by_ [Adam Smith](https://www.adamsmith.org/about-adam-smith) (1776)
+
+--
+
+Seminal work on economics, four volumes; comparable to the works of:
+- Newton’s _Principia Mathematica_
+- Darwin’s _Origin of Species_
+  
+--
+
+.hi[Wealth] ("weal")
+
+--
+
+- Money and other assets
+- But also well-being, welfare
+  
+--
+  
+.hi[Archaic] use of "wealth" 
+- Economics is not merely the study of how to get rich
+- Please don't ask me about the stock market
+
+---
+# What is economics?
+
+In a nutshell:
+
+.center[.hi[Economics is the study of how people make allocation decisions to maximize their happiness when facing limited resources (budgets)]]
+
+--
+
+There is never .hi[enough resources]; we call this .hi-red[scarcity]
+
+--
+
+.hi-red[Scarcity] gives us constraints to which we do the best _we can_
+
+--
+
+.hi[Other examples of scarcity]
+.pull-left[
+  - Time
+- Health]
+.pull-right[
+  - Land
+- Natural resources]
+
+--
+
+.hi[Economics is very general;] the market lens can be used across many topics
+
+
+&lt;!-- --- --&gt;
+&lt;!-- # Economic perspective --&gt;
+
+&lt;!-- Economics uses a positive perspective on the world --&gt;
+&lt;!-- - about how actors .hi[actually] behave; less about how they .hi[should] behave --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- .hi-blue[Normative statements:] Matters of opinion; may never be resolved --&gt;
+&lt;!-- - Higher ed should be free --&gt;
+
+&lt;!-- .hi[Positive statements:] Matters of fact that can be resolved by data --&gt;
+&lt;!-- - Who should get federal grants? The best students or students in need? --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- Figure out what the data say for evidence-based policy making --&gt;
+
+&lt;!-- -- --&gt;
+
+&lt;!-- .hi[Opportunity cost:] What you have to give up by not putting a resource to its _next-best_ alternative use --&gt;
+
+&lt;!-- - Economist use the word .hi[cost] differently than the general public --&gt;
+&lt;!--   - "Cost" is different than "price" --&gt;
+
+---
+class: inverse, center, middle
+# Intro to Urban Economics
+
+---
+name:what_is_it
+# Intro to Urban Economics
+
+A mash-up between .hi[economics] and .hii[geography] 
+
+--
+
+.hi[Economics:] Study of how people and firms allocate scarce resources.
+- Individual utility, markets, trade, welfare
+
+--
+
+.hii[Geography:] Studies effects of location and the environment 
+- Hydrology, climate, resources, etc.
+
+--
+
+&lt;br&gt;
+
+.hi[Economics] + .hii[Geography]  : Study of how individuals and firms choose utility and profit maximizing locations, and consequences of these decisions
+
+---
+# Intro to Urban Economics
+
+We will study how the .hi[distribution] of people &amp; firms across space impacts:
+
+--
+
+.pull-left[
+  - City growth 🏙
+- Crime 👮‍♀
+- The environment ♻️]
+.pull-right[
+  - Income growth &amp; inequality  📈
+- Education 🏫
+- Employment + wages 🤑]
+  
+--
+
+We will also examine the efficacy of various .hi[place - based policies]
+.pull-left[
+  - Minimum Wage
+- Rent Control]
+.pull-right[
+  - Land Use Restrictions
+- Sustainability]
+
+--
+
+&lt;br&gt;
+
+.hi[What are the economic drivers behind urban development?]
+
+---
+# This Course
+
+This class has two fairly distinct halves:
+
+1. .hi[Philosophy &amp; Tools]
+
+  - Why do cities exist? Why do they grow? Why do they decline?
+  
+  - Fundamental tools of labor &amp; urban econ (supply and demand)
+  
+--
+
+2. .hi[Application]
+
+  - Rent Control &amp; Minimum Wage
+  
+  - Highways and urban transportation
+  
+  - Income inequality and environmental issues
+
+---
+# What is a city?
+
+.hi[According to the Census Bureau...]
+
+--
+
+.hi[Urban Area:] a densely settled geographical area with:
+
+--
+
+  - Minimum population of .hi[2,500]
+  - Minimum density of .hi[500 people per square mile]
+
+--
+
+.hi[Metropolitan Area:] an urbanized area with at - least .hi[50k population]
+
+--
+
+.hi[Micropolitan Area:] an urbanized area with at least .hi[10k] but not as many as .hi[50k] people
+
+--
+
+.hi[MSA:] abbrev. for .slate[both] .hi[metropolitan] and .hi[micropolitan] statistical area
+
+--
+
+.hi[Principal City:] the .hi-blue[largest municipality in an MSA]
+
+--
+
+.hi[City:] .blue[Dense collection of people in specific geographic area]
+
+---
+# Intro to Urban: Cities
+
+The majority of the US population lives in cities&lt;sup&gt;.smallest[.hi-pink[†]]&lt;/sup&gt; and more people will continue to migrate into urban areas
+
+.footnote[.hi-pink[†]. 80 - ish percent, according to the Census Bureau]
+
+.hi[Questions:]
+
+--
+
+1. Do you like cities?
+
+2. What are favorite city .hii[amenities]?
+
+3. Are cities at odds with the natural world?
+
+--
+
+.hi[Why do cities exist?]
+
+--
+
+.center[.hi[Location matters]]
+
+
+---
+# Intro to Urban: Location...
+
+Where you live has implications for
+
+--
+
+- Your contribution to .hi[global carbon emissions] 
+
+  - _Why does this vary across cities?_
+
+--
+
+- Your .hi[wage] and .hi[rent] 
+
+  - _Why does this vary across cities?_
+
+--
+
+- Your .hii[economic mobility]
+
+  - _Why does this vary across cities?_
+  
+--
+
+.hi[We will answer these questions as we progress through this course]
+
+---
+name:what_is_model
+# What is a model?
+
+In this class we will make use of various .hi[mathematical models]
+
+--
+
+What is a .hi[mathematical model]?
+  - A model is a description of a system using .... .hi[math]
+  - Useful to help .hi[explain] and .hi[predict] behavior
+
+--
+
+.hi[The Canonical Example]
+
+`\begin{align*}
+\text{Supply}:\hspace{.1in} P(Q_s) &amp;= 10 + 5*Q_s\\
+\text{Demand}: \hspace{.1in}P(Q_d) &amp;= 20 - 2*Q_d
+\end{align*}`
+
+--
+
+This model allows us to make predictions about prices and quantities (from the supply &amp; demand side), _and_ the .hi[equilibrium] price and quantity
+
+
+---
+# What is a model?
+
+What are the .hi-blue[pros] of models?
+  - Allows for us to be very precise with our language
+  - Gives us the ability to .hi[predict] the various aspects of the economy
+  - Can shed insight on .hi[mechanisms] through which processes interact
+  
+--
+  
+What are the .hi-red[cons] of models?
+- They require assumptions
+- .hi[Almost] all assumptions are wrong
+  
+--
+
+But not all wrong assumptions are useless
+    
+--
+
+The ability of the model to .hi[predict data] and .hi-blue[understand mechanisms] determines how useful it is
+
+---
+# What is a model?
+
+
+Did we make assumptions our supply/demand model? .hi.purple[Discuss]
+
+
+`\begin{align*}
+\text{Supply}:\hspace{.1in} P(Q_s) &amp;= 10 + 5*Q_s\\
+\text{Demand}: \hspace{.1in}P(Q_d) &amp;= 20 - 2*Q_d
+\end{align*}`
+
+--
+
+1. .hi[Marginal values] are diminishing and .hi[marginal costs] are increasing &lt;sup&gt;.hi[†]&lt;/sup&gt;
+
+  - Generates downward demand and upward supply
+  
+.footnote[.hi[†]: Marginal = Adding one additional unit]
+  
+2. Demand and Supply are .hi[linear]
+
+3. Demand and Supply are .hi[deterministic]
+
+--
+
+Are these reasonable? Can your behavior be explained by a simple .hi[linear function]?
+
+--
+
+.center[.hi[Does a function even exist?]]
+
+---
+class: inverse, middle
+# Planning
+
+.pull-left[
+.hi-white[Next Class]:
+
+- EC201 Review
+
+- 5 Axioms of Urban Economics]
+
+--
+
+.pull-right[
+.hi-white[Reading]:
+
+- Get the book ASAP!!
+
+- Read the introduction]
+
+---
+
+#Table of Contents
+
+.col-left[
+###Admin
+.smallest[
+1. [Schedule](#schedule)
+1. [Syllabus](#syllabus)
+]
+
+
+###Intro to Urban Economics
+.smallest[
+
+1. [What is Urban Economics?](#what_is_it)
+
+1. [What is a city?](#what_is_city)
+  
+1. [What is a model and why are they useful?](#what_is_model)
+
+]
+]
+
+
+---
+exclude: true
+
+```r
+p_load(pagedown)
+pagedown::chrome_print(here::here("001-intro","lecture_one.html"))
+```
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

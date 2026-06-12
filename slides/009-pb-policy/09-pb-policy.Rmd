@@ -1,0 +1,712 @@
+---
+title: "Place-based policies"
+subtitle: "Set 09"
+author: "Andrew Dickinson"
+date: "Fall 2022"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'nord.css']
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+# knit: pagedown::chrome_print
+
+---
+
+```{R, setup, include = F}
+options(htmltools.dir.version = FALSE)
+pacman::p_load(
+  broom, here, tidyverse, latex2exp, ggplot2, viridis, extrafont,
+  gridExtra, kableExtra, dplyr, magrittr, knitr, emo, ggrepel, sf, hrbrthemes
+)
+
+# Define colors
+## source color script from local directory
+## comment out and replace colors if user is not Andrew
+source("~/Documents/scripts/colors/colors.R")
+blue <- "#4c566a"
+purple <- "#b48ead"
+red <- "#bf616a"
+# XaringanExtra functions
+## Tile view
+xaringanExtra::use_tile_view()
+## Scribble
+xaringanExtra::use_scribble()
+# Knitr options
+opts_chunk$set(
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 10.5,
+  warning = F,
+  message = F
+)
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+
+mytheme = theme_ipsum(base_family = "Fira Sans Book", base_size = 20) + theme(panel.grid.minor.x = element_blank(),
+      axis.title.x = element_text(size = 20),
+      axis.title.y = element_text(size = 20))
+```
+
+class: inverse, middle
+# Content
+
+.hi-white[(i) Place-based policies]
+
+.hi-white[(ii) Utility framework]
+
+---
+# Housekeeping
+
+.pull-left[
+.hi[PS03] _(due Mon, Nov. 21)_
+- Posted now (a couple of minutes ago)
+]
+
+.pull-right[
+.hi[PS04] _(due Wed, Nov. 30)_
+- will be posted by Mon next week
+]
+
+--
+
+.hi[TotC book report] _(due Thu, Dec. 8)_
+- Short (1000 words) assignment 
+- rubric posted on canvas and on the course repo
+- will be checking for plagiarism 
+
+--
+
+.hi-red[Final] _(14:45 Wed, Dec. 7)_
+- [final schedule](https://registrar.uoregon.edu/calendars/examinations)
+- Comprehensive exam with an emphasis on the newer material
+
+
+
+---
+class: inverse, middle
+# Place-based polcies
+
+---
+# Place-based polcies
+
+.hi[Definition: Place-based policies] 
+- Location specific policies/laws
+
+
+What are some examples? 
+
+--
+
+.pull-left[
+  - State and Local Taxes
+- State/City minimum wage
+- Abortion restrictions
+- Air quality monitoring]
+.pull-right[
+  - Zoning & Land Use Restrictions
+- Enterprise Zones
+- Medicinal and recreational marijuana laws]
+
+--
+
+.hi[Federal policies] that are .hii[uniform across all states] _are not_ place-based
+
+- Harder to migrate across .hii[international borders] than state borders
+
+---
+class: inverse, middle
+# Place-based polcies: Examples
+
+---
+# Pb polcies: Minimum wage
+
+.center[
+![:scale 60%](figures/min_wage.png)
+]
+
+Federal Minimum Wage: $7.25$ (not a place based policy)
+
+
+
+---
+# Pb polcies: Enterpise zones
+
+.hi[Definition: Enterprise zone]: 
+
+> A geographic area that has been granted .pink[tax breaks, regulatory exemptions, or other public assistance] in order to encourage private economic development and job creation
+
+Examples:
+
+  - Jersey City, NJ since 1983
+  
+  - China: Shanghai and Shenzen (Special Economic Zones (SEZ))
+  
+---
+# Pb polcies: Brownfield remediation
+
+.hi[Definition: Brownfield]: 
+
+> A geographic area that has previously been developed land that is not currently in use due to industrial and/or commerical pollution
+
+--
+
+Examples include abandoned business such as:
+.pull-left[
+- Gas stations
+- Dry cleaning
+- Factories]
+.pull-right[
+- Mills
+- Foundries
+]
+
+--
+
+There are several Brownfields in the [Eugene/Springfield area](https://ofmpub.epa.gov/apex/cimc/f?p=CIMC:73::::73:P71_WELSEARCH:97405%7CZipcode%7C%7C%7C%7Ctrue%7Cfalse%7Cfalse%7Cfalse%7Cfalse%7Cfalse%7C(BF_ASSESS_IND%3D%27Y%27)
+
+- [Ninkasi over took a brownfield to expand brewing operations in 2012](https://youtu.be/D4RcUacsW3U?t=97)
+
+
+---
+# Pb polcies: Brownfields remediation
+.center[
+![:scale 80%](figures/us_brownfields.png)
+]
+
+---
+# Pb polcies: Brownfields remediation
+
+Brownfields lower the amenity value of neighborhoods
+- [High health costs associated with living near a brownfield](https://michellemmarcus.files.wordpress.com/2019/09/marcus_lust_092319.pdf)
+  - Petroleum leaks from underground storage tanks lead to increases in the probability of low birth weights and preterm birth by .hi[7-8 percent]
+- Tremendously expensive to clean up
+
+
+Land is not used it is not contributing to local economies- opportunity cost
+
+--
+
+Cleaning these up raises .hi[amenity value] of the neighborhood
+
+--
+
+Property values around brownfields are far lower than comparable land
+- .hii[Gentrification]
+
+---
+# Pb policies: Air quality
+
+_December 2, 1970:_ Environmental Protection Agency  (EPA) is Established  
+
+  - Included the Clean Air Act
+    - Regulates county level air quality with a system of air monitors
+  
+--
+
+.hi[Following years:] amendments to the CAA
+
+--
+
+.pull-left[
+
+- .hi[1990:] Additional power granted to state/local authorities to enforce air quality standards
+- .hi[1997:] PM 2.5 (particulate matter of 2.5 micrograms or less) standards placed
+
+]
+
+--
+
+.pull-right[
+- .hi[2005:] PM2.5 standards enforced
+- .hi[2011:] Standards for greenhouse gases]
+
+---
+# Pb polcies: Air quality
+
+Particulate Matter (.hi[PM]) in the US is regulated at the .hi.green[county level]<sup>.pink[†]</sup>
+
+.footnote[
+.pink[†] For more details, look [here](https://www.epa.gov/pm-pollution)
+]
+
+--
+
+If a county exceeds certain threshold for .hi[PM] , all firms over a certain size need to pay a pretty big fine
+  - Exceptions for fires, other natural events
+
+
+---
+# Pb polcies: Air quality
+
+![](figures/aq_2.png)
+
+---
+# Pb polcies: Air quality
+
+![:scale 90%](./figures/di.png)
+
+- [Di et al. (2016)](https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC5761665&blobtype=pdf)
+
+---
+# Pb polcies: Air quality
+
+Does air quality monitoring make sense at a local level? Why or why not?
+
+--
+
+.center[
+![:scale 55%](./figures/morehouse-rubin.png)
+]
+
+---
+# Pb polcies
+
+_Why do we care about place-based policies?_
+
+--
+
+People are .hi[mobile] and .hii[respond to changes in incentives]
+
+--
+
+Place-based policies influence .hi[location decisions]
+- TotC give really good intuition in the chapter about Detroit.
+
+<br>
+
+--
+
+.hi[Question:] Why do federal policies impact cities differently?
+
+--
+
+Min wage: might be .hi[binding] in some states, others not
+  
+- Some labor markets might be competitive. Others not
+    
+--
+  
+- Federal Income Tax: Cost of Living varies by state.
+
+---
+class: inverse, middle
+# Utility framework
+
+---
+# Utility framework
+
+This next section of the class will add another layer of complexity
+
+--
+
+Set up a .hi[utility framework] to understand how policies impact welfare
+-- Only scratches the surface of how one may model impacts of pb policy  
+
+--
+
+<br>
+
+Some of these examples are based on [Mark Colas'](https://sites.google.com/site/markyaucolas/home?authuser=0) notes
+  - Learn more about this in his 400 urban economics class
+
+---
+# Utility framework
+
+.hi[Utility:] Abstract notions of people's preferences.
+
+- Location based policies impact individual .hi[location decisions]
+
+--
+
+Model decision through the lens of an individual's utility (welfare)
+
+Suppose: $U(\text{City A}) > U(\text{City B})$ $\implies$ Moving to City A
+
+--
+
+Suppose City B makes a policy change that raises wages:
+- $U(\text{City A}) < U(\text{City B})$ $\implies$ Moving to City B
+
+--
+
+Changes in a location based policy are going to change .hi[incentives]
+- eg. San Diego has extremely strict zoning restrictions
+
+--
+
+Zoning restrictions $\implies$ limited housing supply $\implies$ high rents $\implies$ "why do i live here.." $\implies$ move to Oregon
+
+---
+# Utility framework
+
+.hi[Example:] Preferences .tiny[(.hii[Leontief])] over left-shoes and right-shoes may be expressed with the following utility function:
+
+\begin{align*}
+U(\text{left shoes},\text{right shoes}) = \min\left\{ \text{left shoes}, \text{right shoes}   \right\}
+\end{align*}
+
+.hi[Q:] In words, what does this say?
+
+--
+
+.hi[A:] Another right shoe does nothing for me unless I get another left shoe
+
+--
+<br>
+
+.hi[Q:] Give the above utility function, which bundle would I rather consume?
+
+\begin{align*}
+\text{bundle 1}: (10000,1) \hspace{2in}
+\text{bundle 2}: (2,2)
+\end{align*}
+
+--
+
+.hi[A:] $U(10000,1) = 1 < U(2,2) = 2$, so I would rather consume bundle 2
+
+---
+# Utility framework
+
+.hi[Main point:] Utility is used to rank outcomes
+
+--
+
+.hi[Remember:] Utility is .hii[ordinal] _not_ .hi-red[cardinal]
+
+--
+
+This means: we can only speak to the ordering of outcomes, not the levels 
+
+- Many utility functions give equivalent preference rankings
+
+--
+
+.hi[What if utility over shoes was:]
+
+\begin{align*}
+U_2(\text{left shoes},\text{right shoes}) = 10*\min\left\{ \text{left shoes}, \text{right shoes}   \right\}
+\end{align*}
+
+.hi[Q:] Does this represent the same underlying preferences as before?
+
+--
+
+.hi[A:] Yes, because $U_2(10000,1) = 10*1 = 10 < U_2(2,2)  = 10*2 = 20$ 
+  
+- So the bundle $(2,2)$ is still preferred to $(10000,1)$
+
+---
+# Utility framework: Locations
+
+_Could we write a .hi[utility] function over .hii[locations?]_
+--
+ .h[Yep!]
+ 
+--
+
+_What do people make location decisions on?_
+
+--
+
+_What would a locational utility function take as .hi[inputs?]_
+
+--
+
+For now, assume people only care about .hii[3] features of locations:
+
+--
+  
+.center[.hi[wages], .hii[rents], .hi-green[amenities]]
+
+--
+
+These all vary across locations, right? (first part of this class)
+
+--
+
+Let $w_j$, $r_j$, and $a_j$ denote wages, rents, and amenities in location $j$
+
+---
+# Utility framework: Locations
+
+Let $w_j$, $r_j$, and $a_j$ denote wages, rents, and amenities in location $j$ 
+
+- $j = SF$, for example 
+
+--
+
+.hi[General form]: $U(w_j, r_j,a_j) = U_j$
+
+- This says utility in location $j$ is a function of wages, rents, and amenities, in location $j$
+
+--
+
+In practice, could write down an infinite number of functions for $U(\cdot)$
+
+--
+
+.hi[Usual assumptions:]
+.pull-left[
+- Higher wages are better
+- Lower rents are better]
+.pull-right[
+- More amenities are better]
+
+---
+# Utility framework: Locations
+
+.hi[Example:] Assume linear utility functions and everyone is identical:
+
+--
+
+\begin{align*}
+U(w_j, r_j, a_j) = w_j - .5*r_j + a_j
+\end{align*}
+
+--
+
+Suppose our two locations are SF and OAK again. If:
+
+-  $w_{SF} = 10, r_{SF} = 8, a_{SF} = 4$
+  
+-  $w_{OAK} = 8, r_{OAK} = 3, a_{OAK} = 1$
+
+--
+
+.hi[Q:] How do workers sort across the cities?
+
+--
+
+- $U(w_{SF}, r_{SF}, a_{SF}) = 10 - .5*8 + 4 = 10$
+
+- $U(w_{OAK}, r_{OAK}, a_{OAK}) = 8 - .5*3 + 1 = 7.5$
+
+--
+
+.center[Well 10 > 7.5 so... everyone moves to SF]
+
+---
+# Utility framework: Locations
+
+_Is it .hi[reasonable] that everyone would move to SF? What are we missing?_
+
+--
+
+_Was that last example a locational equilibrium by definition?_
+--
+ .hii[Nope]
+ 
+--
+
+In .hi[locational equilibrium], utility is .hii[equalized across locations]
+
+--
+
+Can't have: $U(w_{SF}, r_{SF}, a_{SF}) > U(w_{OAK}, r_{OAK}, a_{OAK})$
+
+--
+
+<br>
+
+_How can .hi["fix up"] our last example such that we model locational eq?_
+
+--
+
+We can .hi[allow rents] (or wages or both) .hi[to adjust] such that utility is equivalent across the two cities
+
+
+---
+# Utility framework: Locations
+
+.hi[Another Problem:] People move and utility is equal across all locations
+
+--
+
+.hi[Thus far], we assume .hi[wages] and .hii[rents] are exogenous
+<!-- - Fall from the sky, do not change with location decisions -->
+
+<br>
+
+--
+
+_This is a .hi[bad assumption] right?_
+
+--
+
+<br>
+
+Let rents, but not wages, adjust to individual location decisions
+- (ie make rents .hii[endogenous] to the model)
+
+---
+# Utility framework: Rents
+
+Rents in every city given by:
+
+--
+
+\begin{align*}
+r_j(L_j) = 2\times L_j
+\end{align*}
+
+--
+
+- $r_j(L_j)$: rents _are a function_ of the population (not multiplied)
+
+- $L_j$ is the pop in city $j$; choosing 2 was arbitrary
+
+--
+
+Suppose we have two cities $1$ and $2$, with 7 people total: $L_1 + L_2 = 7$
+
+--
+
+.h[Utility:] $U(w_{j}, r_{j}(L_j), a_{j}) = w_j - .5\times r_j(L_j) + a_j$
+
+.hi[Wages:] $w_1 = 12$, $w_2 = 7$
+
+.hii[Rents:] $r_j(L_j) = 2*L_j$
+
+.hi-green[Amenities:] $a_1 = a_2 = 0$
+
+
+---
+# Utility framework: Rents example
+
+Suppose we have two cities $1$ and $2$, with 7 people total: $L_1 + L_2 = 7$
+
+--
+
+.h[Utility:] $U(w_{j}, r_{j}(L_j), a_{j}) = w_j - .5\times r_j(L_j) + a_j$
+
+.hi[Wages:] $w_1 = 12$, $w_2 = 7$
+
+.hii[Rents:] $r_j(L_j) = 2*L_j$
+
+.hi-green[Amenities:] $a_1 = a_2 = 0$
+
+--
+
+.hi[Qs:] How many people live in each city? What are rents in each city? 
+
+.hi[Note:] You have .hi[two equations] and .hi[two unknowns] (namely, $L_1$ and $L_2$)
+  
+  - $U(w_{1}, r_{1}(L_1), a_{1}) = U(w_{2}, r_{2}(L_1), a_{2})$ (from locational eq) 
+    
+  - $L_1 + L_2 = 7$ you know the total population
+
+---
+# Utility framework: Rents example
+
+Locational eq gives:
+
+--
+
+\begin{align*}
+w_1 - .5*r_1(L_1) &= w_2 - .5*r_1(L_2)\\
+12 - .5*(2*L_1) &= 7 - .5*(2*L_2)\\
+-L_1 &= -5 - L_2\\
+L_1 &= 5 + L_2
+\end{align*}
+
+--
+
+Population must sum to 7. Thus:
+
+\begin{align*}
+L_1 + L_2 &= 7\\
+5+ L_2 + L_2 &= 7\\
+2*L_2 &= 2\\
+L_2 = 1 \implies L_1 = 6
+\end{align*}
+
+---
+# Utility framework: Place based policies
+
+Ok, how do we tie this back into .hi[place-based] policies?
+
+.hi[Example]
+
+--
+
+Initial equilibrium: $U(w_{j}, r_{j}(L_j),a_{j}) = k$ for all cities $j$
+
+--
+
+Suppose $SF$ implements a 30%, flat, income tax
+
+  - Post-tax wage in city $SF$ is now $w^{tax}_{SF} = 0.7*w_{SF}$ 
+  
+  - Assume .hi[wages are fixed], but .hii[rents adjust to population]
+
+--
+
+Utility in city $j$ is: 
+
+\begin{align*}
+U(w^{tax}_{SF}, r_{SF}(L_{SF}),a_{SF}) < U(w_{SF}, r_{SF}(L_{SF}),a_{SF})
+\end{align*}
+
+--
+
+If utility is .hi[increasing in wages], then an income-tax lowers utility.
+
+---
+# Utility framework: Equilibrium
+
+.center[Can it be an equilibrium if:]
+
+\begin{align*}
+U(w^{tax}_{SF}, r_{SF}(L_{SF}),a_{SF}) < U(w_{SF}, r_{SF}(L_{SF}),a_{SF})
+\end{align*}
+
+--
+
+.center[.hii[No!]]
+
+--
+
+Because $U(w_{SF}, r_{SF}(L_{SF}),a_{SF}) = k$
+
+So $U(w^{tax}_{SF}, r_{SF}(L_{SF}),a_{SF}) \neq k$
+
+--
+
+Thus people move .hi[away from SF] and rents fall
+
+So utility goes up in SF until $U(w^{tax}_{SF}, r_{SF}(L_{SF}),a_{SF}) = k$
+
+---
+
+# Extensions
+
+This flexible way of modeling gives us many options for modeling place based policies
+
+--
+
+- Other kind of subsidies/taxes: goes into $w_j$
+
+- Rent subsidies or property taxes: impacts $r_j$
+
+--
+
+- .hi[Q:] How would you model an increase in public school quality?
+
+---
+class: inverse, middle, center
+# Fin
+
+
+
+
+
+
+
+

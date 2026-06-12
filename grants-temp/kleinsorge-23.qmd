@@ -1,0 +1,526 @@
+---
+title: "Heterogenous responses to air quality alerts"
+subtitle: "Kleinsorge proposal"
+author: "Andrew Dickinson"
+date: "Feb 8, 2023"
+format: 
+  revealjs:
+    theme: [default, styles.scss]
+    slide-number: TRUE
+    footer: "Heterogenous responses to air quality alerts | Andrew Dickinson"
+    preview-links: TRUE
+---
+
+# Avoidance behavior {.middle}
+
+<br>
+
+<!-- [Avoidance behavior:]{.hi} -->
+
+> [Any behavior individuals engage in to reduce their expsoure to environmental pollution]{.big}
+
+
+# Research questions {.incremental}
+
+<br>
+
+[During periods of poor air quality, are air quality alert systems effective at increasing avoidance behaviors?]{.big}
+
+<br>
+
+. . .
+
+[To what degree are they effect for groups which are most unequally burdened by air pollution?]{.big}
+
+<!-- # Research questions {data-visibility="uncounted"}
+
+<br>
+
+> To what degree do behavioral reponses differ across groups most inequally burdened by air pollution---minority, elderly, and poor populations? -->
+
+<!-- <br>
+
+[Data:]{.hi} Cellphone-movement data that monitors Census Block Group visits to Points-of-Interest (POIs) via Safegraph patterns; AQI forecast data from EPA Air Quality System; Demographic data from the Census bureau
+
+<br>
+
+[Identification:]{.hi} Identify a causal effect by leveraging forecast cutoffs in a regression dicontinuity (RD) framework -->
+
+
+## Introduction 
+
+Air pollution is the largest environmental source of premature death
+
+- [Ambient]{.hii} air pollution accounts for millions of deaths yearly^[[Landrigan (2017)](https://www.thelancet.com/journals/lanpub/article/PIIS2468-2667(16)30023-8/fulltext)]
+- In the United States, it contributes hundreds of billions of dollars of additional healthcare costs per year^[[World Economic Forum](https://www.weforum.org/agenda/2021/06/air-pollution-cost-america-healthcare-study#:~:text=Air%20pollution%20from%20fossil%20fuels,of%20%24820%20billion%20a%20year.) ]
+- Existing disparities among minority, elderly, and poor populations
+
+::: {.notes}
+Air pollution is estimated to cause 1 in 7 deaths across the world (Landrigan et al, 2017). Estimated to be responsible for 19% of all cardiovascular deaths worldwide, 24% of coronary hearth disease, 21% of stroke deaths, 23% of lung cancer deaths and considered to be a growing concern regarding neurodevelopmental disorders in children.
+
+PM_2.5 has been a focus of the air pollution literature due to its health effects. Defined as any particlue suspended in air with a diameter less than 2.5 microns. Contributing emissions include car exhaust, wood burning stoves, coal plants, wildfires, and volcanic eruptions
+:::
+
+. . .
+
+<br>
+
+Limiting air pollution-related costs is a key priority of policymakers
+
+<!-- . . . -->
+
+<!-- :::: {.columns} -->
+
+<!-- ::: {.column width="40%"}
+- Reduce pollution
+:::
+
+::: {.column width="60%"}
+- Reduce exposure
+:::
+
+:::: -->
+
+
+<!-- ---
+
+## Introduction {data-visibility="uncounted"}
+
+Air pollution is the largest environmental source of premature death
+
+- [Ambient]{.hii} air pollution accounts for [4.2]{.hi} millions deaths yearly^[[Landrigan (2017)](https://www.thelancet.com/journals/lanpub/article/PIIS2468-2667(16)30023-8/fulltext)]
+- In the United States, it contributes an estimated [$820 billion]{.hii} in healthcare costs per year^[[World Economic Forum](https://www.weforum.org/agenda/2021/06/air-pollution-cost-america-healthcare-study#:~:text=Air%20pollution%20from%20fossil%20fuels,of%20%24820%20billion%20a%20year.) ]
+- Existing disparities among minority, elderly, and poor populations
+
+::: {.notes}
+Air pollution is estimated to cause 1 in 7 deaths across the world (Landrigan et al, 2017). Estimated to be responsible for 19% of all cardiovascular deaths worldwide, 24% of coronary hearth disease, 21% of stroke deaths, 23% of lung cancer deaths and considered to be a growing concern regarding neurodevelopmental disorders in children.
+
+PM_2.5 has been a focus of the air pollution literature due to its health effects. Defined as any particlue suspended in air with a diameter less than 2.5 microns. Contributing emissions include car exhaust, wood burning stoves, coal plants, wildfires, and volcanic eruptions
+:::
+
+<br>
+
+Limiting air pollution-related costs is a key priority of policymakers
+
+:::: {.columns}
+
+::: {.column width="40%"}
+- Reduce pollution
+:::
+
+::: {.column width="60%"}
+- [Reduce exposure]{.hii}
+:::
+
+:::: -->
+
+---
+
+## Air quality alerts
+
+To reduce [exposure]{.hii} to air pollution, policymakers put increasing faith in information-based programs that nudge individuals to avoid pollution
+
+<br>
+
+. . .
+
+When [AQI]{.hi}^[Air Quality Index] is forecasted to be above some threshold, an alert is issued informing individuals to reduce exposure from the outdoors
+
+<br>
+
+. . .
+
+[CDC recommendations](https://www.cdc.gov/air/particulate_matter.html) for days with poor air quality
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Use air purifiers
+- Wear a mask
+- Avoid busy roads and highways
+:::
+
+::: {.column width="50%"}
+- Stay indoors
+- Limit strenuous exercise
+:::
+
+::::
+
+::: {.notes}
+nudge avoidance behaviors during spells of poor air quality and are increasingly popular worldwide. In the United States, more than 200 cities operate ”action day” programs in conjunction with the EPA that create and distribute alerts. Generally, when the local Air Quality Index (AQI) is forecasted to exceed some threshold, an advisory is issued urging individuals to limit outdoor exposure. However, there is variation in the forecast type (i.e., 1-day, 2-day, and 3-day forecasts) and the threshold level across pro- grams.
+:::
+
+
+## Avoidance behavior literature 
+
+Large literature measures avoidance behaviors and defensive investments in response to air pollution and other environmental risks^[Failing to account for avoidance behavior will bias the estimates of the impact of pollution on health downward (Neidell 2004)]
+
+<br>
+
+[Endogenous sorting: Chay and Greenstone (2005), Banzhaf and Walsh (2008)]{.small}
+
+[Long-term migration: Khanna et al (2021); Chen et al (2022)]{.small}
+
+[Consumption choices: Graff Zivin et al (2011); Deschênes et al (2017)]{.small}
+
+[Short term travel: Chen et al (2021); Burke et al (2022); Holloway and Rubin (2022)]{.small}
+
+[Information disclosure: Barwick et al (2022); Greenstone et al (2022)]{.small}
+
+
+::: {.notes}
+
+Chay and Greenstone (2005)
+> exploit the Clean Air Act to estimate the effect of pm2.5 on housing values. Find that following strict regulations in "nonattainment" counties an associated bump in county housing prices followed. explore how optimizing behavior in residential sorting leads to non-random assignment of pollution
+
+Banzhaf and Walsh (2008)
+> Similar to Chay and Greenstone but with income. Test Tiebouts suggestion. Find that increases in air quality led to increases in incomes---indicating that household "vote with their feet" for environmental quality
+
+Deryugina et al (2019)
+> esimate the causal effects of pm2.5 on mortality, health care use, and medical costs among the elderly in the US using Medicare data. Instrument air pollution with changes in wind direction and find that mortality effect are concentrated in 25 percent of the elderly population
+
+Khanna et al (2022)
+> Study migration responses to pollution in Chinese cities and the corresponding consequences for productivity and welfare. Document skilled workers emigrate more. Pollution changes the spatial distribution of skilled and unskilled workers
+
+Chen et al (2022) 
+> Use mobile phone signals to estimate short-term travel. Instrument like Deryugina et al (2019) and find that increases short term flows to cities with better air quality from cities with worse air quality.
+
+Burke et al (2022)
+> Use lots of big data. Determine that individuals in wealthy locations increasingly search for information regarding air pollution, stay at home more and are unhappy.
+
+Holloway and Rubin (2022)
+> Determine changes in short-term migration using cellphone-movement data following wildfire plumes. Document substantial heterogeneity in communities tendencies to out-migrate to avoid smoke.
+
+
+
+Why does not including avoidance behavior bias estimates downward?
+> Without accounting for avoidance behavior that reduces exposure, estimates would be biased downward since exposure is less than assumed.
+:::
+
+---
+
+## Importance of air quality alerts
+
+As the costs of air pollution continue to be realized, these information-based programs are an [increasingly popular tool]{.hii} among policymakers
+
+<br>
+
+Over [200]{.hi} city-level "action day" programs operate with the EPA 
+
+- e.g., [Air Quality Alert Program for New England](https://www3.epa.gov/region1/airquality/smogalrt.html)
+
+<br>
+
+. . .
+
+Considering the:
+
+- Growing literature detailing the high costs of air pollution
+- Relative low cost of discolsing information to the public
+
+understanding the efficacy of current air quality alerts is meaningful
+
+---
+
+## Air quality alerts literature
+
+Literature surrounding the effectiveness of air quality alerts is [thin]{.hii}
+
+. . .
+
+[(i)]{.hi} Graff Zivin and Neidell (2009); Neidell (2009)
+
+- Estimates avoidance behavior in response to [smog alerts]{.hi} via RDD
+- Use turnstile data at two outdoor venues^[Los Angeles Zoo and the Griffith Observatory ] in LA between 1989 and 1997
+- Find a reduction in attendance of [15]{.hi} and [8]{.hi} percent
+
+. . .
+
+[(ii)]{.hi} Saberian et al (2017)
+
+- Estimates the impact of air quality alerts on cycling in Sydney, AU
+- Use data of cycling traffic between 2008 and 2013
+- Find a large reduction in bicycle traffic between [14]{.hi} to [35]{.hi} percent
+
+---
+
+## Proposal
+
+My objective for this proposal is to reevaluate how effective air quality alert programs at reducing pollution exposure
+
+<br>
+
+Estimate changes in avoidance behavior following air quality alerts using [Safegraph](https://www.safegraph.com/) cellphone-movement data 
+
+<br>
+
+Following Niedell (2009), I propose a regression discontinuity design
+
+- Identify a causal effect by leveraging alert system cutoffs
+- Comparing days forecasted slightly above and slightly below the threshold
+
+
+---
+
+## Data
+
+I plan to construct a Census Block Group (CBG) by day level measure of avoidance behavior, linking demographic and forecasted AQI
+
+<br>
+
+. . .
+
+[Safegraph](https://www.safegraph.com/) measaures ["visits"]{.hi} of millions of cellphones to millions of [Points-of-Interests]{.hi}^[e.g., Parks, malls, sporting events, and other outdoor venues] (POIs) since 2018
+
+- Include information on predicted home CBG
+- Allowing researchers to link the number of visits across CBGs
+
+. . .
+
+Construct a rich measure of avoidance behavior across a wide set of observables to assess the impact of an air quality alert
+
+---
+
+## Data
+
+A measure of avoidance behavior could be constructed in several ways
+
+<br>
+
+. . .
+
+Some ideas to start with:
+
+- Measure visits to a broad array of outdoor venues (e.g., parks, amphitheaters, zoos, observatory)
+- Measure time spent at home
+
+<!-- . . .
+
+Southern California is an ideal setting for these data
+
+- Consistently forecasted AQI since 2018
+- Poor air quality
+- Well covered by Safegraph -->
+
+---
+
+## Methodology 
+
+Following Neidell (2009), I specify my RD as the following:
+
+\begin{equation*}
+\text{Avoidance Behavior}_{it} ~=~ \alpha_0 \text{Alert}_{t} ~+~ \beta_{0} \text{AQI}^{f}_{t} ~+~ X_{it} ~+~ \varepsilon_{it}
+\end{equation*}
+
+<br>
+
+- $\text{Avoidance Behavior}_{it}$: measure of avoidance behavior from the data for individuals from CBG $i$ in time $t$
+
+- $\text{Alert}_{t}$: a dummy variable indicating whether an air quality alert is issued in time $t$
+
+- $\text{AQI}^{f}_{t}$: the AQI forecast which invokes the RD design at some threshold^[when AQI changes from "Somewhat Unhealthy" to "Unhealthy"]
+
+---
+
+## Methodology {data-visibility="uncounted"}
+
+Following Neidell (2009), I specify my RD as the following:
+
+\begin{equation*}
+\text{Avoidance Behavior}_{it} ~=~ \alpha_0 \text{Alert}_{t} ~+~ \beta_{0} \text{AQI}^{f}_{t} ~+~ X_{it} ~+~ \varepsilon_{it}
+\end{equation*}
+
+<br>
+
+-  $X_t$: set of year-by-month fixed effects to account for seasonal trends, day-of-week fixed effects to account for within-week variation, and potential confounding variables such as holiday dummies and meteorological variables.
+
+- $\varepsilon_{it}$: idiosyncratic error term
+
+---
+
+## Contributions of this proposal
+
+Prior literature suggests that air quality alerts [reduce]{.hii} pollution exposure
+
+<br>
+
+. . .
+
+In this proposal, I plan to [expand]{.hii} on the current literature in [2]{.hi} ways
+
+<br>
+
+. . .
+
+[(i)]{.hi} Provide more representative estimates
+
+. . .
+
+[(ii)]{.hi} Update estimates to modern alert programs
+
+
+---
+
+## Provide more representative estimates
+
+Prior studies use measures of avoidance behaviors that may not be representative of:
+
+[(i)]{.hi} The average person impacted by air pollution
+
+[(ii)]{.hi} The most vulnerable
+
+<br>
+
+Previous results may be overrepresented by groups with a [greater propensity]{.hi} to exhibit avoidance behaviors
+
+<br>
+
+. . .
+
+Graff Zivin and Neidell (2009)
+
+- Attendees at a Zoo or Observatory may overrepresent higher income individuals and families
+
+
+---
+
+## Provide more representative estimates {data-visibility="uncounted"}
+
+Prior studies use measures of avoidance behaviors that may not be representative of:
+
+[(i)]{.hi} The average person impacted by air pollution
+
+[(ii)]{.hi} The most vulnerable
+
+<br>
+
+Previous results may be overrepresented by groups with a [greater propensity]{.hi} to exhibit avoidance behaviors
+
+<br>
+
+Saberian et al (2018)
+
+- Cyclists may overrepresent healthier, more environmentally conscious individuals
+
+---
+
+## Provide more representative estimates {data-visibility="uncounted"}
+
+Prior studies use measures of avoidance behaviors that may not be representative of:
+
+[(i)]{.hi} The average person impacted by air pollution
+
+[(ii)]{.hi} The most vulnerable
+
+<br>
+
+Prior literature has not explored [heterogeneous responses]{.hi} to alerts
+
+
+---
+
+## Provide more representative estimates
+
+Some groups may be more or less likely to respond to an air quality alert
+
+<br>
+
+. . .
+
+How do individuals respond differently across dimensions such as:
+
+:::: {.columns}
+
+::: {.column width="40%"}
+- Demographics
+- Socioeconomic status
+:::
+
+::: {.column width="60%"}
+- Political Ideology
+:::
+
+::::
+
+<br>
+
+. . .
+
+Extensive [EJ]{.hi} literature documents how historically marginalized groups systematically face worse environmental quality 
+
+<br>
+
+<!-- A reevaluation of the effectiveness of air quality alerts across these marginalized groups  -->
+
+---
+
+## Update estimates to modern alert programs
+
+Following scientific advances, National Ambient Air Quality Standards (NAAQS) have evolved in the United States since the 1990s
+
+- Major revamps in [1997]{.hi} and [2005]{.hi}
+
+<!-- <br> -->
+
+Total emissions and air pollutant concentration averages have fallen as stricter regulations have been enforced
+
+<br>
+
+. . .
+
+In the US, the most recent evidence of the efficacy of air quality alerts was during the 1990s (Neidell; Graff Zivin and Neidell 2009)
+
+- AQI has been redefined
+- Alerts are issued much differently since the 1990s
+
+
+<!-- Third, following scientific advances, the National Ambient Air Quality Standards (NAAQS) have evolved in the last three decades, changing AQI classi- fications in 1997 and 2005. Prior studies evaluating alert programs in the United States use data from the 1990s, before these changes (Graff Zivin and Neidell, 2009). Additionally, total emissions and air pollutant concentration averages have fallen in the past several decades, and there has been an increase in attention to new categories of pollution like fine particulate matter (EPA). Therefore the behavioral responses to these programs may have changed. -->
+
+---
+
+## Plan of work
+
+Throughout the Summer, I plan to:
+
+- ~~Downloaded air quality, Census, and Safegraph data~~
+- Merge across time and geographic space
+- Create and test measures for avoidance behavior
+- Estimate my methodology
+- Perform heterogeneity analyses
+- Write a paper
+
+<br>
+
+. . .
+
+A reasonable expectation to have a first draft by the end of the Summer
+
+---
+
+## Conclusion
+
+Understanding the effectiveness of the current alert systems is paramount to improving these systems in the future
+
+<br>
+
+. . .
+
+This proposal has potential to fill a meaningful gap in the literature
+
+- Hypothesize that current estimates mask substantial heterogeneity
+
+<br>
+
+. . .
+
+My personal research agenda is directed to this specific area. I have ongoing projects with Ed Rubin and Eric Zou in related topics to this proposal
+
+<br>
+
+Funding over the summer would help me establish not only this project, but a full research agenda in this area 
+
+
+
+
+# Thank you!
