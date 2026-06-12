@@ -1,8 +1,8 @@
 ---
 title: "Urban Labor Markets"
 subtitle: "Set 07"
-author: "Andrew Dickinson"
-date: "Fall 2022"
+author: "Chen Xu"
+date: "Spring 2027"
 output:
   xaringan::moon_reader:
     css: ['default', 'metropolis', 'metropolis-fonts', 'nord.css']
@@ -12,7 +12,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       beforeInit: "macros.js"
-#knit: pagedown::chrome_print
+knit: pagedown::chrome_print
 ---
 
 ```{R, setup, include = F}
@@ -25,10 +25,25 @@ pacman::p_load(
 # Define colors
 ## source color script from local directory
 ## comment out and replace colors if user is not Andrew
-source("~/Documents/scripts/colors/colors.R")
-blue <- "#4c566a"
-purple <- "#b48ead"
-red <- "#bf616a"
+#source("~/Documents/scripts/colors/colors.R")
+# Define all colors from colors.R
+red_pink   <- "#e64173"
+turquoise  <- "#20B2AA"
+orange     <- "#FFA500"
+red        <- "#fb6107"
+blue       <- "#3b3b9a"
+green      <- "#8bb174"
+grey_light <- "grey70"
+grey_mid   <- "grey50"
+grey_dark  <- "grey20"
+purple     <- "#6A5ACD"
+slate      <- "#314f4f"
+azure      <- "#107895"
+yellow     <- "#FFC107"
+pink       <- "#e64173"
+navy       <- "#060097"
+coral      <- "#FF4848"
+teal       <- "#18b0b0"
 # XaringanExtra functions
 ## Tile view
 xaringanExtra::use_tile_view()

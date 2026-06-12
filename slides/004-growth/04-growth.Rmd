@@ -1,8 +1,8 @@
 ---
 title: "Clustering, City Size, and Growth"
-subtitle: "EC330, Set 04"
-author: "Andrew Dickinson"
-date: "Fall 2022"
+subtitle: "EC3335, Set 04"
+author: "Chen Xu"
+date: "Spring 2027"
 output:
   xaringan::moon_reader:
     css: ['default', 'metropolis', 'metropolis-fonts', 'nord.css']
@@ -12,7 +12,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       beforeInit: "macros.js"
-# knit: pagedown::chrome_print
+knit: pagedown::chrome_print
 
 ---
 class: inverse, middle
@@ -27,7 +27,7 @@ pacman::p_load(
 # Define colors
 ## source color script from local directory
 ## comment out and replace colors if user is not Andrew
-source("~/Documents/scripts/colors/colors.R")
+#source("~/Documents/scripts/colors/colors.R")
 blue <- "#4c566a"
 purple <- "#b48ead"
 red <- "#bf616a"

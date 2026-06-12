@@ -1,8 +1,8 @@
 ---
 title: "Review + The 5 Axioms of Urban Economics"
-subtitle: "EC 330, Set 02"
-author: "Andrew Dickinson"
-date: "Fall 2022"
+subtitle: "EC 3335, Set 02"
+author: "Chen Xu"
+date: "Spring 2027"
 output:
   xaringan::moon_reader:
     css: ['default', 'metropolis', 'metropolis-fonts', 'nord.css']
@@ -11,8 +11,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-# knit: pagedown::chrome_print
-
+knit: pagedown::chrome_print
 ---
 class: inverse, middle
 
@@ -28,10 +27,11 @@ pacman::p_load(
 # Define colors
 ## source color script from local directory
 ## comment out and replace colors if user is not Andrew
-source("~/Documents/scripts/colors/colors.R")
+# source("~/Documents/scripts/colors/colors.R")
 blue = '#4c566a'
 purple = '#b48ead'
 red  = '#bf616a'
+slate = "#314f4f"
 # XaringanExtra functions
 ## Tile view
 xaringanExtra::use_tile_view()
