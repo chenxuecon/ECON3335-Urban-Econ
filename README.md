@@ -1,4 +1,4 @@
-# Urban Economics (EC330) F22
+# Urban Economics (EC3335) Spring27
 
 ### Instructor: Chen Xu (cxustedwards.edu) 
 
