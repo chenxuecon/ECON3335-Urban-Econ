@@ -79,11 +79,8 @@ mytheme = theme_ipsum(base_family = "Fira Sans Book", base_size = 20) + theme(pa
 # Housekeeping
 
 .hi[Assignments:]
-- .hi[PS01] was due last night
-  - Go over solutions .hi[today]
-- .hi[PS02] will be posted tomorrow
-  - due date .hi-red[Sun Oct 30.]
-  - go over solutions + review on .hi-blue[Mon Oct 31] 
+ - .hi[PS01] was due last night
+ 
 - .hi[Reading]
   - finish up to chapter 5 before the midterm
   

@@ -59,7 +59,7 @@ theme_curves = hrbrthemes::theme_ipsum()
 .pull-left[
 .ul[.bigger[.hi-white[Today:]]]
 
-.hi-white[(i) EC201 review]
+.hi-white[(i) EC2301 review]
 
 .hi-white[(ii) The five axioms of urban econ]
 ]
@@ -69,7 +69,7 @@ theme_curves = hrbrthemes::theme_ipsum()
 .pull-right[
 .ul[.bigger[.hi-white[Upcoming:]]]
 
-.hi-white[(i) Reading: intro + chapter 1] [(link)](https://rawcdn.githack.com/ajdickinson/ec330-summer21/db71091164ea554b0bb7c7bb90528ece563e0bac/resources/Triumph-of-the-City-Edward-Glaeser.pdf)
+.hi-white[(i) Reading: intro + chapter 1] [(link)](https://github.com/chenxuecon/ECON3335-Urban-Econ/blob/main/resources/Triumph-of-the-City-Edward-Glaeser.pdf)
   
 .hi-white[(ii) PS01 (posted later this week)]
 ]
@@ -1052,14 +1052,14 @@ class: inverse, middle
 .pull-right[
 .hi-white[Upcoming]:
 
-- [Reading:](https://rawcdn.githack.com/ajdickinson/ec330-summer21/db71091164ea554b0bb7c7bb90528ece563e0bac/resources/Triumph-of-the-City-Edward-Glaeser.pdf) intro + chapter 1]
+- [Reading:](https://github.com/chenxuecon/ECON3335-Urban-Econ/blob/main/resources/Triumph-of-the-City-Edward-Glaeser.pdf) intro + chapter 1]
 
 ---
 
 #Table of Contents
 
 .col-left[
-###Econ 201 Review
+###Econ 2301 Review
 .smallest[
 1. [Supply & Demand](#supply_demand)
 1. [Elasticities](#elasticities)

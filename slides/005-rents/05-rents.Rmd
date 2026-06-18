@@ -99,10 +99,8 @@ theme_ip = theme_ipsum(base_family = "Fira Sans Book", base_size = 8)
 # Housekeeping
 
 .hi[Assignments:]
-- .hi[PS01] was due last night
-  - Go over solutions today?
-- .hi[PS02] will be posted later this week
-  - due date .hi-red[TBD]
+ - .hi[PS01] 
+
 - .hi[Reading]
   - finish up to chapter 4 this week
   
@@ -111,7 +109,8 @@ theme_ip = theme_ipsum(base_family = "Fira Sans Book", base_size = 8)
 <br>
 
 .hi[Midterm:]
-- Wed, Nov 2
+- Wed
+
   
 ---
 class: inverse, middle
