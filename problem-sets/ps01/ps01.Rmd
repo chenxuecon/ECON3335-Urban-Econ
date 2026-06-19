@@ -1,0 +1,222 @@
+---
+title: "EC3338 Problem Set 01"
+author: "Name (Print): \\underline{\\hspace{6cm}} \\hfill Student ID: \\underline{\\hspace{4cm}}"
+date: "Spring 2027"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    keep_tex: false
+header-includes:
+  - \usepackage{geometry}
+  - \geometry{margin=1in}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+  - \usepackage{amsmath}
+  - \usepackage{enumitem}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \lhead{EC3338}
+  - \chead{PS01 - Page \thepage\ of 9}
+  - \rhead{F2022}
+  - \renewcommand{\headrulewidth}{0.4pt}
+---
+
+\begin{center}
+\textbf{Chen Xu \hfill Due:, }\\[6pt]
+\textbf{Total points possible: 25}
+\end{center}
+
+\vspace{6pt}
+\noindent Please write all answers in legible handwriting in the space provided. Points will be taken off your score if the grader cannot read your answers or if your pdf scan is poor. For math questions, show all relevant work neatly. For questions with numeric answers, clearly circle or box your final answer.
+
+---
+
+## Question 1 (6 points)
+
+Using the following Demand and Supply curves to answer the following parts.
+
+$$Q(p_d) = 16 - \frac{2}{5}p_d$$
+$$Q(p_s) = -5 + p_s$$
+
+**(a) (2 points)** Graph each curve (to scale as much as possible) and carefully label. Indicate where equilibrium will be with a capital E.
+
+\vspace{8cm}
+
+**(b) (2 points)** Solve for equilibrium analytically (using math). Plot the equilibrium on your axis in part (a) with dashed lines. Carefully show all your work and box your answer.
+
+\vspace{8cm}
+
+\newpage
+
+**(c) (1 point)** Solve for consumer and producer surplus.
+
+\vspace{6cm}
+
+**(d) (1 point)** In your own words, explain the concept consumer surplus. Provide an example of a good you consume with which you experience a surplus in your explanation.
+
+\vspace{6cm}
+
+---
+
+## Question 2 (4 points)
+
+Consider the following equations describing the possible production combinations of wheat ($Q_w$) and brick ($Q_b$) of the two cities Castor and Pollux:
+
+$$\text{Castor}: Q_b = 20 - 2Q_w$$
+$$\text{Pollux}: Q_b = 18 - 6Q_w$$
+
+**(a) (1 point)** Graph each city's production possibilities frontier (PPF) for brick and wheat (on the same graph). Draw wheat on the x-axis and brick on the y-axis. Carefully label each component.
+
+\vspace{7cm}
+
+**(b) (1 point)** Fill in the table, giving the opportunity cost of Castor and Pollux.
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tabular}{|p{3cm}|p{5cm}|p{5cm}|}
+\hline
+ & \textbf{Opportunity cost of 1 unit of wheat} & \textbf{Opportunity cost of 1 unit of brick} \\
+\hline
+\textbf{Castor} & & \\[1.5cm]
+\hline
+\textbf{Pollux} & & \\[1.5cm]
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+**(c) (1 point)** Which county has the absolute advantage in wheat? Which county has the absolute advantage in brick?
+
+\vspace{4cm}
+
+**(d) (1 point)** Who has the comparative advantage in wheat? Who has the comparative advantage in brick?
+
+\vspace{4cm}
+
+\newpage
+
+---
+
+## Question 3 (8 points)
+
+The city of Springfield lies at the east end of a railroad. To the west, there are one hundred miles of plains along which there are several towns---all connected by rail. To the east of Springfield are fifty miles of mountains, whose small villages are connected by a few winding dirt roads. The only factory in the region is in Springfield. It produces widgets at a cost of \$20 per unit at the factory door. Thanks to the rail line, the transport cost to anywhere west of Springfield is \$0.4 per mile. Given the poor state of the roads through the mountains, the transport costs to anywhere east of Springfield is \$0.8 per mile.
+
+**(a) (2 points)** Graph the costs of widgets produced throughout the entire 150-mile region. Carefully label the costs at the factory, at the far western end of the region, and at the far eastern end of the region.
+
+\vspace{8cm}
+
+**(b) (2 points)** Assume that the cost of making a widget at home is \$44. What is the market area for the factory? (That is, how many miles west of Springfield will it stretch, and how many miles east of Springfield will it stretch?)
+
+\vspace{6cm}
+
+\newpage
+
+\noindent In reality, one of the key inputs for widgets is easier for the residents of the western plains to acquire. For all remaining parts of the problem, assume that the cost of making widgets at home anywhere west of Springfield is actually \$32, and the cost of making widgets at home is \$44 anywhere east of Springfield.
+
+**(c) (1 point)** Now what is the market area for the factory? (That is, how many miles west of Springfield will it stretch, and how many miles east of Springfield will it stretch?) Show your work.
+
+\vspace{5cm}
+
+\noindent The owners of the factory would like its market area to extend more broadly, and they are considering two investment options:
+
+\begin{itemize}
+  \item First, they could help the government of the region finance the upgrading and paving of the mountain roads, which would reduce the transport costs east of Springfield to only \$0.6 per mile. (The transportation costs west of Springfield would stay at \$0.4 per mile.)
+  \item Second, they could purchase and install expensive new equipment in the factory that would reduce the cost of a widget at the factory door to only \$14 per unit.
+\end{itemize}
+
+\noindent Each of these options would cost exactly the same, and the owners of the factory can choose only one of these options. Assume that potential customers for widgets are distributed evenly across the entire 150-mile region.
+
+**(d) (1 point)** How many additional miles (on either side of Springfield) would be added to the factory's market area under the first investment option of upgrading and paving the mountain roads? Show your work.
+
+\vspace{5cm}
+
+**(e) (1 point)** How many additional miles (on either side of Springfield) would be added to the factory's market area under the second investment option of installing new equipment in the factory? Show your work.
+
+\vspace{5cm}
+
+**(f) (1 point)** Given the answers to parts d) and e) above, which investment option will the factory owners choose? Briefly explain why they will go with that option.
+
+\vspace{5cm}
+
+\newpage
+
+---
+
+## Question 4 (5 points)
+
+Consider an entrepreneur who sells jewelry for \$45 per piece. Clustering with similar entrepreneurs would increase labor costs, but it would allow some of the intermediate materials to be made at larger scales, thus reducing per-unit costs.
+
+**(a) (1 point)** Fill out the rest of the table below, finding the total cost per piece as well as the profit per piece for an entrepreneur depending on how many other entrepreneurs there are in a cluster.
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|}
+\hline
+\textbf{Number of entrepreneurs} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} \\
+\hline
+Labor cost per piece & 5 & 6 & 8 & 11 & 15 & 19 & 27 \\
+\hline
+Cost of materials per piece & 25 & 20 & 16 & 14 & 12 & 10 & 9 \\
+\hline
+Total cost per piece & & & & & & & \\[0.8cm]
+\hline
+Profit per piece & & & & & & & \\[0.8cm]
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+**(b) (1 point)** Using the data in the table above, graph the labor costs per piece, the costs of materials per piece, and the total costs per piece as functions of the number of entrepreneurs in a cluster.
+
+\vspace{9cm}
+
+\newpage
+
+**(c) (1 point)** Fill out the following table and graph, finding the profit gap between locating in clusters of more than one entrepreneur compared to locating to an isolated site (i.e., a cluster of size 1). That is, how much more profit will the firm earn in a cluster of multiple entrepreneurs compared to working in an isolated site (i.e., a cluster of size 1)? For the graph, the x axis should be number of entrepreneurs in the cluster and the y axis should be the profit gap.
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|}
+\hline
+\textbf{Number of entrepreneurs} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} \\
+\hline
+Profit gap & (0) & & & & & & \\[0.8cm]
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{8cm}
+
+**(d) (1 point)** What would we expect the equilibrium cluster size to be? No explanation needed (yet).
+
+\vspace{3cm}
+
+**(e) (1 point)** Briefly explain why the equilibrium cluster size would not be smaller than your answer in part (d).
+
+\vspace{4cm}
+
+\newpage
+
+---
+
+## Question 5 (3 points)
+
+Assume that the rank-size rule (Zipf's law) for cities is exactly true and that the third-largest city in a region has 4.5 million people.
+
+**(a) (1 point)** How many people live in the region's largest city? Show your work.
+
+\vspace{5cm}
+
+**(b) (1 point)** How many people live in the region's sixth-largest city? Show your work.
+
+\vspace{5cm}
+
+**(c) (1 point)** How many cities have populations greater than 1 million? Show your work.
+
+\vspace{5cm}

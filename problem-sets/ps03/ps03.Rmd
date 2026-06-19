@@ -1,0 +1,160 @@
+---
+title: "EC330 Problem Set 03"
+author: "Name (Print): \\underline{\\hspace{6cm}} \\hfill Student ID: \\underline{\\hspace{4cm}}"
+date: "Due March, 2027"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    keep_tex: false
+header-includes:
+  - \usepackage{geometry}
+  - \geometry{margin=1in}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+  - \usepackage{amsmath}
+  - \usepackage{enumitem}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \lhead{EC3338}
+  - \chead{Due March - Page \thepage\ of 7}
+  - \rhead{2027}
+  - \renewcommand{\headrulewidth}{0.4pt}
+---
+
+\begin{center}
+\textbf{Chen Xu \hfill EC3338, Spring 2027}\\[6pt]
+\textbf{Total points possible: 25}
+\end{center}
+
+\vspace{6pt}
+\noindent Please write all answers in legible handwriting in the space provided. Points may be taken off if work is not legible or uploaded clearly. For math questions, show all relevant work. For questions with numeric answers, clearly circle or box your final answer.
+
+---
+
+## Question 1 (8 points): Minimum Wage in Urban Labor Markets
+
+Suppose the labor markets for Baristas in San Francisco (SF) and Oakland (OAK) are perfectly competitive (we will relax this later). Supply and demand in SF are parameterized by:
+
+$$\text{Demand: } W^{SF}_d = 30 - 2 \cdot Q^{SF}_d$$
+$$\text{Supply: } W^{SF}_s = 12 + Q^{SF}_s$$
+
+In Oakland, labor supply and demand are given by:
+
+$$\text{Demand: } W^{OAK}_d = 30 - 4 \cdot Q^{OAK}_d$$
+$$\text{Supply: } W^{OAK}_s = 6 + 2 \cdot Q^{OAK}_s$$
+
+**(a) (2 points)** Carefully graph each city's labor market. Be sure to indicate which graph represents which labor market. Label all intercepts.
+
+\vspace{10cm}
+
+\newpage
+
+**(b) (2 points)** Compute the equilibrium in each city. (You must provide wages and quantities in each city.)
+
+\vspace{8cm}
+
+**(c) (2 points)** Suppose that SF implements a minimum wage of \$20 an hour. Draw the labor market graph for SF again with the minimum wage added. Label and compute the associated labor surplus.
+
+\vspace{10cm}
+
+\newpage
+
+**(d) (1 point)** Suppose some fraction of the unemployed workers in SF moved to Oakland to look for work. What does this do to the supply curve for Baristas in Oakland? Can a place-based labor policy in SF impact workers in other places (like Oakland)?
+
+\vspace{6cm}
+
+**(e) (1 point)** Would your answer to part (d) be the same if the federal government enacted a binding minimum wage? (No math is required, just state your answer with a sentence or two to back it up.)
+
+\vspace{6cm}
+
+\newpage
+
+---
+
+## Question 2 (7 points): Urban Labor Markets Part II
+
+Suppose we have two cities, A and B. Suppose A's labor market is a complete monopsony, and B's market is perfectly competitive. The labor market for A is given by:
+
+$$\text{Demand: } W^A_d = 35 - 3 \cdot L^A_d$$
+$$\text{Supply: } W^A_s = 5 + 1.5 \cdot L^A_s$$
+
+The labor market in B is given by:
+
+$$\text{Demand: } W^B_d = 40 - 2 \cdot L^B_d$$
+$$\text{Supply: } W^B_s = 4 + L^B_s$$
+
+**(a) (2 points)** Solve for the monopsonist equilibrium in city A and the competitive equilibrium in city A. Compare them. Note: Not a typo, solve both equilibria for city A. For the monopsony equilibrium you must write down the marginal cost $MC_L$ first.
+
+\vspace{8cm}
+
+**(b) (1 point)** Solve for the competitive equilibrium in city B.
+
+\vspace{5cm}
+
+\newpage
+
+**(c) (2 points)** Graph the monopsony equilibrium of city A and the perfect competition equilibrium of city B on two graphs side by side.
+
+\vspace{10cm}
+
+**(d) (2 points)** The federal government wants to set a federal minimum wage to maximize the number of people employed across both labor markets. What minimum wage (not place-based) yields the maximum level of overall employment ($L^*_A + L^*_B$)? Provide both the specific minimum wage and the level of employment it yields.
+
+\vspace{8cm}
+
+\newpage
+
+---
+
+## Question 3 (10 points): Difference in Differences
+
+Suppose we want to estimate the effect of streetlight intensity on crime (e.g., does installing streetlights in a particular area change the crime rate). We have two neighborhoods, A and B. We build streetlights in neighborhood A.
+
+**(a) (4 points)** Two ideas for estimating this effect:
+
+\begin{enumerate}[label=(\roman*)]
+  \item Compare average crime in neighborhood A to average crime in neighborhood B \textit{after} the streetlights were installed.
+  \item Compare average crime in A \textit{after} the streetlights were installed to average crime in neighborhood A \textit{before} the streetlights were installed.
+\end{enumerate}
+
+Why are these comparisons problematic? You need to provide one reason for each comparison.
+
+\vspace{7cm}
+
+Now suppose we decide to estimate the treatment effect using Difference in Differences. The following table reports observed measurements of crime rates in each neighborhood per 100,000 residents before and after treatment (installation of streetlights):
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
+\hline
+\textbf{Group} & \textbf{Before treatment} & \textbf{After treatment} & \textbf{Difference} \\
+\hline
+Treatment group & 21.5 & 19 & \\[1cm]
+\hline
+Control group & 22.5 & 23 & \\[1cm]
+\hline
+\textbf{Difference} & & & \\[1cm]
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+**(b) (2 points)** Calculate the pre-treatment difference between treatment and control units. Calculate the post-treatment difference between treatment and control units. Clearly write out each simple difference below and fill in the correct answers in the table above.
+
+\vspace{5cm}
+
+\newpage
+
+**(c) (2 points)** Using part (b), calculate the difference in differences of the policy in the following form:
+
+$$\tau = (y_{\text{treat, post}} - y_{\text{control, post}}) - (y_{\text{treat, pre}} - y_{\text{control, pre}})$$
+
+where $y$ denotes the neighborhood crime rate per 100,000 residents.
+
+\vspace{7cm}
+
+**(d) (2 points)** In order to interpret this difference in differences estimate causally, we would need to assume parallel trends between neighborhoods A and B (i.e., had the streetlights never been installed, the crime rate in neighborhood A would have trended in the same way as neighborhood B). Assuming we have parallel trends here, what would be the causal interpretation of installing streetlights on crime $\tau$? Keep your interpretation short (1--2 sentences).
+
+\vspace{7cm}

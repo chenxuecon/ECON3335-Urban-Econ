@@ -1,0 +1,159 @@
+---
+title: "EC3338 Problem Set 04"
+author: "Name (Print): \\underline{\\hspace{6cm}} \\hfill Student ID: \\underline{\\hspace{4cm}}"
+date: "Due April, 2027"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    keep_tex: false
+header-includes:
+  - \usepackage{geometry}
+  - \geometry{margin=1in}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+  - \usepackage{amsmath}
+  - \usepackage{enumitem}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \lhead{EC3338}
+  - \chead{Due April - Page \thepage\ of 8}
+  - \rhead{Spring 2027}
+  - \renewcommand{\headrulewidth}{0.4pt}
+---
+
+\begin{center}
+\textbf{Chen Xu \hfill EC3338, Spring 2027}\\[6pt]
+\textbf{Total points possible: 25}
+\end{center}
+
+\vspace{6pt}
+
+\noindent Please write all answers in legible handwriting in the space provided. 3 points will be added to your score for signing your name, though those points will be deducted if the grader cannot read what you wrote on your pdf scan. For math questions, show all relevant work. For questions with numeric answers, clearly circle or box your final answer.
+
+------------------------------------------------------------------------
+
+## Question 1 (7 points): Utility
+
+Suppose we have two cities, 1 and 2. Assume every individual has the same utility function given by:
+
+$$u(w_j, r_j) = 4 \cdot w_j - 0.75 \cdot r_j$$
+
+where $j = 1$ or $j = 2$. Furthermore, for all parts of the problem assume the total population is fixed at $1{,}000$ and wages in each city are given by:
+
+$$w_1 = 15 \qquad w_2 = 12$$
+
+**(a) (1 point)** What is the utility from each choice if $r_1 = 20$ and $r_2 = 15$? Is this an equilibrium? How do you know?
+
+\vspace{6cm}
+
+**(b) (2 points)** For the rest of the problem you can now assume that rents are increasing in the population of each city. Specifically, assume $r_1(L_1) = 4 \cdot L_1$ and $r_2(L_2) = 8 \cdot L_2$. Compute the equilibrium population of each city and equilibrium rents.
+
+\vspace{7cm}
+
+\newpage
+
+**(c) (2 points)** Now suppose the government decides to levy a flat income tax of 10% on all workers. What are the new equilibrium population levels in each city? Note: your answer may include fractions/numbers with decimals.
+
+\\vspace{8cm)
+
+**(d) (2 points)** Now the government levies the 10% income tax on only people in city 1. What are the new equilibrium population levels in each city? Compare your answer to part (c). How did it change? Why?
+
+\vspace{8cm}
+
+\newpage
+
+------------------------------------------------------------------------
+
+## Question 2 (12 points): Land-Use Regulations
+
+Suppose the rental market in Eugene is perfectly competitive and characterized by the following equations:
+
+$$\text{Demand: } R_d = 20 - H_d$$ $$\text{Supply: } R_s = (1 + k) \cdot H_s$$
+
+where $R$ is rental price, and $k$ is the level of land-use restrictions in Eugene. For now, we will not assign a value to $k$.
+
+**(a) (2 points)** Solve for the equilibrium price and quantity in terms of $k$. What happens to equilibrium price and equilibrium quantity as you increase the land-use regulations (increase $k$)?
+
+\vspace{8cm}
+
+\newpage
+
+**(b) (2 points)** Graphically illustrate your answer to part (a). That is, draw the initial equilibrium, and illustrate what happens to the equilibrium when $k$ increases.
+
+\vspace{9cm}
+
+**(c) (2 points)** Now suppose $k = 2$. Compute the equilibrium using the equations derived in part (a).
+
+\vspace{7cm}
+
+\newpage
+
+**(d) (2 points)** The Eugene public is upset over high rental prices so they demand that the local government fixes the issue. They deem that the maximum price anybody should pay for rent is one less than the equilibrium price you computed in part (c). The local government implements a rent control of the price in (c) minus 1. Quantify the shortage of housing arising from the rent control when $k = 2$ using the supply and demand equations.
+
+\vspace{9cm}
+
+**(e) (2 points)** An alternative to rent control would be to lower land-use restrictions. Find the level of land-use restrictions $k$ such that equilibrium rents equal the equilibrium price with rent control in part (d). Show your work.
+
+\vspace{9cm}
+
+\newpage
+
+**(f) (2 points)** In the housing market, which policy is more efficient? (Think back to the 201 definition of efficiency). Does the solution proposed in part (e) involve any costs? What might be some consequences to lowering land-use regulations? No math is needed.
+
+\vspace{8cm}
+
+\newpage
+
+------------------------------------------------------------------------
+
+## Question 3 (10 points): Neighborhood Effects and Social Mobility
+
+Recall the figure below. In a short paragraph, interpret this figure in your own words and discuss the main insights of its result. Specifically, what evidence does this result provide regarding the geography of social mobility and the causal effects of neighborhoods? *Note: You may replace Savin Hill with `high opportunity areas'' and Roxbury with`low opportunity areas.''*
+
+\vspace{0.5cm}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6.5, fig.height=4.5, fig.align='center'}
+library(ggplot2)
+
+# Data approximated from the figure
+age  <- c(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28)
+inc  <- c(37500, 36800, 36000, 35000, 33500, 31500, 29500, 27500,
+          26000, 24800, 24000, 23500, 23200, 23000)
+
+df <- data.frame(age = age, income = inc)
+
+ggplot(df, aes(x = age, y = income)) +
+  geom_point(color = "#2c3e50", size = 2.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "#2c3e50", size = 0.8) +
+  geom_hline(yintercept = 41000, linetype = "dashed", color = "gray40") +
+  geom_hline(yintercept = 23000, linetype = "dashed", color = "gray40") +
+  annotate("text", x = 27, y = 41800, label = "Savin Hill",
+           size = 3.2, hjust = 0, color = "gray30") +
+  annotate("text", x = 27, y = 22200, label = "Roxbury",
+           size = 3.2, hjust = 0, color = "gray30") +
+  scale_x_continuous(breaks = c(2, 10, 20, 28), limits = c(2, 30)) +
+  scale_y_continuous(
+    breaks = c(23000, 29000, 35000, 41000),
+    labels = c("$23K", "$29K", "$35K", "$41K"),
+    limits = c(20000, 43000)
+  ) +
+  labs(
+    title = "Income Gain from Moving to a Better Neighborhood",
+    subtitle = "By Child's Age at Move",
+    x = "Age of Child when Parents Move",
+    y = "Average Income at Age 35"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    plot.title    = element_text(face = "bold", color = "#2c4a8c", hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5, color = "gray40"),
+    panel.grid.minor = element_blank()
+  )
+```
+
+\vspace{1cm}
+
+\noindent\textbf{Answer:}
+
+\vspace{8cm}

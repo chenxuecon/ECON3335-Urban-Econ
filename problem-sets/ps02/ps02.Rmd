@@ -1,0 +1,199 @@
+---
+title: "EC3338 Problem Set 02"
+author: "Name (Print): \\underline{\\hspace{6cm}} \\hfill Student ID: \\underline{\\hspace{4cm}}"
+date: "Spring 2027"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    keep_tex: false
+header-includes:
+  - \usepackage{geometry}
+  - \geometry{margin=1in}
+  - \usepackage{booktabs}
+  - \usepackage{array}
+  - \usepackage{amsmath}
+  - \usepackage{enumitem}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \lhead{EC3338}
+  - \chead{PS02 - Page \thepage\ of 9}
+  - \rhead{Spring 2027}
+  - \renewcommand{\headrulewidth}{0.4pt}
+---
+
+\begin{center}
+\textbf{Chen Xu \hfill EC3338, Spring 2027}\\[6pt]
+\textbf{Total points possible: 25}
+\end{center}
+
+\vspace{6pt}
+\noindent Please write all answers in legible handwriting in the space provided. Points will be deducted if the grader cannot read what you wrote. For math questions, show all relevant work. For questions with numeric answers, clearly circle or box your final answer.
+
+---
+
+## Question 1 (4 points)
+
+Recall the locational equilibrium condition in the model of rents with commuting costs:
+
+$$\Delta P \cdot h(x) + \Delta x \cdot t = 0 \tag{1}$$
+
+**(a) (1 point)** In your own words, explain how the equation above satisfies the criteria described by the first axiom of urban economics in the context of the bid-rent model.
+
+\vspace{6cm}
+
+**(b) (1 point)** If we suppose that $h(x) = 750$ for all $x \geq 0$, have we modeled consumers as being able to substitute? Provide a short explanation behind your reasoning. Simply answering yes or no is not a sufficient answer.
+
+\vspace{6cm}
+
+\newpage
+
+**(c) (1 point)** Derive the slope of the bid-rent curve when $h(x) = 750$.
+
+\vspace{7cm}
+
+**(d) (1 point)** Now suppose
+
+$$h(x) = 500 + 2x^2 \quad \text{for all } x \geq 0$$
+
+Graph $h(x)$ (a rough shape of the function for all $x \geq 0$ is sufficient). What is the interpretation for $h(0)$? What is the interpretation of $h(10)$? (hint: think about what $x$ represents).
+
+\vspace{9cm}
+
+\newpage
+
+---
+
+## Question 2 (9 points)
+
+**A multi-sector model.** Consider a version of the manufacturing bid-rent curve, but with two sectors. Let $x_1$ and $x_2$ be the distance that firms in sector 1 and sector 2 locate away from the city center. Firms face freight, labor, land costs, and a fixed intermediate goods cost ($\bar{I} = 5$). To simplify the algebra, lets also assume that firms in each sector use only one unit of land (and thus the land cost, $LC(x_i) = P(x_i)$ for $i = 1, 2$). The labor costs for each firm (as a function of distance to center) is given by:
+
+$$L(x_1) = 25 - A_1 \cdot x_1$$
+$$L(x_2) = 35 - A_2 \cdot x_2$$
+
+The freight costs for each firm as a function of distance is given by:
+
+$$F(x_1) = (B_1 + 3) \cdot x_1$$
+$$F(x_2) = (B_2 + 3) \cdot x_2$$
+
+**(a) (1 point)** Write out the profit function for a firm in each sector. You should provide two equations. Do not assume that revenue is equal in each sector.
+
+\vspace{6cm}
+
+**(b) (1 point)** Use your answer from part (a) to derive the bid-rent curves for manufacturing firms in each sector.
+
+\vspace{6cm}
+
+\newpage
+
+**(c) (2 points)** For each sector, find the distance ($x_1$, $x_2$) at which the WTP for land is zero (this won't be a number, but a function of the model's parameters).
+
+\vspace{8cm}
+
+**(d) (2 points)** Comparative statics: Interpret your answer from part (c). How does the distance you calculated in part (c) change for each sector with $A_{1,2}$ and $B_{1,2}$? Provide economic intuition for your answers.
+
+\vspace{8cm}
+
+\newpage
+
+**(e) (3 points)** Now assume that $A_1 = 8$, $A_2 = 6$, $B_1 = 7$ and $B_2 = 4$. Furthermore, you may now assume that $TR_1 = 40$ and $TR_2 = 46$. Draw a graph of these bid-rent curves and find the range of distances from the center each sector will be located. Remember: land is always allocated to the highest bidder.
+
+\vspace{14cm}
+
+\newpage
+
+---
+
+## Question 3 (7 points)
+
+**Neighborhood Sorting.** Suppose we have 2 neighborhoods, $A$ and $B$, each with 80 lots. Additionally, there are two types of households (HHs); high type and low type. The rent premia for living in neighborhood $A$ is depicted by the graph below.
+
+\vspace{0.5cm}
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=4, fig.align='center'}
+library(ggplot2)
+
+# High type rent premium curve (blue, concave)
+x_high <- c(40, 50, 60, 70, 80)
+y_high <- c(0, 40, 65, 75, 80)
+
+# Low type rent premium curve (black, linear then flat)
+x_low <- c(40, 55, 80)
+y_low <- c(0, 80, 80)
+
+df_high <- data.frame(x = x_high, y = y_high, type = "High type")
+df_low  <- data.frame(x = x_low,  y = y_low,  type = "Low type")
+df <- rbind(df_high, df_low)
+
+ggplot() +
+  geom_line(data = df_high, aes(x = x, y = y), color = "steelblue", size = 1.2) +
+  geom_line(data = df_low,  aes(x = x, y = y), color = "black",     size = 1.2) +
+  scale_x_continuous(limits = c(40, 80), breaks = c(40, 50, 60, 70, 80)) +
+  scale_y_continuous(limits = c(0, 90),  breaks = c(0, 20, 40, 60, 80)) +
+  labs(
+    x = "Number of high type households",
+    y = "Rent premium = R(A)-R(B)"
+  ) +
+  annotate("text", x = 43, y = 10, label = "Type", size = 3) +
+  annotate("segment", x = 42, xend = 46, y = 6, yend = 6,
+           color = "steelblue", size = 1) +
+  annotate("text", x = 48, y = 6, label = "High type", size = 3, hjust = 0) +
+  annotate("segment", x = 42, xend = 46, y = 2, yend = 2,
+           color = "black", size = 1) +
+  annotate("text", x = 48, y = 2, label = "Low type", size = 3, hjust = 0) +
+  geom_vline(xintercept = 80, linetype = "dashed", color = "gray50") +
+  theme_minimal(base_size = 11) +
+  theme(panel.grid.minor = element_blank())
+```
+
+**(a) (3 points)** On the graph, label each equilibrium point. Furthermore, label each equilibrium as either full integration, full segregation, or mixed.
+
+\vspace{4cm}
+
+**(b) (3 points)** Of the equilibria you labeled, which are stable and which are unstable? Explain.
+
+\vspace{5cm}
+
+**(c) (1 point)** Suppose neighborhood A starts with 50 residents. What equilibrium will the neighborhood reach in the long run?
+
+\vspace{4cm}
+
+\newpage
+
+---
+
+## Question 4 (5 points)
+
+**Minimum wage in Urban Labor Markets.** Suppose the labor markets for Baristas in San Francisco (SF) and Oakland (OAK) are perfectly competitive (we will relax this later). Supply and demand in SF are parameterized by:
+
+$$\text{Demand: } W^{SF}_d = 30 - 2 \cdot Q^{SF}_d$$
+$$\text{Supply: } W^{SF}_s = 12 + Q^{SF}_s$$
+
+In Oakland, labor supply and demand are given by:
+
+$$\text{Demand: } W^{OAK}_d = 30 - 4 \cdot Q^{OAK}_d$$
+$$\text{Supply: } W^{OAK}_s = 6 + 2 \cdot Q^{OAK}_s$$
+
+**(a) (1 point)** Carefully graph each city's labor market. Be sure to indicate which graph represents which labor market. Label all intercepts.
+
+\vspace{9cm}
+
+\newpage
+
+**(b) (1 point)** Compute the equilibrium in each city. (You must provide wages and quantities in each city.)
+
+\vspace{6cm}
+
+**(c) (1 point)** Suppose that SF implements a minimum wage of \$20 an hour. Draw the labor market graph for SF again with the minimum wage added. Label and compute the associated labor surplus.
+
+\vspace{9cm}
+
+\newpage
+
+**(d) (1 point)** Suppose some fraction of the unemployed workers in SF moved to Oakland to look for work. What does this do to the supply curve for Baristas in Oakland? Can a place-based labor policy in SF impact workers in other places (like Oakland)?
+
+\vspace{7cm}
+
+**(e) (1 point)** Would your answer to part (d) be the same if the federal government enacted a binding minimum wage? (No math is required, just state your answer with a sentence or two to back it up.)
+
+\vspace{7cm}
