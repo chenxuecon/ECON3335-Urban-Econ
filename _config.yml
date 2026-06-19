@@ -1,18 +1,12 @@
+remote_theme: mmistakes/minimal-mistakes
+
 title: "ECON 3335: Urban and Regional Economics"
 description: "St. Edward's University | Spring 2027"
-author: "Chen Xu"
-remote_theme: mmistakes/minimal-mistakes
+
+author:
+  name: "Chen Xu"
+  email: "cxu@stedwards.edu"
+
 plugins:
   - jekyll-remote-theme
   - jekyll-include-cache
-
-include:
-  - _pages
-
-defaults:
-  - scope:
-      path: ""
-      type: pages
-    values:
-      layout: single
-      author_profile: true
