@@ -1,5 +1,5 @@
 ---
-title: ECON3335 Urban and Regional Economics
+ECON3338 Urban and Regional Economics
 ---
 
 <!--  <style>
