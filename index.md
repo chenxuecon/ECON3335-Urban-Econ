@@ -285,14 +285,14 @@ ECON3338 Urban and Regional Economics
 - [Problem Set 2](problem-sets/ps02/ps02.pdf)
 - [Problem Set 3](problem-sets/ps03/ps03.pdf)
 - [Problem Set 4](problem-sets/ps04/ps04.pdf)
-- [Triumph of the City book report rubric](ec330-TotC-rubric.pdf)
+<!-- - [Triumph of the City book report rubric](ec330-TotC-rubric.pdf) -->
 
 ## Readings {#readings}
 
 - [Triumph of the City, Edward Glaeser](resources/Triumph-of-the-City-Edward-Glaeser.pdf)
 - [Urban Economics, O'Sullivan, 8th edition](resources/O'Sullivan_Urban_Economics_8th.pdf)
 
-## Extra Lecture Materials
+<!-- ## Extra Lecture Materials
 
 - [Set 03: Market Area example](slides/003-size/Market%20Area.pdf)
 - [Set 05: Bid-rent example](slides/005-rents/bid-rent-ex.pdf)
@@ -302,3 +302,4 @@ ECON3338 Urban and Regional Economics
 - [Set 09: Endogenous rents example](slides/009-pb-policy/endo-rents-ex.pdf)
 - [Set 10: Rent control and land-use regulation example](slides/010-housing/rc-lur-example.pdf)
 - [Set 11: Externality example](slides/011-auto/externality-ex.pdf)
+-->
