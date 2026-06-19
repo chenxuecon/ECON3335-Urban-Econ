@@ -2,7 +2,7 @@
 title: ECON3335 Urban and Regional Economics
 ---
 
-<style>
+<!--  <style>
   :root {
     --ink: #1f2933;
     --muted: #62717f;
@@ -170,6 +170,7 @@ title: ECON3335 Urban and Regional Economics
     <span>Textbooks and supplementary resources</span>
   </a>
 </div>
+-->
 
 ## Course Information
 
