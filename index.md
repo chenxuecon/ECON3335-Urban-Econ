@@ -1,5 +1,6 @@
 ---
-ECON3338 Urban and Regional Economics
+layout: home
+author_profile: true
 ---
 
 <!--  <style>
