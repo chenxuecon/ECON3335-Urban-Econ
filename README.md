@@ -21,6 +21,7 @@ The student-facing course homepage is [`index.md`](index.md). It links to:
 - `index.md`: public course webpage for students
 - `_config.yml`: GitHub Pages/Jekyll configuration
 
-## Publishing
+<!-- ## Publishing
 
 This repository is configured for GitHub Pages through the `jekyll-theme-minimal` theme. After updates are pushed to GitHub, students can use the published GitHub Pages URL as the course materials hub.
+-->
